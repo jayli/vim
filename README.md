@@ -27,7 +27,21 @@ js语法检查：F4唤醒/关闭，F5更新语法: 安装：
 
 JS代码格式化：S-b
 
+CSSLint:需要额外安装（依赖node）,也是通过F4来激活，针对css和less文件有效
 
+	sudo npm install -g csslint
+
+------
+
+插件列表
+
+- matchit
+- ctrlp
+- zencoding
+- csslint
+- jslint
+- fuzzyfinder
+- jsbeautify
 
 
 
