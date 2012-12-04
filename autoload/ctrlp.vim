@@ -912,6 +912,8 @@ fu! ctrlp#acceptfile(mode, line, ...)
 		let buftab = ( s:jmptobuf =~# '[tTVH]' || s:jmptobuf > 1 )
 			\ ? s:buftab(bufnr, md) : [0, 0]
 	en
+	" added by jayli
+	tabnew
 	" Switch to existing buffer or open new one
 	if exists('jmpb') && bufwinnr > 0
 		\ && !( md == 't' && ( s:jmptobuf !~# toupper(md) || buftab[0] ) )
