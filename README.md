@@ -17,7 +17,7 @@ zencode：`Ctrl+Enter` 展开
 
 js语法检查：F4唤醒/关闭，F5更新语法: 安装：
 
-	http://ued.taobao.com/blog/2010/11/11/jslint-for-vim/
+> <http://ued.taobao.com/blog/2010/11/11/jslint-for-vim/>
 
 快速左移：C-h
 
