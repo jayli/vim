@@ -15,7 +15,9 @@ by 拔赤
 
 zencode：无自定义，都是默认，比如C-y,等
 
-js语法检查：F4唤醒/关闭，F5更新语法
+js语法检查：F4唤醒/关闭，F5更新语法: 安装：
+
+	http://ued.taobao.com/blog/2010/11/11/jslint-for-vim/
 
 快速左移：C-h
 
