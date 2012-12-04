@@ -13,7 +13,7 @@ by 拔赤
 
 多标签切换：普通模式下直接按 Tab,或S-Tab
 
-zencode：无自定义，都是默认，比如C-y,等
+zencode：`Ctrl+Enter` 展开
 
 js语法检查：F4唤醒/关闭，F5更新语法: 安装：
 

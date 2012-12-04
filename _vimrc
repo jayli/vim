@@ -234,3 +234,5 @@ set complete-=k complete +=k
 
 au BufRead,BufNewFile *.less set filetype=css
 
+" zen coding 配置
+let g:user_zen_expandabbr_key = '<C-Enter>' "设置为ctrl+Enter,展开
