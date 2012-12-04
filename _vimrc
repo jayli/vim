@@ -1,12 +1,15 @@
 " ~/.vimrc by Jayli <lijing00333@163.com> 
 " http://jayli.github.com
+" for 拔赤, 欢迎拷贝
 "
-set nocompatible        " Use Vim defaults (much better!)
+" 使用vim默认配置，推荐这样做
+set nocompatible 
 
-"Default backspace like normal
+"默认长度的空格
 set backspace=indent,eol,start
 
-set viminfo='20,\"50    " read/write a .viminfo file, don't store more
+" 读写.viminfo文件，不要额外存储
+set viminfo='20,\"50 
 set formatoptions=mtcql
 
 au BufNewFile,BufRead * set foldlevel=99
@@ -14,10 +17,11 @@ au BufNewFile,BufRead * set foldlevel=99
 "折叠配置
 set fdm=manual
 
+" 折叠样式
 highlight Folded ctermbg=darkgray ctermfg=lightmagenta
 
 if has ( "autocmd" )
-	" When editing a file, always jump to the last cursor position
+	" 打开文件时，自动定位到上次光标位置
 	autocmd BufReadPost *
 	\ if line("'\"") > 0 && line ("'\"") <= line("$") |
 	\   exe "normal g'\"" |
@@ -25,8 +29,7 @@ if has ( "autocmd" )
 endif  " has ("autocmd") 
 
 
-" Editor config
-"
+" 编辑器界面配置
 "
 
 " 鼠标滚轮的事件
@@ -34,17 +37,22 @@ endif  " has ("autocmd")
 if has("gui_running")
 	"color lucius
 	au GUIEnter * cd ~
+	" 列高亮，暂时关闭
 	" set cursorcolumn
 	map <MiddleMouse> <Nop>
+	" 行高亮，gui模式下起作用
 	set cursorline
 	set guifont=Consolas:h13
 else
 	set showtabline=2
+	"鼠标隐藏,鼠标右键无作用
+	set mouse=v
 endif
 
 " 字体设置
 if has("unix") && !has("mac")
 	set guifont=Inconsolata\ Medium\ 11
+	" gui下字体默认样式
 	set guifont=Courier\ 10\ Pitch
 	set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ Medium\ 10
 endif
@@ -61,8 +69,6 @@ filetype indent on
 " js文件格式化，Shift-b
 map <S-b> :call g:Jsbeautify()<CR>
 
-"by jay
-
 "编辑器样式hack
 hi Comment      term=bold ctermfg=darkcyan
 hi Constant     term=underline ctermfg=Red
@@ -78,10 +84,6 @@ hi Search       term=standout ctermbg=Yellow ctermfg=Black
 hi ErrorMsg     term=reverse ctermbg=Red ctermfg=White
 hi StatusLine   ctermfg=darkblue  ctermbg=gray
 hi StatusLineNC ctermfg=brown   ctermbg=darkblue
-
-
-"鼠标隐藏
-set mouse=v
 
 "高亮搜索结果
 set incsearch
@@ -172,7 +174,7 @@ if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
 endfunction
 inoremap <Tab> <C-R>=CleverTab()<CR>
 
-"退出模式
+"退出模式，退出时保留残存窗口
 set t_ti=
 set t_te= 
 
@@ -194,9 +196,9 @@ set t_te=
 "colorscheme peachpuff
 "colorscheme ron
 "colorscheme shine
-"colorscheme torte
+colorscheme torte
 "colorscheme zellner
-colorscheme gemcolors 
+"colorscheme gemcolors 
 
 "编辑器主题样式hack，针对evening
 "hi StatusLine	cterm=bold ctermbg=blue ctermfg=white guibg=gold guifg=blue
@@ -211,17 +213,13 @@ hi StatusLine	cterm=bold ctermbg=blue ctermfg=white guifg=darkblue guibg=white
 hi StatusLineNC	cterm=bold ctermbg=blue ctermfg=black guifg=darkblue guibg=white
 hi TabLine cterm=bold ctermbg=white ctermfg=black guibg=blue guifg=white
 hi TabLineSel cterm=bold ctermbg=blue ctermfg=white guibg=blue guifg=white
-hi CursorLine cterm=bold ctermbg=darkgray guibg=gold guifg=blue
+"hi CursorLine cterm=bold ctermbg=darkgray guibg=gold guifg=blue
 
 "显示tab line
 "set showtabline=2
 
 "最大tab个数
 set tabpagemax=40
-
-
-"set cursorline
-":hi cursorline ctermbg=Yellow
 
 "darkburn 颜色设置
 "set t_Co=256
@@ -232,6 +230,7 @@ set complete-=k complete +=k
 
 :filetype plugin on 
 
+" 将less识别为css
 au BufRead,BufNewFile *.less set filetype=css
 
 " zen coding 配置
