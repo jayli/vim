@@ -13,7 +13,7 @@ by 拔赤
 
 多标签切换：普通模式下直接按 `Tab`,或`S-Tab`
 
-zencode：编辑模式下， `Ctrl+e` 展开
+zencode：编辑模式下， `Ctrl+k` 展开
 
 js语法检查
 

@@ -1223,7 +1223,7 @@ let s:zen_settings = {
 \            'bdo:l': {'dir': 'ltr'},
 \            'del': {'datetime': '${datetime}'},
 \            'ins': {'datetime': '${datetime}'},
-\            'link:css': [{'rel': 'stylesheet'}, {'type': 'text/css'}, {'href': '|style.css'}, {'media': 'all'}],
+\            'link:css': [{'rel': 'stylesheet'}, {'type': 'text/css'}, {'href': '|'}],
 \            'link:print': [{'rel': 'stylesheet'}, {'type': 'text/css'}, {'href': '|print.css'}, {'media': 'print'}],
 \            'link:favicon': [{'rel': 'shortcut icon'}, {'type': 'image/x-icon'}, {'href': '|favicon.ico'}],
 \            'link:touch': [{'rel': 'apple-touch-icon'}, {'href': '|favicon.png'}],

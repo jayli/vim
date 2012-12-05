@@ -236,4 +236,4 @@ set complete-=k complete +=k
 au BufRead,BufNewFile *.less set filetype=css
 
 " zen coding 配置
-let g:user_zen_expandabbr_key = '<C-e>' "设置为ctrl+e,展开
+let g:user_zen_expandabbr_key = '<C-k>' "设置为ctrl+k,展开
