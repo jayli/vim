@@ -15,9 +15,17 @@ by 拔赤
 
 zencode：编辑模式下， `Ctrl+e` 展开
 
-js语法检查：F4唤醒/关闭，F5更新语法: 安装：
+js语法检查
+
+- JSLint：F4唤醒/关闭，F5更新语法: 安装：
 
 > <http://ued.taobao.com/blog/2010/11/11/jslint-for-vim/>
+
+- JSHint：F8唤醒，弹出唤醒窗口
+
+> jshint需要预装node的jslint
+
+	npm install jshint -g
 
 快速左移：`C-h`
 
@@ -41,13 +49,14 @@ CSSLint:需要额外安装（依赖node）,也是通过F4来激活，针对css�
 
 插件列表
 
-- matchit
-- ctrlp
-- zencoding
-- csslint
-- jslint
-- fuzzyfinder
-- jsbeautify
+- matchit（<http://www.vim.org/scripts/script.php?script_id=39>）
+- ctrlp（<https://github.com/kien/ctrlp.vim>）
+- zencoding（<https://github.com/mattn/zencoding-vim>）
+- csslint（<http://csslint.net/>）
+- jslint（<http://ued.taobao.com/blog/2010/11/11/jslint-for-vim/>）
+- jshint（<https://github.com/walm/jshint.vim>）
+- fuzzyfinder（<https://github.com/vim-scripts/FuzzyFinder>）
+- jsbeautify（<http://jsbeautifier.org/>）
 
 
 

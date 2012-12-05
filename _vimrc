@@ -144,7 +144,9 @@ map <F3> <ESC>*
 map <F11> :bp<CR>              
 map <F12> :bn<CR>               
 map <F7> <ESC>:wa<CR>:make<CR>
-map <F8> <ESC>"0p
+
+" JSHint
+map <F8> :JSHint<CR>
 
 "tab操作多文件
 map <C-t> :tabnew 
