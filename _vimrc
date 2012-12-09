@@ -169,12 +169,32 @@ set tabstop=4   "tab
 
 "tab自动补全
 function! CleverTab()
-if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+	if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
 		return "\<Tab>"
-		else
+	else
 		return "\<C-N>"
 endfunction
+function! CleverShiftTab()
+	if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+		return "\<Tab>"
+	else
+		return "\<C-P>"
+endfunction
 inoremap <Tab> <C-R>=CleverTab()<CR>
+inoremap <S-Tab> <C-R>=CleverShiftTab()<CR>
+" 智能模式自动匹配关键字
+inoremap <C-O> <C-X><C-O><C-P> 
+" 智能模式自动匹配文件名
+inoremap <C-F> <C-X><C-F><C-P> 
+
+" 自动匹配模式下按回车插入单词
+inoremap <expr> <CR>       pumvisible()?"\<C-Y>":"\<CR>"
+" 输入点时开启自动匹配
+"autocmd Filetype java,javascript inoremap <buffer>  .  .<C-N><C-P> "输入点时
+" CSS文件打开自动匹配
+autocmd Filetype css inoremap <buffer>  :  :<C-X><C-O><C-P>
+" 输入单词首字母时打开自动匹配
+"inoremap <buffer>  a  a<C-N><C-P>
 
 "退出模式，退出时保留残存窗口
 set t_ti=
