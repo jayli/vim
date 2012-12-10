@@ -1210,6 +1210,7 @@ let s:zen_settings = {
 \                    ."</head>\n"
 \                    ."<body>\n\t${child}|\n</body>\n"
 \                    ."</html>",
+\			'jshint': "/* jshint browser:true */",
 \			'ksuse': "KISSY.use(\"|\",function(S){\n"
 \					."\n"
 \					."\t\"use strict\";\n\n"
