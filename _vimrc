@@ -175,10 +175,7 @@ function! CleverTab()
 		return "\<C-N>"
 endfunction
 function! CleverShiftTab()
-	if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-		return "\<Tab>"
-	else
-		return "\<C-P>"
+	return pumvisible()?"\<C-P>":"\<Tab>"
 endfunction
 inoremap <Tab> <C-R>=CleverTab()<CR>
 inoremap <S-Tab> <C-R>=CleverShiftTab()<CR>
