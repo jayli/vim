@@ -246,3 +246,13 @@ au BufRead,BufNewFile *.less set filetype=css
 
 " zen coding 配置
 let g:user_zen_expandabbr_key = '<C-k>' "设置为ctrl+k,展开
+
+" 注释生成
+let g:DoxygenToolkit_authorName="jayli, bachi@taobao.com" 
+let g:DoxygenToolkit_briefTag_funcName="yes"
+let g:doxygen_enhanced_color=1
+let g:DoxygenToolkit_versionString=""
+
+" C-D生成文件全局注释
+map <C-D> :DoxAuthor<CR>
+
