@@ -38,6 +38,12 @@ js语法检查
 - CSS关键字匹配：C-O，或者直接输入`:`后弹出自动匹配
 - 自动文件名匹配：C-F
 
+KISSY 常用的三段代码生成(快捷键为编辑模式下`C-k`)：
+
+- KISSY.add:`ksadd`
+- KISSY.use:`ksuse`
+- KISSY.add的完整代码结构:`ksmod`
+
 JS代码（完全）格式化：`S-b`
 
 HTML/JS代码重新整理缩进（不完全格式化）：`=`，全文缩进：
