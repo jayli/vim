@@ -252,7 +252,20 @@ let g:DoxygenToolkit_authorName="jayli, bachi@taobao.com"
 let g:DoxygenToolkit_briefTag_funcName="yes"
 let g:doxygen_enhanced_color=1
 let g:DoxygenToolkit_versionString=""
+let g:DoxygenToolkit_compactOneLineDoc = "yes"
 
-" C-D生成文件全局注释
-map <C-D> :DoxAuthor<CR>
+" 注释生成
+function! InsertDox()
+	"return "\:".getline('.')
+	" 空行C-D生成文件注释
+	if getline('.') =~ '^\s*$'
+		return "\:DoxAuthor\<CR>"
+	else 
+	" 非空行C-D生成函数注释
+		return "\:Dox\<CR>\<ESC>"
+endfunction
+
+" C-D生成注释
+map <expr> <C-D> InsertDox()
+
 

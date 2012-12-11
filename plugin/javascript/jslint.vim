@@ -160,7 +160,8 @@ function! s:JSLint()
 
   let b:jslint_output = system(s:cmd, join(s:jslintrc + getline(b:firstline, b:lastline), "\n") . "\n")
   if v:shell_error
-     echoerr 'could not invoke JSLint!'
+	 " 如果jslint未安装，不报错
+     " echoerr 'could not invoke JSLint!'
   end
 
   for error in split(b:jslint_output, "\n")
