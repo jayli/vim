@@ -44,7 +44,8 @@ KISSY 常用的三段代码生成(快捷键为编辑模式下`C-k`)：
 
 - KISSY.add:`ksadd`
 - KISSY.use:`ksuse`
-- KISSY.add的完整代码结构:`ksmod`
+- KISSY.add的完整代码结构1:`ksmod`
+- KISSY.add的完整代码结构2:`kssmod`
 - 插入全局JSHint配置：`jshint`
 
 JS代码（完全）格式化：`S-b`
