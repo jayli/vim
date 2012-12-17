@@ -1235,7 +1235,7 @@ let s:zen_settings = {
 \					."\t\t\tX.superclass.constructor.call(this, cfg);\n"
 \					."\t\t\tthis.init();\n"
 \					."\n"
-\					."\t} else {\n"
+\					."\t\t} else {\n"
 \					."\t\t\treturn new X(id,cfg);\n"
 \					."\t\t}\n"
 \					."\t}\n"
