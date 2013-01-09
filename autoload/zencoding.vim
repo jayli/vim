@@ -1212,7 +1212,7 @@ let s:zen_settings = {
 \                    ."</html>",
 \			'script': "<script>\n|\n</script>\n",
 \			'style': "<style>\n|\n</style>\n",
-\			'jshint': "/* jshint browser:true */",
+\			'jshint': "/*jshint smarttabs:true,browser:true,devel:true,sub:true,evil:true */",
 \			'ksuse': "KISSY.use(\"|\",function(S){\n"
 \					."\n"
 \					."\t\"use strict\";\n\n"
