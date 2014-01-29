@@ -82,8 +82,6 @@ hi Error        term=reverse ctermbg=Red ctermfg=White
 hi Todo         term=standout ctermbg=Yellow ctermfg=Red
 hi Search       term=standout ctermbg=Yellow ctermfg=Black
 hi ErrorMsg     term=reverse ctermbg=Red ctermfg=White
-hi StatusLine   ctermfg=darkblue  ctermbg=gray
-hi StatusLineNC ctermfg=brown   ctermbg=darkblue
 
 "高亮搜索结果
 set incsearch
@@ -98,7 +96,7 @@ set statusline=%<[%n]\ %F\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM
 
 "欢迎文字
 " autocmd VimEnter * echo "Welcome back jayli :)"
-" autocmd VimLeave * echo "Byebye.."
+autocmd VimLeave * echo "Byebye Jayli.."
 
 "一个tab占4个空格
 set ts=4
@@ -196,7 +194,7 @@ set t_te=
 "colorscheme darkblue
 "colorscheme default
 "colorscheme delek
-"colorscheme desert
+colorscheme desert
 "colorscheme elflord
 "colorscheme darkburn  "依赖.vim/colors/darkburn.vim
 "colorscheme evening
@@ -207,24 +205,23 @@ set t_te=
 "colorscheme peachpuff
 "colorscheme ron
 "colorscheme shine
-colorscheme torte
+"colorscheme torte
 "colorscheme zellner
 "colorscheme gemcolors 
 
-"编辑器主题样式hack，针对evening
-"hi StatusLine	cterm=bold ctermbg=blue ctermfg=white guibg=gold guifg=blue
-"hi StatusLineNC	cterm=bold ctermbg=blue ctermfg=black guibg=gold guifg=blue
-"hi TabLine cterm=bold ctermbg=lightgray ctermfg=black guibg=gold guifg=blue
-"hi TabLineSel cterm=bold ctermbg=darkblue ctermfg=white guibg=gold guifg=blue
-"hi CursorLine cterm=bold ctermbg=darkgray guibg=gold guifg=blue
-
 "hack for elflord 
 "状态栏样式hack，针对evening,包括gui模式下的状态栏样式
-hi StatusLine	cterm=bold ctermbg=blue ctermfg=white guifg=darkblue guibg=white
-hi StatusLineNC	cterm=bold ctermbg=blue ctermfg=black guifg=darkblue guibg=white
-hi TabLine cterm=bold ctermbg=white ctermfg=black guibg=blue guifg=white
-hi TabLineSel cterm=bold ctermbg=blue ctermfg=white guibg=blue guifg=white
-"hi CursorLine cterm=bold ctermbg=darkgray guibg=gold guifg=blue
+if has("gui_running")
+	hi StatusLine  cterm=bold ctermbg=blue ctermfg=white guifg=darkblue guibg=white
+	hi StatusLineNC	cterm=bold ctermbg=blue ctermfg=black guifg=darkblue guibg=white
+	hi TabLine cterm=bold ctermbg=white ctermfg=black guibg=blue guifg=white
+	hi TabLineSel cterm=bold ctermbg=blue ctermfg=white guibg=blue guifg=white
+else
+	hi StatusLine  cterm=bold ctermbg=darkgray ctermfg=white guifg=darkblue guibg=white
+	hi StatusLineNC	ctermbg=gray ctermfg=black guifg=darkblue guibg=white
+	hi TabLineFill cterm=bold ctermbg=darkgray ctermfg=black guibg=black guifg=black
+	hi TabLineSel cterm=bold ctermbg=blue ctermfg=white guibg=blue guifg=white
+end
 
 "显示tab line
 "set showtabline=2
@@ -268,4 +265,4 @@ endfunction
 " C-D生成注释
 map <expr> <C-D> InsertDox()
 
-
+nmap <silent> <F7> <Esc>:!grunt demo<CR><CR>:cope 7<CR>:cw<CR>
