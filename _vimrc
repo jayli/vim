@@ -187,14 +187,15 @@ autocmd Filetype css inoremap <buffer>  :  :<C-X><C-O><C-P>
 set t_ti=
 set t_te= 
 
+" 颜色设置
+set t_Co=256
 
 "选择编辑器主题
-"colorscheme evening
 "colorscheme blue
 "colorscheme darkblue
 "colorscheme default
 "colorscheme delek
-colorscheme desert
+"colorscheme desert
 "colorscheme elflord
 "colorscheme darkburn  "依赖.vim/colors/darkburn.vim
 "colorscheme evening
@@ -208,29 +209,20 @@ colorscheme desert
 "colorscheme torte
 "colorscheme zellner
 "colorscheme gemcolors 
+colorscheme distinguished
 
 "hack for elflord 
 "状态栏样式hack，针对evening,包括gui模式下的状态栏样式
-if has("gui_running")
-	hi StatusLine  cterm=bold ctermbg=blue ctermfg=white guifg=darkblue guibg=white
-	hi StatusLineNC	cterm=bold ctermbg=blue ctermfg=black guifg=darkblue guibg=white
-	hi TabLine cterm=bold ctermbg=white ctermfg=black guibg=blue guifg=white
-	hi TabLineSel cterm=bold ctermbg=blue ctermfg=white guibg=blue guifg=white
-else
-	hi StatusLine  cterm=bold ctermbg=darkgray ctermfg=white guifg=darkblue guibg=white
-	hi StatusLineNC	ctermbg=gray ctermfg=black guifg=darkblue guibg=white
-	hi TabLineFill cterm=bold ctermbg=darkgray ctermfg=black guibg=black guifg=black
-	hi TabLineSel cterm=bold ctermbg=blue ctermfg=white guibg=blue guifg=white
-end
+hi StatusLine  cterm=bold ctermbg=236 ctermfg=white guifg=darkblue guibg=white
+hi StatusLineNC	ctermbg=236 ctermfg=darkgray guifg=darkblue guibg=white
+hi TabLineFill cterm=bold ctermbg=237 ctermfg=black guibg=black guifg=black
+hi TabLineSel cterm=bold ctermbg=darkblue ctermfg=white guibg=blue guifg=white
 
 "显示tab line
 "set showtabline=2
 
 "最大tab个数
 set tabpagemax=40
-
-"darkburn 颜色设置
-"set t_Co=256
 
 "对所有文件设置关键字提示
 set dictionary-=~/.vim/dict/dict.txt dictionary+=~/.vim/dict/dict.txt
@@ -265,4 +257,3 @@ endfunction
 " C-D生成注释
 map <expr> <C-D> InsertDox()
 
-nmap <silent> <F7> <Esc>:!grunt demo<CR><CR>:cope 7<CR>:cw<CR>
