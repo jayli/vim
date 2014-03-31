@@ -256,4 +256,3 @@ endfunction
 
 " C-D生成注释
 map <expr> <C-D> InsertDox()
-
