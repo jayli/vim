@@ -1,7 +1,17 @@
-vim 配置
+Vim 配置
 ===
 
 by 拔赤
+
+## 安装
+
+初始安装
+
+	curl "https://raw.githubusercontent.com/jayli/vim/master/install.sh" | bash -s install
+
+更新配置
+
+	curl "https://raw.githubusercontent.com/jayli/vim/master/install.sh" | bash -s update 
 
 ## 常用命令
 
