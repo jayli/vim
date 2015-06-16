@@ -1,9 +1,6 @@
 ![](https://gw.alicdn.com/tps/TB1DXtFIpXXXXa2XXXXXXXXXXXX.png_200x200.jpg)
 
-Vim 配置
-===
-
-by 拔赤
+Vim 配置 by 拔赤
 
 ## 安装
 
