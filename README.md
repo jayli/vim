@@ -1,6 +1,8 @@
-![](https://gw.alicdn.com/tps/TB1DXtFIpXXXXa2XXXXXXXXXXXX.png_200x200.jpg)
+# Vim 配置 
 
-Vim 配置 by 拔赤
+by 拔赤
+
+ [https://gitter.im/jayli/vim](https://gitter.im/jayli/vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&content=body_link). [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jayli/vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
 
 ## 安装
 
