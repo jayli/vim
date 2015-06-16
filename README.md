@@ -1,3 +1,5 @@
+![](https://gw.alicdn.com/tps/TB1DXtFIpXXXXa2XXXXXXXXXXXX.png_200x200.jpg)
+
 Vim 配置
 ===
 
