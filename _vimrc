@@ -256,3 +256,7 @@ endfunction
 
 " C-D生成注释
 map <expr> <C-D> InsertDox()
+
+if has("gui_running")
+	colorscheme distinguished
+endif
