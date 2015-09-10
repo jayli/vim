@@ -232,6 +232,10 @@ set complete-=k complete +=k
 
 " 将less识别为css
 au BufRead,BufNewFile *.less set filetype=css
+" 将scss识别为css
+au BufRead,BufNewFile *.scss set filetype=css
+" 将xtpl识别为html
+au BufRead,BufNewFile *.xtpl set filetype=html
 
 " zen coding 配置
 let g:user_zen_expandabbr_key = '<C-k>' "设置为ctrl+k,展开
