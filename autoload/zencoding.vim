@@ -1198,18 +1198,18 @@ let s:zen_settings = {
 \                    ."<body>\n\t${child}|\n</body>\n"
 \                    ."</html>",
 \            'html': "<!DOCTYPE HTML>\n"
-\					."<!--[if lt IE 7]><html class=\"no-js ie ie6 lte9 lte8 lte7\"> <![endif]-->\n"
-\					."<!--[if IE 7]><html class=\"no-js ie ie7 lte9 lte8 lte7\"> <![endif]-->\n"
-\					."<!--[if IE 8]><html class=\"no-js ie ie8 lte9 lte8\"> <![endif]-->\n"
-\					."<!--[if IE 9]><html class=\"no-js ie ie9 lte9\"> <![endif]-->\n"
-\					."<!--[if gt IE 9]><html class=\"no-js\"><![endif]-->\n"
-\					."<!--[if !IE]><!--><html><!--<![endif]-->\n"
-\                    ."<head>\n"
-\                    ."\t<meta charset=\"${charset}\">\n"
-\                    ."\t<title></title>\n"
-\                    ."</head>\n"
-\                    ."<body>\n\t${child}|\n</body>\n"
-\                    ."</html>",
+\					 ."<html lang=\"zh\">\n"
+\					 ."<head>\n"
+\					 ."\t<meta charset=\"${charset}\">\n"
+\					 ."\t<title></title>\n"
+\					 ."\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0\" />\n"
+\					 ."\t<meta name=\"apple-mobile-web-app-capable\" content=\"yes\" />\n"
+\					 ."\t<meta name=\"format-detection\" content=\"telephone=no\" />\n"
+\					 ."\t<meta name=\"format-detection\" content=\"email=no\"/>\n"
+\					 ."\t<meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black\"/>\n"
+\					 ."</head>\n"
+\					 ."<body>\n\t${child}|\n</body>\n"
+\					 ."</html>",
 \			'script': "<script>\n|\n</script>\n",
 \			'style': "<style>\n|\n</style>\n",
 \			'jshint': "/*jshint smarttabs:true,browser:true,devel:true,sub:true,evil:true */",
