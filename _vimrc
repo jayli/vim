@@ -239,7 +239,7 @@ au BufRead,BufNewFile *.xtpl set filetype=html
 " 将 we 识别为html
 au BufRead,BufNewFile *.we set filetype=html
 " 将 swift 识别为 js
-au BufRead,BufNewFile *.swift set filetype=js
+au BufRead,BufNewFile *.swift set filetype=javascript
 
 " zen coding 配置
 let g:user_zen_expandabbr_key = '<C-k>' "设置为ctrl+k,展开
