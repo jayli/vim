@@ -42,7 +42,7 @@ onload	onmouseup	onmousedown	onsubmit
 
 SyntaxError ReferenceError RangeError TypeError URLError EvalError
 
-document location navigator screen history frames
+html document location navigator screen history frames
 forms location anchors images links frameset
 
 Element Text Attr nodeName nodeType nodeValue ownerDocument firstChild lastChild 
