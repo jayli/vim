@@ -238,6 +238,8 @@ au BufRead,BufNewFile *.scss set filetype=css
 au BufRead,BufNewFile *.xtpl set filetype=html
 " 将 we 识别为html
 au BufRead,BufNewFile *.we set filetype=html
+" 将 we 识别为html
+au BufRead,BufNewFile *.vue set filetype=html
 " 将 swift 识别为 js
 au BufRead,BufNewFile *.swift set filetype=javascript
 
