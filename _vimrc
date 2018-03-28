@@ -95,12 +95,8 @@ set laststatus=2
 set statusline=%<[%n]\ %F\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}][%{&ff}][ASCII=\%03.3b]\ %-10.(%l,%c%V%)\ %P
 
 "欢迎文字
-" autocmd VimEnter * echo "Welcome back jayli :)"
+autocmd VimEnter * echo "Welcome back jayli :)"
 autocmd VimLeave * echo "Byebye Jayli.."
-
-"一个tab占4个空格
-set ts=4
-set sw=4
 
 "自动缩进动作，粘贴自动缩进
 set smartindent
@@ -161,9 +157,28 @@ vnoremap Y "+y
 map <C-l> <ESC>10l
 map <C-h> <ESC>10h
 
+"一个tab占4个空格
+set ts=4
+set sw=4
+
 "tab尺寸
 set shiftwidth=4
 set tabstop=4   "tab
+set softtabstop=4
+
+"空格缩进切换Tab，我的习惯 4 个缩进 Tab
+function! g:TransformSpaceTo4Tab()
+	"echo "空格缩进更换为Tab"
+	set ts=2
+	set noexpandtab
+	execute "%retab!"
+	set ts=4
+	execute "%retab!"
+	execute "echo \"缩进符切换为 4 字符宽 Tab !\""
+endfunction
+
+"配置缩进整理快捷键
+map <S-M> <ESC>:call g:TransformSpaceTo4Tab()<CR>
 
 "tab自动补全
 function! CleverTab()
@@ -172,9 +187,11 @@ function! CleverTab()
 	else
 		return "\<C-N>"
 endfunction
+
 function! CleverShiftTab()
 	return pumvisible()?"\<C-P>":"\<Tab>"
 endfunction
+
 inoremap <Tab> <C-R>=CleverTab()<CR>
 inoremap <S-Tab> <C-R>=CleverShiftTab()<CR>
 inoremap <C-F> <C-X><C-F><C-P> 
@@ -240,6 +257,8 @@ au BufRead,BufNewFile *.xtpl set filetype=html
 au BufRead,BufNewFile *.we set filetype=html
 " 将 we 识别为html
 au BufRead,BufNewFile *.vue set filetype=html
+" 将 jsx 识别为html
+au BufRead,BufNewFile *.jsx set filetype=html
 " 将 swift 识别为 js
 au BufRead,BufNewFile *.swift set filetype=javascript
 
@@ -270,3 +289,4 @@ map <expr> <C-D> InsertDox()
 if has("gui_running")
 	colorscheme distinguished
 endif
+

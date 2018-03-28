@@ -2550,6 +2550,7 @@ endfunction
 function! s:initNerdTree(name)
     let path = {}
     if s:Bookmark.BookmarkExistsFor(a:name)
+		"edit by jayli
         let path = s:Bookmark.BookmarkFor(a:name).path
     else
         let dir = a:name ==# '' ? getcwd() : a:name

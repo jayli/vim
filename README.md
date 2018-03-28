@@ -18,13 +18,17 @@ by 拔赤
 
 打开文件，三种方式：
 
-	ctrl-P
-	ctrl-T
-	wm
+	ctrl-P	→ 模糊匹配文件
+	ctrl-T	→ 打开新窗口
+	wm		→ 选择打开文件
 
 多标签切换：普通模式下直接按 `Tab`,或`S-Tab`
 
+垂直切分窗口`:vs`，水平切分窗口`:ps`
+
 zencode：编辑模式下， `Ctrl+k` 展开
+
+空格缩进替换为 4 格 Tab 缩进 `Shift-M`
 
 js语法检查（选用）
 
