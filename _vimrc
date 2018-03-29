@@ -5,6 +5,16 @@
 " 使用vim默认配置，推荐这样做
 set nocompatible 
 
+" 识别文件类型
+:filetype plugin on 
+
+" 将less,scss识别为css
+au BufRead,BufNewFile *.less,*.scss set filetype=css
+" 将xtpl,vue,jsx识别为html
+au BufRead,BufNewFile *.xtpl,*.we,*.vue,*.jsx set filetype=html
+" 将 swift 识别为 js
+au BufRead,BufNewFile *.swift set filetype=javascript
+
 "默认长度的空格
 set backspace=indent,eol,start
 
@@ -200,6 +210,30 @@ inoremap <C-O> <C-X><C-O><C-P>
 inoremap <expr> <CR>       pumvisible()?"\<C-Y>":"\<CR>"
 autocmd Filetype css inoremap <buffer>  :  :<C-X><C-O><C-P>
 
+"括号自动补全
+autocmd Filetype css,javascript,c,java inoremap ( ()<Esc>i
+autocmd Filetype css,javascript,c,java inoremap [ []<Esc>i
+autocmd Filetype css,javascript,c,java inoremap { {<CR>}<Esc>O
+autocmd Filetype css,javascript,c,java inoremap ) <c-r>=ClosePair(')')<CR>
+autocmd Filetype css,javascript,c,java inoremap ] <c-r>=ClosePair(']')<CR>
+autocmd Filetype css,javascript,c,java inoremap } <c-r>=CloseBracket()<CR>
+
+function ClosePair(char)
+	if getline('.')[col('.') - 1] == a:char
+		return "\<Right>"
+	else
+		return a:char
+	endif
+endfunction
+
+function CloseBracket()
+	if match(getline(line('.') + 1), '\s*}') < 0
+		return "\<CR>}"
+	else
+		return "\<Esc>j0f}a"
+	endif
+endfunction
+
 "退出模式，退出时保留残存窗口
 set t_ti=
 set t_te= 
@@ -245,23 +279,6 @@ set tabpagemax=40
 set dictionary-=~/.vim/dict/dict.txt dictionary+=~/.vim/dict/dict.txt
 set complete-=k complete +=k
 
-:filetype plugin on 
-
-" 将less识别为css
-au BufRead,BufNewFile *.less set filetype=css
-" 将scss识别为css
-au BufRead,BufNewFile *.scss set filetype=css
-" 将xtpl识别为html
-au BufRead,BufNewFile *.xtpl set filetype=html
-" 将 we 识别为html
-au BufRead,BufNewFile *.we set filetype=html
-" 将 we 识别为html
-au BufRead,BufNewFile *.vue set filetype=html
-" 将 jsx 识别为html
-au BufRead,BufNewFile *.jsx set filetype=html
-" 将 swift 识别为 js
-au BufRead,BufNewFile *.swift set filetype=javascript
-
 " zen coding 配置
 let g:user_zen_expandabbr_key = '<C-k>' "设置为ctrl+k,展开
 
@@ -290,3 +307,4 @@ if has("gui_running")
 	colorscheme distinguished
 endif
 
+"au BufRead,BufNewFile *.* : :number
