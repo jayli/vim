@@ -1104,7 +1104,14 @@ endfunction
 "treenode: file node to open
 function! s:TreeFileNode.open()
     if b:NERDTreeType ==# "secondary"
-        exec 'edit ' . self.path.str({'format': 'Edit'})
+        "exec 'edit ' . self.path.str({'format': 'Edit'})
+		" edit by jayli
+		if s:treeExistsForTab() && s:isTreeOpen()
+			call s:closeTree()
+			exec "tabnew " . self.path.str({'format': 'Edit'})
+		else
+			exec 'edit ' . self.path.str({'format': 'Edit'})
+		endif
         return
     endif
 
@@ -1112,7 +1119,8 @@ function! s:TreeFileNode.open()
     let winnr = bufwinnr('^' . self.path.str() . '$')
     if winnr != -1
         call s:exec(winnr . "wincmd w")
-
+		" added by jayli
+		call s:closeTree()
     else
         if !s:isWindowUsable(winnr("#")) && s:firstUsableWindow() ==# -1
             call self.openSplit()
@@ -1123,7 +1131,10 @@ function! s:TreeFileNode.open()
                 else
                     call s:exec('wincmd p')
                 endif
-                exec ("edit " . self.path.str({'format': 'Edit'}))
+                "exec ("edit " . self.path.str({'format': 'Edit'}))
+				"edit by jayli
+				call s:closeTree()
+				exec ("tabnew " . self.path.str({'format': 'Edit'}))
             catch /^Vim\%((\a\+)\)\=:E37/
                 call s:putCursorInTreeWin()
                 throw "NERDTree.FileAlreadyOpenAndModifiedError: ". self.path.str() ." is already open and modified."
@@ -2550,7 +2561,6 @@ endfunction
 function! s:initNerdTree(name)
     let path = {}
     if s:Bookmark.BookmarkExistsFor(a:name)
-		"edit by jayli
         let path = s:Bookmark.BookmarkFor(a:name).path
     else
         let dir = a:name ==# '' ? getcwd() : a:name
