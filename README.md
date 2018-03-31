@@ -30,11 +30,6 @@ zencode：编辑模式下， `Ctrl+k` 展开
 
 空格缩进替换为 4 格 Tab 缩进 `Shift-M`
 
-js语法检查（选用）
-
-- JSLint：F4唤醒/关闭，F5更新语法（不常用）， 安装：
-
-> <http://ued.taobao.com/blog/2010/11/11/jslint-for-vim/>
 
 - JSHint：F8唤醒，弹出唤醒窗口
 
@@ -75,6 +70,12 @@ HTML/JS代码重新整理缩进（不完全格式化）：`=`，全文缩进：
 CSSLint:需要额外安装（依赖node）,也是通过F4来激活，针对css和less文件有效
 
 	sudo npm install -g csslint
+
+js语法检查（选用）
+
+- JSLint：F4唤醒/关闭，F5更新语法（不常用）， 安装：
+
+> <http://ued.taobao.com/blog/2010/11/11/jslint-for-vim/>
 
 ------
 
