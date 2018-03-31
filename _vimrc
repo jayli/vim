@@ -14,6 +14,8 @@ au BufRead,BufNewFile *.less,*.scss set filetype=css
 au BufRead,BufNewFile *.xtpl,*.we,*.vue,*.jsx set filetype=html
 " 将 swift 识别为 js
 au BufRead,BufNewFile *.swift set filetype=javascript
+" 识别markdown文件
+au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=mkd
 
 "默认长度的空格
 set backspace=indent,eol,start
