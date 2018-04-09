@@ -28,7 +28,7 @@ by 拔赤
 
 zencode：编辑模式下， `Ctrl+k` 展开
 
-空格缩进替换为 4 格 Tab 缩进 `Shift-M`
+空格缩进替换为 4 格 Tab 缩进 `Shift-M` （Modify）
 
 
 - JSHint：F8唤醒，弹出唤醒窗口
