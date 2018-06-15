@@ -3,6 +3,11 @@
 " Maintainer:	Mikolaj Machowski ( mikmach AT wp DOT pl )
 " Last Change:	2006 Oct 19
 
+"added by 拔赤，我不需要Omni自动匹配，我只需要字典匹配
+function! htmlcomplete#DetectOmniFlavor()
+
+endfunction
+
 function! htmlcomplete#CompleteTags(findstart, base)
   if a:findstart
     " locate the start of the word
