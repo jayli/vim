@@ -2,6 +2,11 @@
 " Language:	Java Script
 " Maintainer:	Mikolaj Machowski ( mikmach AT wp DOT pl )
 " Last Change:	2006 Apr 30
+"
+"added by 拔赤，我不需要Omni自动匹配，我只需要字典匹配
+function! javascriptcomplete#DetectOmniFlavor()
+
+endfunction
 
 function! javascriptcomplete#CompleteJS(findstart, base)
   if a:findstart

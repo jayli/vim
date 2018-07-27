@@ -213,7 +213,7 @@ inoremap <expr> <CR>       pumvisible()?"\<C-Y>":"\<CR>"
 "css 文件输入:匹配关键字
 autocmd Filetype css inoremap <buffer>  :  :<C-X><C-O><C-P>
 "javascript 文件输入.匹配关键字
-autocmd Filetype javascript inoremap <buffer>  .  .<C-X><C-O><C-P>
+"autocmd Filetype javascript inoremap <buffer>  .  .<C-X><C-O><C-P>
 
 "括号自动补全
 autocmd Filetype css,javascript,c,java inoremap ( ()<Esc>i
