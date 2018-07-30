@@ -216,12 +216,14 @@ autocmd Filetype css inoremap <buffer>  :  :<C-X><C-O><C-P>
 "autocmd Filetype javascript inoremap <buffer>  .  .<C-X><C-O><C-P>
 
 "括号自动补全
-autocmd Filetype css,javascript,c,java inoremap ( ()<Esc>i
-autocmd Filetype css,javascript,c,java inoremap [ []<Esc>i
-autocmd Filetype css,javascript,c,java inoremap { {<CR>}<Esc>O
+autocmd Filetype css,javascript,c,java inoremap ( (  )<Esc>hi
+autocmd Filetype css,javascript,c,java inoremap [ [  ]<Esc>hi
+autocmd Filetype css,javascript,c,java inoremap { {  }<Esc>hi
+"autocmd Filetype css,javascript,c,java inoremap { {<CR>}<Esc>O
 autocmd Filetype css,javascript,c,java inoremap ) <c-r>=ClosePair(')')<CR>
 autocmd Filetype css,javascript,c,java inoremap ] <c-r>=ClosePair(']')<CR>
-autocmd Filetype css,javascript,c,java inoremap } <c-r>=CloseBracket()<CR>
+autocmd Filetype css,javascript,c,java inoremap } <c-r>=ClosePair('}')<CR>
+"autocmd Filetype css,javascript,c,java inoremap } <c-r>=CloseBracket()<CR>
 
 function ClosePair(char)
 	if getline('.')[col('.') - 1] == a:char
@@ -231,6 +233,7 @@ function ClosePair(char)
 	endif
 endfunction
 
+"花括号隔行结束自动匹配
 function CloseBracket()
 	if match(getline(line('.') + 1), '\s*}') < 0
 		return "\<CR>}"
