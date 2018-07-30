@@ -268,7 +268,8 @@ set t_Co=256
 "colorscheme torte
 "colorscheme zellner
 "colorscheme gemcolors 
-colorscheme distinguished
+"colorscheme distinguished
+colorscheme molokai 
 
 "hack for elflord 
 "状态栏样式hack，针对evening,包括gui模式下的状态栏样式
