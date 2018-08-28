@@ -216,9 +216,9 @@ autocmd Filetype css inoremap <buffer>  :  :<C-X><C-O><C-P>
 "autocmd Filetype javascript inoremap <buffer>  .  .<C-X><C-O><C-P>
 
 "括号自动补全
-autocmd Filetype css,javascript,c,java inoremap ( ( )<Esc>i
-autocmd Filetype css,javascript,c,java inoremap [ [ ]<Esc>i
-autocmd Filetype css,javascript,c,java inoremap { { }<Esc>i
+autocmd Filetype css,javascript,c,java inoremap ( ()<Esc>i
+autocmd Filetype css,javascript,c,java inoremap [ []<Esc>i
+autocmd Filetype css,javascript,c,java inoremap { {}<Esc>i
 "autocmd Filetype css,javascript,c,java inoremap { {<CR>}<Esc>O
 autocmd Filetype css,javascript,c,java inoremap ) <c-r>=ClosePair(')')<CR>
 autocmd Filetype css,javascript,c,java inoremap ] <c-r>=ClosePair(']')<CR>
