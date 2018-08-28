@@ -2,6 +2,8 @@
 
 by 拔赤 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jayli/vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge) 
 
+![](https://gw.alicdn.com/tfs/TB1nZWqt9cqBKNjSZFgXXX_kXXa-2216-1246.png)
+
 ## 安装
 
 ### 脚本安装
