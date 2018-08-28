@@ -6,6 +6,8 @@ by 拔赤
 
 ## 安装
 
+### 脚本安装
+
 初始安装
 
 	curl "https://raw.githubusercontent.com/jayli/vim/master/install.sh" | bash -s install
@@ -13,6 +15,20 @@ by 拔赤
 更新配置
 
 	curl "https://raw.githubusercontent.com/jayli/vim/master/install.sh" | bash -s update 
+
+### 源码安装
+
+初始安装，确保`~/.vim`不存在
+
+	cd ~/
+	git clone https://github.com/jayli/vim.git
+	mv vim .vim
+	ln -s .vim/_vimrc ./.vimrc
+
+更新配置
+
+	cd ~/.vim
+	git pull
 
 ## 常用命令
 
