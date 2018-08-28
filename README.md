@@ -44,8 +44,7 @@ by 拔赤
 
 zencode：编辑模式下， `Ctrl+k` 展开
 
-空格缩进替换为 4 格 Tab 缩进 `Shift-M` （Modify）
-
+空格缩进替换为 4 格 Tab 缩进 `Shift-M` （Modify），为 js 文件重排格式 `Shift-B`（Beautifiy）
 
 - JSHint：F8唤醒，弹出唤醒窗口
 
@@ -64,6 +63,7 @@ zencode：编辑模式下， `Ctrl+k` 展开
 - CSS关键字匹配：C-O，或者直接输入`:`后弹出自动匹配
 - Javascript 关键字匹配：C-O，或者直接输入`.`弹出自动匹配
 - 自动文件名匹配：C-F
+- 括号匹配：js文件自动完成，无需特殊配置和快捷键
 
 注释生成：`C-d`，如果当前行为空行，生成文件注释，如果为函数，生成函数注释
 
