@@ -27,7 +27,7 @@ set formatoptions=mtcql
 au BufNewFile,BufRead * set foldlevel=99
 
 "折叠配置
-set fdm=manual
+set fdm=marker
 
 " 折叠样式
 highlight Folded ctermbg=darkgray ctermfg=lightmagenta
