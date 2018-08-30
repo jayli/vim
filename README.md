@@ -1,8 +1,8 @@
 # Vim 配置 
 
-by 拔赤 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jayli/vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge) 
+by 拔赤 ![](https://img.shields.io/badge/vim-awesome-red.svg) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jayli/vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge) 
 
-![](https://gw.alicdn.com/tfs/TB1nZWqt9cqBKNjSZFgXXX_kXXa-2216-1246.png)
+![](https://gw.alicdn.com/tfs/TB1M4PnubsrBKNjSZFpXXcXhFXa-2226-1382.png)
 
 ## 安装
 
@@ -10,11 +10,11 @@ by 拔赤 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.i
 
 初始安装
 
-	curl "https://raw.githubusercontent.com/jayli/vim/master/install.sh" | bash -s install
+	curl "http://jayli.github.io/vim_install.sh" | bash -s install
 
 更新配置
 
-	curl "https://raw.githubusercontent.com/jayli/vim/master/install.sh" | bash -s update 
+	curl "http://jayli.github.io/vim_install.sh" | bash -s update 
 
 ### 源码安装
 
