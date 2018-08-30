@@ -1,6 +1,6 @@
 # Vim 配置 
 
-by 拔赤 ![Vim](https://img.shields.io/badge/vim-awesome-brightgreen.svg) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jayli/vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge) 
+by 拔赤 ![Vim](https://img.shields.io/badge/vim-awesome-brightgreen.svg) [![Gitter](https://img.shields.io/badge/gitter-join%20chat-yellowgreen.svg)](https://gitter.im/jayli/vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge) 
 
 ![](https://gw.alicdn.com/tfs/TB1M4PnubsrBKNjSZFpXXcXhFXa-2226-1382.png)
 
