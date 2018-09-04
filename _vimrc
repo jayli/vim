@@ -6,7 +6,10 @@
 set nocompatible 
 
 " 识别文件类型
-:filetype plugin on 
+filetype plugin indent on 
+
+
+execute pathogen#infect()
 
 " 将less,scss识别为css
 au BufRead,BufNewFile *.less,*.scss set filetype=css
@@ -318,3 +321,11 @@ if has("gui_running")
 endif
 
 "au BufRead,BufNewFile *.* :normal .<CR>
+
+" Go 编程配置
+let g:go_disable_autoinstall = 0
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1

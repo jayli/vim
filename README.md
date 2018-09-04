@@ -53,7 +53,7 @@ HTML/JS代码重新整理缩进（不完全格式化）：`=`，全文缩进：
 	= 要求缩进
 	G 到文件尾部
 
- JSHint：F8唤醒，弹出唤醒窗口
+ JSHint：F8唤醒，或者使用命令呼出`:JSHint`（`:js<Tab>`可补全），弹出唤醒窗口
 
 > jshint需要预装node的jslint
 
