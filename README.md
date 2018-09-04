@@ -94,9 +94,9 @@ JSLint：js语法检查（选用）
 
 > <http://bbs.piaoxian.net/thread-8047-1-1.html>
 
-## 插件管理
+## 插件管理 & Go 编程
 
-基于Pathogen做vim插件管理，插件安装在`~/.vim/bundle`中
+基于Pathogen做vim插件管理，插件安装在`~/.vim/bundle`中，当前安装插件 [vim-go](https://github.com/fatih/vim-go)。[Go 编程指令](https://github.com/fatih/vim-go#features)。
 
 ------
 
