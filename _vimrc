@@ -16,6 +16,8 @@ au BufRead,BufNewFile *.xtpl,*.we,*.vue,*.jsx set filetype=html
 au BufRead,BufNewFile *.swift set filetype=javascript
 " 识别markdown文件
 au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=mkd
+" 识别go文件
+au BufRead,BufNewFile *.go   set filetype=go
 
 "默认长度的空格
 set backspace=indent,eol,start
@@ -134,9 +136,8 @@ set ruler
 set showcmd
 " Added to default to high security within Gentoo. Fixes bug #14088
 set modelines=0
-
 "文件编码
-set fileencodings=ucs-bom,utf-8,GB18030,gbk
+set fileencodings=ucs-bom,utf-8,GB18030,gbk,big5
 "gui字体，随意模式
 set guifontset=*-r-*
 
