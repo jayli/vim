@@ -5,11 +5,11 @@
 " 使用vim默认配置，推荐这样做
 set nocompatible 
 
+" Pathogen 插件管理
+execute pathogen#infect()
+
 " 识别文件类型
 filetype plugin indent on 
-
-
-execute pathogen#infect()
 
 " 将less,scss识别为css
 au BufRead,BufNewFile *.less,*.scss set filetype=css

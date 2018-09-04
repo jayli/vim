@@ -94,6 +94,10 @@ JSLint：js语法检查（选用）
 
 > <http://bbs.piaoxian.net/thread-8047-1-1.html>
 
+## 插件管理
+
+基于Pathogen做vim插件管理，插件安装在`~/.vim/bundle`中
+
 ------
 
 插件列表
@@ -106,4 +110,6 @@ JSLint：js语法检查（选用）
 - jshint（<https://github.com/walm/jshint.vim>）
 - fuzzyfinder（<https://github.com/vim-scripts/FuzzyFinder>）
 - jsbeautify（<http://jsbeautifier.org/>）
+- Pathogen（<https://github.com/tpope/vim-pathogen>）
+- vim-go（<https://github.com/fatih/vim-go>）
 
