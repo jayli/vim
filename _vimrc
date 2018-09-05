@@ -322,6 +322,8 @@ endif
 
 "au BufRead,BufNewFile *.* :normal .<CR>
 
+" pathogen 插件所辖编程配置:
+"
 " Go 编程配置
 let g:go_disable_autoinstall = 0
 let g:go_highlight_functions = 1
@@ -329,3 +331,11 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+" JavaScript 编程配置
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
+augroup javascript_folding
+	au!
+	au FileType javascript setlocal foldmethod=syntax
+augroup END
