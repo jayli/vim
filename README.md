@@ -2,7 +2,6 @@
 
 by 拔赤
 
-
 ![](https://gw.alicdn.com/tfs/TB1uVEntWAoBKNjSZSyXXaHAVXa-2224-1364.png)
 
 ## 安装
@@ -94,11 +93,11 @@ JSLint：js语法检查（选用）
 
 > <http://bbs.piaoxian.net/thread-8047-1-1.html>
 
-## 插件管理 & Go 编程
+## 插件管理
 
 基于Pathogen做vim插件管理，插件安装在`~/.vim/bundle`中，当前安装插件：
 
-- [vim-go](https://github.com/fatih/vim-go)。[Go 编程指令](https://github.com/fatih/vim-go#features)。
+- [vim-go](https://github.com/fatih/vim-go) → [Go 编程指令](https://github.com/fatih/vim-go#features)。
 - [vim-javascript](https://github.com/pangloss/vim-javascript)
 
 ------
