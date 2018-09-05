@@ -1,6 +1,6 @@
-# Vim 配置  ![Vim](https://img.shields.io/badge/vim-awesome-brightgreen.svg) [![Gitter](https://img.shields.io/badge/gitter-join%20chat-yellowgreen.svg)](https://gitter.im/jayli/vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge) 
+# <font color=blue>Easy Vim</font> 配置  ![Vim](https://img.shields.io/badge/vim-awesome-brightgreen.svg) [![Gitter](https://img.shields.io/badge/gitter-join%20chat-yellowgreen.svg)](https://gitter.im/jayli/vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge) 
 
-by 拔赤 
+by 拔赤
 
 
 ![](https://gw.alicdn.com/tfs/TB1uVEntWAoBKNjSZSyXXaHAVXa-2224-1364.png)
@@ -96,7 +96,10 @@ JSLint：js语法检查（选用）
 
 ## 插件管理 & Go 编程
 
-基于Pathogen做vim插件管理，插件安装在`~/.vim/bundle`中，当前安装插件 [vim-go](https://github.com/fatih/vim-go)。[Go 编程指令](https://github.com/fatih/vim-go#features)。
+基于Pathogen做vim插件管理，插件安装在`~/.vim/bundle`中，当前安装插件：
+
+- [vim-go](https://github.com/fatih/vim-go)。[Go 编程指令](https://github.com/fatih/vim-go#features)。
+- [vim-javascript](https://github.com/pangloss/vim-javascript)
 
 ------
 
@@ -112,4 +115,5 @@ JSLint：js语法检查（选用）
 - jsbeautify（<http://jsbeautifier.org/>）
 - Pathogen（<https://github.com/tpope/vim-pathogen>）
 - vim-go（<https://github.com/fatih/vim-go>）
+- vim-javascript（<https://github.com/pangloss/vim-javascript>）
 
