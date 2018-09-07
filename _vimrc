@@ -5,9 +5,6 @@
 " 使用vim默认配置，推荐这样做
 set nocompatible 
 
-" Pathogen 插件管理
-execute pathogen#infect()
-
 " 识别文件类型
 filetype plugin indent on 
 
@@ -81,7 +78,6 @@ endif
 filetype on
 filetype plugin on
 filetype indent on
-
 
 " js文件格式化，Shift-b
 map <S-b> :call g:Jsbeautify()<CR>
@@ -213,6 +209,10 @@ inoremap <S-Tab> <C-R>=CleverShiftTab()<CR>
 inoremap <C-F> <C-X><C-F><C-P> 
 inoremap <C-O> <C-X><C-O><C-P>
 
+" Ctrl-K 代码片段补全（代替zencoding）
+imap <C-K> <Plug>snipMateNextOrTrigger
+smap <C-K> <Plug>snipMateNextOrTrigger
+
 inoremap <expr> <CR>       pumvisible()?"\<C-Y>":"\<CR>"
 "css 文件输入:匹配关键字
 autocmd Filetype css inoremap <buffer>  :  :<C-X><C-O><C-P>
@@ -339,3 +339,6 @@ augroup javascript_folding
 	au!
 	au FileType javascript setlocal foldmethod=syntax
 augroup END
+
+" 开启 Pathogen 插件管理
+execute pathogen#infect()
