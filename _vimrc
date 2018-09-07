@@ -213,6 +213,9 @@ inoremap <C-O> <C-X><C-O><C-P>
 imap <C-K> <Plug>snipMateNextOrTrigger
 smap <C-K> <Plug>snipMateNextOrTrigger
 
+let g:snipMate = {}
+let g:snipMate.description_in_completion=1
+
 inoremap <expr> <CR>       pumvisible()?"\<C-Y>":"\<CR>"
 "css 文件输入:匹配关键字
 autocmd Filetype css inoremap <buffer>  :  :<C-X><C-O><C-P>
@@ -293,7 +296,8 @@ set dictionary-=~/.vim/dict/dict.txt dictionary+=~/.vim/dict/dict.txt
 set complete-=k complete +=k
 
 " zen coding 配置
-let g:user_zen_expandabbr_key = '<C-k>' "设置为ctrl+k,展开
+"let g:user_zen_expandabbr_key = '<C-k>' "设置为ctrl+k,展开
+
 
 " 注释生成
 let g:DoxygenToolkit_authorName="jayli, bachi@taobao.com" 
