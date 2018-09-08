@@ -298,7 +298,6 @@ set complete-=k complete +=k
 " zen coding 配置
 "let g:user_zen_expandabbr_key = '<C-k>' "设置为ctrl+k,展开
 
-
 " 注释生成
 let g:DoxygenToolkit_authorName="jayli, bachi@taobao.com" 
 let g:DoxygenToolkit_briefTag_funcName="yes"
