@@ -292,11 +292,15 @@ hi TabLineSel cterm=bold ctermbg=darkblue ctermfg=white guibg=blue guifg=white
 set tabpagemax=40
 
 "对所有文件设置关键字提示
-set dictionary-=~/.vim/dict/dict.txt dictionary+=~/.vim/dict/dict.txt
+set dictionary-=$HOME/.vim/dict/common.dict dictionary+=$HOME/.vim/dict/common.dict
 set complete-=k complete +=k
+
+au FileType javascript set dictionary+=$HOME/.vim/dict/node.dict
 
 " zen coding 配置
 "let g:user_zen_expandabbr_key = '<C-k>' "设置为ctrl+k,展开
+
+"set completeopt=longest,menu
 
 " 注释生成
 let g:DoxygenToolkit_authorName="jayli, bachi@taobao.com" 
@@ -345,3 +349,11 @@ augroup END
 
 " 开启 Pathogen 插件管理
 execute pathogen#infect()
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""
+
+"let buffer_number = str2nr( expand( '<abuf>' ) )
+"let bfn = bufname('')
+"echo bfn 
