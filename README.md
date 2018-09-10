@@ -116,3 +116,4 @@ JSLint：js语法检查（选用）
 - vim-go（<https://github.com/fatih/vim-go>）
 - vim-javascript（<https://github.com/pangloss/vim-javascript>）
 
+
