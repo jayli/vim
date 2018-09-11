@@ -357,3 +357,13 @@ execute pathogen#infect()
 "let buffer_number = str2nr( expand( '<abuf>' ) )
 "let bfn = bufname('')
 "echo bfn 
+
+"just test
+inoremap <F5> <C-R>=ListMonths()<CR>
+
+        func! ListMonths()
+          call complete(col('.'), ['January', 'February', 'March',
+                \ 'April', 'May', 'June', 'July', 'August', 'September',
+                \ 'October', 'November', 'December'])
+          return ''
+	  endfunc
