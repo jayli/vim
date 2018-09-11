@@ -15,14 +15,8 @@ function! easycomplete#Enable()
 	"let aa = browsedir('sss','~/Users/')
 	"let aa = getbufvar(1,"&mod")
 	"let aa = getline(1, 11)
+	let g:kk = s:GetKeywords()
 	
-	let s:tmpkeywords = []
-	" 接下来获取多个缓冲区和dict词表
-	let lines = getbufline(1, 1 ,"$")
-	for line in lines
-		call extend(s:tmpkeywords, split(line,'\W'))
-	endfor
-	let g:keywords = s:GetDistinct(s:tmpkeywords)
 	"execute "echo '<" . string(keywords.join(","))."> | sdfsdf'"
 	""}}}
 	"let &completefunc = 'easycomplete#CompleteFunc' "C-X C-U X-N 触发
@@ -34,6 +28,17 @@ endfunction
 
 function! s:SendKeys( keys )
 	call feedkeys( a:keys, 'in' )
+endfunction
+
+function! s:GetKeywords()
+	let s:tmpkeywords = []
+	for buf in getbufinfo()
+		let lines = getbufline(buf.bufnr, 1 ,"$")
+		for line in lines
+			call extend(s:tmpkeywords, split(line,'\W'))
+		endfor
+	endfor
+	return s:GetDistinct(s:tmpkeywords)
 endfunction
 
 " jayli here,done
@@ -50,7 +55,6 @@ function! s:GetDistinct( list )
 		return s:tmparray
 	endif
 endfunction
-
 
 function! s:EasyComplete()
 	"if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
@@ -90,7 +94,8 @@ function! easycomplete#CompleteFunc( findstart, base )
 		return start
 	endif
 	let words =  [a:base,{"word":"apple","menu":"sdfdsf"},"apple2","iphone","123455","const","EasyCompleteStart"]
-	return {'words':words, 'refresh': 'always'}
+	return s:GetKeywords()
+	"return {'words':words, 'refresh': 'always'}
 	
 	"return s:completion.candidates
 endfunction
