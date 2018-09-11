@@ -8,4 +8,7 @@ else " Manual loading with :packadd.
 	call easycomplete#Enable()
 endif
 
+let g:globalDictKeywords =
+      \ get( g:, 'globalDictKeywords', 0 )
+
 

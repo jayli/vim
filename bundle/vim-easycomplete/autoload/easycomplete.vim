@@ -15,7 +15,7 @@ function! easycomplete#Enable()
 	"let aa = browsedir('sss','~/Users/')
 	"let aa = getbufvar(1,"&mod")
 	"let aa = getline(1, 11)
-	let g:kk = s:GetKeywords()
+	let g:kk = s:ArrayDistinct(extend(s:GetBufKeywords(),s:GetDictKeywords()))
 	
 	"execute "echo '<" . string(keywords.join(","))."> | sdfsdf'"
 	""}}}
@@ -30,7 +30,7 @@ function! s:SendKeys( keys )
 	call feedkeys( a:keys, 'in' )
 endfunction
 
-function! s:GetKeywords()
+function! s:GetBufKeywords()
 	let s:tmpkeywords = []
 	for buf in getbufinfo()
 		let lines = getbufline(buf.bufnr, 1 ,"$")
@@ -38,11 +38,31 @@ function! s:GetKeywords()
 			call extend(s:tmpkeywords, split(line,'\W'))
 		endfor
 	endfor
-	return s:GetDistinct(s:tmpkeywords)
+	return s:ArrayDistinct(s:tmpkeywords)
+endfunction
+
+function! s:GetDictKeywords()
+	if !empty(g:globalDictKeywords)
+		return g:globalDictKeywords 
+	endif
+	let g:globalDictKeywords = []
+	if !empty(&dictionary)
+		let s:dictsFiles = split(&dictionary,",")
+		let s:dictkeywords = []
+		for onedict in s:dictsFiles 
+			let lines = readfile(onedict)
+			for line in lines
+				call extend(s:dictkeywords, split(line,'\W'))
+			endfor
+		endfor
+		return s:ArrayDistinct(s:dictkeywords)
+	else 
+		return []
+	endif
 endfunction
 
 " jayli here,done
-function! s:GetDistinct( list )
+function! s:ArrayDistinct( list )
 	if empty(a:list)
 		return
 	else
@@ -94,7 +114,7 @@ function! easycomplete#CompleteFunc( findstart, base )
 		return start
 	endif
 	let words =  [a:base,{"word":"apple","menu":"sdfdsf"},"apple2","iphone","123455","const","EasyCompleteStart"]
-	return s:GetKeywords()
+	return s:GetBufKeywords()
 	"return {'words':words, 'refresh': 'always'}
 	
 	"return s:completion.candidates
