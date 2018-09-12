@@ -18,6 +18,9 @@ function! easycomplete#Enable()
 	
 	let g:kk = s:GetKeywords()
 	
+	" why not work
+	"let s:filename = getbufinfo('$')[0].name
+	"execute "echo ' >>>>>>>>>>>....". s:filename ."'"
 	"execute "echo '<" . string(keywords.join(","))."> | sdfsdf'"
 	""}}}
 	"let &completefunc = 'easycomplete#CompleteFunc' "C-X C-U X-N 触发
@@ -29,6 +32,28 @@ endfunction
 
 function! s:SendKeys( keys )
 	call feedkeys( a:keys, 'in' )
+endfunction
+
+" keywords is List
+" snippets is Dict
+function! s:MixinBufKeywordAndSnippets(keywords,snippets)
+	if empty(a:snippets)
+		return a:keywords
+	endif
+	let snipabbr_list = []
+	for k in keys(a:snippets)
+		call add(snipabbr_list, string(k) . ' [snippets]')
+	endfor
+	call extend(snipabbr_list , a:keywords)
+	return snipabbr_list
+endfunction
+
+" get snippets
+function! g:GetSnippets(scopes, trigger)
+	if exists("g:snipMate")
+		return snipMate#GetSnippets(a:scopes, a:trigger)
+	endif
+	return {}
 endfunction
 
 function! s:GetKeywords()
@@ -124,6 +149,10 @@ function! easycomplete#CompleteFunc( findstart, base )
 		return start
 	endif
 	let words =  [a:base,{"word":"apple","menu":"sdfdsf"},"apple2","iphone","123455","const","EasyCompleteStart"]
-	return uniq(filter(s:GetKeywords(),'matchstrpos(v:val, "'.a:base.'")[1] == 0'))
+	let keywords_result = uniq(filter(s:GetKeywords(),'matchstrpos(v:val, "'.a:base.'")[1] == 0'))
+	let snippets_result = g:GetSnippets(deepcopy([&filetype]),a:base)
+	"execute "echo '". string(snippets_result) ."'"
+
+	return s:MixinBufKeywordAndSnippets(keywords_result, snippets_result)
 	"return s:completion.candidates
 endfunction
