@@ -23,8 +23,8 @@ function! easycomplete#Enable()
 	"execute "echo ' >>>>>>>>>>>....". s:filename ."'"
 	"execute "echo '<" . string(keywords.join(","))."> | sdfsdf'"
 	""}}}
-	"let &completefunc = 'easycomplete#CompleteFunc' "C-X C-U X-N 触发
-	let &omnifunc = 'easycomplete#CompleteFunc' " C-X C-U X-O 触发
+	let &completefunc = 'easycomplete#CompleteFunc' "C-X C-U X-N 触发
+	"let &omnifunc = 'easycomplete#CompleteFunc' " C-X C-U X-O 触发
 	" 重新定义 Tab 键
 	" autocmd TextChangedI * call s:EasyComplete()
 	"inoremap <Tab> <C-R>=EasyTabComplete()<CR>
@@ -41,11 +41,39 @@ function! s:MixinBufKeywordAndSnippets(keywords,snippets)
 		return a:keywords
 	endif
 	let snipabbr_list = []
-	for k in keys(a:snippets)
-		call add(snipabbr_list, string(k) . ' [snippets]')
+	for [k,v] in items(a:snippets)
+		let snip_body = s:trim(s:GetSnipBody(v))
+		"let snip_body = values(v)[0]
+		call add(snipabbr_list, {"word": k , "menu": snip_body})
 	endfor
 	call extend(snipabbr_list , a:keywords)
 	return snipabbr_list
+endfunction
+
+function! s:GetSnipBody(snipobj)
+	let errmsg = "[unknown snippet]"
+	if empty(a:snipobj)
+		return errmsg 
+	else 
+		let v = values(a:snipobj)
+		if !empty(v[0])
+			return v[0][0]
+		else
+			return errmsg 
+		endif
+	endif
+endfunction
+
+function! s:trim(localstr)
+	let default_length = 40
+
+	" TODO 将 snip 中的占位符替换掉
+	if !empty(a:localstr) && len(a:localstr) > default_length 
+		let trim_str = a:localstr[:default_length] . ".."
+	else
+		let trim_str = a:localstr
+	endif
+	return split(trim_str,"[\n]")[0]
 endfunction
 
 " get snippets
@@ -65,7 +93,7 @@ function! s:GetBufKeywords()
 	for buf in getbufinfo()
 		let lines = getbufline(buf.bufnr, 1 ,"$")
 		for line in lines
-			call extend(s:tmpkeywords, split(line,'\W'))
+			call extend(s:tmpkeywords, split(line,'[^A-Za-z0-9_#]'))
 		endfor
 	endfor
 	return s:ArrayDistinct(s:tmpkeywords)
@@ -82,7 +110,7 @@ function! s:GetDictKeywords()
 		for onedict in s:dictsFiles 
 			let lines = readfile(onedict)
 			for line in lines
-				call extend(s:dictkeywords, split(line,'\W'))
+				call extend(s:dictkeywords, split(line,'[^A-Za-z0-9_#]'))
 			endfor
 		endfor
 		return s:ArrayDistinct(s:dictkeywords)
@@ -156,3 +184,4 @@ function! easycomplete#CompleteFunc( findstart, base )
 	return s:MixinBufKeywordAndSnippets(keywords_result, snippets_result)
 	"return s:completion.candidates
 endfunction
+

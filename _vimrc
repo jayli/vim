@@ -194,10 +194,14 @@ map <S-M> <ESC>:call g:TransformSpaceTo4Tab()<CR>
 
 "tab自动补全
 function! CleverTab()
-	if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+	if pumvisible()
+		return "\<C-N>"
+	elseif strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
 		return "\<Tab>"
 	else
-		return "\<C-N>"
+		""return "\<C-N>"
+		return "\<C-X>\<C-U>\<C-P>"
+	endif
 endfunction
 
 function! CleverShiftTab()
