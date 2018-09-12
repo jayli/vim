@@ -15,7 +15,8 @@ function! easycomplete#Enable()
 	"let aa = browsedir('sss','~/Users/')
 	"let aa = getbufvar(1,"&mod")
 	"let aa = getline(1, 11)
-	let g:kk = s:ArrayDistinct(extend(s:GetBufKeywords(),s:GetDictKeywords()))
+	
+	let g:kk = s:GetKeywords()
 	
 	"execute "echo '<" . string(keywords.join(","))."> | sdfsdf'"
 	""}}}
@@ -28,6 +29,10 @@ endfunction
 
 function! s:SendKeys( keys )
 	call feedkeys( a:keys, 'in' )
+endfunction
+
+function! s:GetKeywords()
+	return s:ArrayDistinct(extend(s:GetBufKeywords(),s:GetDictKeywords()))
 endfunction
 
 function! s:GetBufKeywords()
@@ -62,13 +67,18 @@ function! s:GetDictKeywords()
 endfunction
 
 " jayli here,done
+" 纯数字要删除掉
 function! s:ArrayDistinct( list )
 	if empty(a:list)
-		return
+		return []
 	else
-		let s:tmparray = []
-		for item in a:list
-			if !empty(item) && index(s:tmparray,item) < 0
+		let s:tmparray = [] 
+		let s:uniqlist = uniq(a:list)
+		for item in s:uniqlist
+			"index(s:tmparray,item) < 0 &&
+			if !empty(item) && 
+					\ !str2nr(item) &&
+					\ len(item) != 1
 				call add(s:tmparray,item)
 			endif
 		endfor
@@ -114,8 +124,6 @@ function! easycomplete#CompleteFunc( findstart, base )
 		return start
 	endif
 	let words =  [a:base,{"word":"apple","menu":"sdfdsf"},"apple2","iphone","123455","const","EasyCompleteStart"]
-	return s:GetBufKeywords()
-	"return {'words':words, 'refresh': 'always'}
-	
+	return uniq(filter(s:GetKeywords(),'matchstrpos(v:val, "'.a:base.'")[1] == 0'))
 	"return s:completion.candidates
 endfunction

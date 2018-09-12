@@ -367,3 +367,4 @@ inoremap <F5> <C-R>=ListMonths()<CR>
                 \ 'October', 'November', 'December'])
           return ''
 	  endfunc
+
