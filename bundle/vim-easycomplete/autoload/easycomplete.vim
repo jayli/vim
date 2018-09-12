@@ -30,6 +30,31 @@ function! easycomplete#Enable()
 	"inoremap <Tab> <C-R>=EasyTabComplete()<CR>
 endfunction
 
+function! s:GetSnippetSimplified(snippet_str)
+	let pfx_len = match(a:snippet_str,"${[0-9]:")
+	if !empty(a:snippet_str) && pfx_len < 0
+		return a:snippet_str
+	endif
+
+	let l:o_str = deepcopy(a:snippet_str)
+	let l:result = ""
+	let m_pos = 0
+
+	if pfx_len == 0
+		let l:result = l:o_str[4:]
+	else
+		"result = execute('o_str[0:'.pfx_len.' - 1] . o_str['.pfx_len.' + 4:len(o_str)]')
+		let l:result = l:o_str[0:pfx_len - 1] . l:o_str[pfx_len + 4:]
+		"l:result = "iii"
+	endif
+
+	let m_pos = stridx(l:result,"}")
+	let l:result = l:result[:m_pos - 1] . l:result[m_pos + 1:]
+	let l:result = s:GetSnippetSimplified(l:result)
+
+	return l:result
+endfunction
+
 function! s:SendKeys( keys )
 	call feedkeys( a:keys, 'in' )
 endfunction
@@ -43,7 +68,6 @@ function! s:MixinBufKeywordAndSnippets(keywords,snippets)
 	let snipabbr_list = []
 	for [k,v] in items(a:snippets)
 		let snip_body = s:trim(s:GetSnipBody(v))
-		"let snip_body = values(v)[0]
 		call add(snipabbr_list, {"word": k , "menu": snip_body})
 	endfor
 	call extend(snipabbr_list , a:keywords)
@@ -65,7 +89,7 @@ function! s:GetSnipBody(snipobj)
 endfunction
 
 function! s:trim(localstr)
-	let default_length = 40
+	let default_length = 33
 
 	" TODO 将 snip 中的占位符替换掉
 	if !empty(a:localstr) && len(a:localstr) > default_length 
@@ -73,7 +97,7 @@ function! s:trim(localstr)
 	else
 		let trim_str = a:localstr
 	endif
-	return split(trim_str,"[\n]")[0]
+	return '[jQuery] ' . s:GetSnippetSimplified(split(trim_str,"[\n]")[0])
 endfunction
 
 " get snippets
