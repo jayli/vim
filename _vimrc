@@ -353,11 +353,8 @@ execute pathogen#infect()
 
 """"""""""""""""""""""""""""""""""""""""""""
 
-"let buffer_number = str2nr( expand( '<abuf>' ) )
-"let bfn = bufname('')
-"echo bfn 
-
 "折叠配置
+"文件打开不能自动折叠，奇怪
 set foldmethod=marker
 set foldnestmax=2
 hi Folded ctermbg=233
