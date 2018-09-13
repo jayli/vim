@@ -28,12 +28,6 @@ set formatoptions=mtcql
 
 au BufNewFile,BufRead * set foldlevel=99
 
-"折叠配置
-set fdm=marker
-
-" 折叠样式
-highlight Folded ctermbg=darkgray ctermfg=lightmagenta
-
 if has ( "autocmd" )
 	" 打开文件时，自动定位到上次光标位置
 	autocmd BufReadPost *
@@ -198,9 +192,10 @@ function! CleverTab()
 		return "\<C-N>"
 	elseif strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
 		return "\<Tab>"
+	elseif strpart( getline('.'), col('.')-2, col('.')-1 ) =~ '\s'  
+		return "\<Tab>"
 	else
-		""return "\<C-N>"
-		return "\<C-X>\<C-U>\<C-P>"
+		return "\<C-X>\<C-U>"
 	endif
 endfunction
 
@@ -348,7 +343,7 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 augroup javascript_folding
 	au!
-	au FileType javascript setlocal foldmethod=syntax
+	au FileType javascript,vim setlocal foldmethod=marker
 augroup END
 
 " 开启 Pathogen 插件管理
@@ -362,13 +357,9 @@ execute pathogen#infect()
 "let bfn = bufname('')
 "echo bfn 
 
-"just test
-inoremap <F5> <C-R>=ListMonths()<CR>
+"折叠配置
+set foldmethod=marker
+set foldnestmax=2
+hi Folded ctermbg=233
 
-        func! ListMonths()
-          call complete(col('.'), ['January', 'February', 'March',
-                \ 'April', 'May', 'June', 'July', 'August', 'September',
-                \ 'October', 'November', 'December'])
-          return ''
-	  endfunc
 
