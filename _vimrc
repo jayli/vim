@@ -15,7 +15,7 @@ au BufRead,BufNewFile *.xtpl,*.we,*.vue,*.jsx set filetype=html
 " 将 swift 识别为 js
 au BufRead,BufNewFile *.swift set filetype=javascript
 " 识别markdown文件
-au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=mkd
+au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=markdown
 " 识别go文件
 au BufRead,BufNewFile *.go   set filetype=go
 
@@ -26,36 +26,8 @@ set backspace=indent,eol,start
 set viminfo='20,\"50 
 set formatoptions=mtcql
 
-au BufNewFile,BufRead * set foldlevel=99
-
-if has ( "autocmd" )
-	" 打开文件时，自动定位到上次光标位置
-	autocmd BufReadPost *
-	\ if line("'\"") > 0 && line ("'\"") <= line("$") |
-	\   exe "normal g'\"" |
-	\ endif
-endif  " has ("autocmd") 
-
-
-" 编辑器界面配置
-"
-
-" 鼠标滚轮的事件
-" just for gvim
-if has("gui_running")
-	"color lucius
-	au GUIEnter * cd ~
-	" 列高亮，暂时关闭
-	" set cursorcolumn
-	map <MiddleMouse> <Nop>
-	" 行高亮，gui模式下起作用
-	set cursorline
-	set guifont=Consolas:h13
-else
-	set showtabline=2
-	"鼠标隐藏,鼠标右键无作用
-	set mouse=v
-endif
+"鼠标隐藏,鼠标右键无作用
+set mouse=v
 
 " 字体设置
 if has("unix") && !has("mac")
@@ -64,14 +36,18 @@ if has("unix") && !has("mac")
 	set guifont=Courier\ 10\ Pitch
 	set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ Medium\ 10
 endif
+
 if has("mac")
 	set guifont=Monaco:h13
 endif
 
-" 文件设置
-filetype on
-filetype plugin on
-filetype indent on
+if has ( "autocmd" )
+	" 打开文件时，自动定位到上次光标位置
+	autocmd BufReadPost *
+	\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+	\   exe "normal g'\"" |
+	\ endif
+endif  " has ("autocmd") 
 
 " js文件格式化，Shift-b
 map <S-b> :call g:Jsbeautify()<CR>
@@ -138,22 +114,14 @@ set guifontset=*-r-*
 syntax enable
 syntax on
 
-"F功能键定义
-map <F2> <ESC>zA<CR>            
-map <F3> <ESC>*
-map <F11> :bp<CR>              
-map <F12> :bn<CR>               
-map <F7> <ESC>:wa<CR>:make<CR>
-
 " JSHint
 map <F8> :JSHint<CR>
 
 "tab操作多文件
-map <C-t> :tabnew 
-"nmap wm :tabnew .<CR>
+nmap <C-t> :tabnew 
 nmap wm :NERDTreeToggle<CR>
-map <Tab> :tabnext<CR> 
-map <S-Tab> :tabprevious<CR>
+nmap <Tab> :tabnext<CR> 
+nmap <S-Tab> :tabprevious<CR>
 
 "使用 Ctrl+C 或者 Y 复制到系统剪贴板
 vnoremap <C-C> "+y
@@ -184,7 +152,7 @@ function! g:TransformSpaceTo4Tab()
 endfunction
 
 "配置缩进整理快捷键
-map <S-M> <ESC>:call g:TransformSpaceTo4Tab()<CR>
+nmap <S-M> <ESC>:call g:TransformSpaceTo4Tab()<CR>
 
 "tab自动补全
 function! CleverTab()
@@ -194,7 +162,14 @@ function! CleverTab()
 		return "\<Tab>"
 	elseif strpart( getline('.'), col('.')-2, col('.')-1 ) =~ '\s'  
 		return "\<Tab>"
+	elseif exists('b:snip_state') 
+		let jump = b:snip_state.jump_stop(0)
+		if type(jump) == 1 " 返回字符串
+			" 等同于 return "\<C-R>=snipMate#TriggerSnippet()\<CR>"
+			return jump
+		endif
 	else
+		"唤醒easycomplete菜单
 		return "\<C-X>\<C-U>"
 	endif
 endfunction
@@ -207,46 +182,21 @@ inoremap <Tab> <C-R>=CleverTab()<CR>
 inoremap <S-Tab> <C-R>=CleverShiftTab()<CR>
 inoremap <C-F> <C-X><C-F><C-P> 
 inoremap <C-O> <C-X><C-O><C-P>
+" 回车选中
+inoremap <expr> <CR> pumvisible()?"\<C-Y>":"\<CR>"
 
 " Ctrl-K 代码片段补全（代替zencoding）
+" 可删掉
 imap <C-K> <Plug>snipMateNextOrTrigger
 smap <C-K> <Plug>snipMateNextOrTrigger
 
 let g:snipMate = {}
 let g:snipMate.description_in_completion=1
 
-inoremap <expr> <CR>       pumvisible()?"\<C-Y>":"\<CR>"
 "css 文件输入:匹配关键字
 autocmd Filetype css inoremap <buffer>  :  :<C-X><C-O><C-P>
 "javascript 文件输入.匹配关键字
 "autocmd Filetype javascript inoremap <buffer>  .  .<C-X><C-O><C-P>
-
-"括号自动补全
-autocmd Filetype css,javascript,c,java,python inoremap ( ()<Esc>i
-autocmd Filetype css,javascript,c,java,python inoremap [ []<Esc>i
-autocmd Filetype css,javascript,c,java,python inoremap { {}<Esc>i
-"autocmd Filetype css,javascript,c,java inoremap { {<CR>}<Esc>O
-autocmd Filetype css,javascript,c,java,python inoremap ) <c-r>=ClosePair(')')<CR>
-autocmd Filetype css,javascript,c,java,python inoremap ] <c-r>=ClosePair(']')<CR>
-autocmd Filetype css,javascript,c,java,python inoremap } <c-r>=ClosePair('}')<CR>
-"autocmd Filetype css,javascript,c,java inoremap } <c-r>=CloseBracket()<CR>
-
-function ClosePair(char)
-	if getline('.')[col('.') - 1] == a:char
-		return "\<Right>"
-	else
-		return a:char
-	endif
-endfunction
-
-"花括号隔行结束自动匹配
-function CloseBracket()
-	if match(getline(line('.') + 1), '\s*}') < 0
-		return "\<CR>}"
-	else
-		return "\<Esc>j0f}a"
-	endif
-endfunction
 
 "退出模式，退出时保留残存窗口
 set t_ti=
@@ -285,12 +235,12 @@ hi TabLineFill cterm=bold ctermbg=237 ctermfg=black guibg=black guifg=black
 hi TabLineSel cterm=bold ctermbg=darkblue ctermfg=white guibg=blue guifg=white
 
 "显示tab line
-"set showtabline=2
+set showtabline=2
 
 "最大tab个数
 set tabpagemax=40
 
-"对所有文件设置关键字提示
+"关键词字典
 set dictionary-=$HOME/.vim/dict/common.dict dictionary+=$HOME/.vim/dict/common.dict
 set complete-=k complete +=k
 
@@ -320,13 +270,18 @@ function! InsertDox()
 endfunction
 
 " C-D生成注释
-map <expr> <C-D> InsertDox()
+imap <expr> <C-D> InsertDox()
 
 if has("gui_running")
 	colorscheme distinguished
 endif
 
-"au BufRead,BufNewFile *.* :normal .<CR>
+"折叠配置
+"文件打开不能自动折叠，奇怪
+set foldmethod=marker
+set foldnestmax=2
+set foldenable
+hi Folded ctermbg=233
 
 " pathogen 插件所辖编程配置:
 "
@@ -352,11 +307,5 @@ execute pathogen#infect()
 
 
 """"""""""""""""""""""""""""""""""""""""""""
-
-"折叠配置
-"文件打开不能自动折叠，奇怪
-set foldmethod=marker
-set foldnestmax=2
-hi Folded ctermbg=233
 
 

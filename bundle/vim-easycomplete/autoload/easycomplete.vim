@@ -1,8 +1,6 @@
 "vim: foldmethod=marker
 "help ins-completion
 "
-"
-"
 let s:default_completion = {
 			\		'start_column': -1,
 			\		'candidates': []
@@ -10,24 +8,8 @@ let s:default_completion = {
 let s:completion = s:default_completion
 
 function! easycomplete#Enable()
-	""{{{test
-	"execute "echo 'easycomplete#Enable'"
-	"let aa = browsedir('sss','~/Users/')
-	"let aa = getbufvar(1,"&mod")
-	"let aa = getline(1, 11)
-	
-	let g:kk = s:GetKeywords()
-	
-	" why not work
-	"let s:filename = getbufinfo('$')[0].name
-	"execute "echo ' >>>>>>>>>>>....". s:filename ."'"
-	"execute "echo '<" . string(keywords.join(","))."> | sdfsdf'"
-	""}}}
 	let &completefunc = 'easycomplete#CompleteFunc' "C-X C-U X-N 触发
-	"let &omnifunc = 'easycomplete#CompleteFunc' " C-X C-U X-O 触发
-	" 重新定义 Tab 键
-	" autocmd TextChangedI * call s:EasyComplete()
-	"inoremap <Tab> <C-R>=EasyTabComplete()<CR>
+	inoremap <expr> <CR> TypeEnterWithPUM()
 endfunction
 
 "function s:GetLangTypeRawStr(lang) {{{
@@ -136,9 +118,28 @@ function! s:GetLangTypeRawStr(lang)
 	let lang_abbr['yii']				=	"[YII] "
 	let lang_abbr['zsh']				=	"[ZSH] "
 
-	return has_key(lang_abbr, a:lang) ? get(lang_abbr,a:lang) : "[UKN] "
+	return has_key(lang_abbr, a:lang) ? get(lang_abbr,a:lang) : "[Ukn] "
 endfunction
 "}}}
+
+function! TypeEnterWithPUM()
+	"如果浮窗存在
+	if pumvisible() 
+		let word = matchstr(getline('.'), '\S\+\%'.col('.').'c')
+		let list = snipMate#GetSnippetsForWordBelowCursor(word, 1)
+		call s:CloseCompletionMenu()
+
+		"是否前缀可被匹配 && 是否完全匹配到snippet
+		if snipMate#CanBeTriggered() && !empty(list)
+			call feedkeys( "\<Plug>snipMateNextOrTrigger" )
+		endif
+
+		return ""
+	else
+		"除此之外还是回车的正常行为
+		return "\<CR>"
+	endif
+endfunction
 
 "'${1:obj}.ajaxSend(function (${1:request, settings}) {
 function! s:GetSnippetSimplified(snippet_str)
@@ -196,7 +197,6 @@ function! s:trim(localstr)
 	let default_length = 33
 	let simplifed_result = s:GetSnippetSimplified(a:localstr)
 
-	" TODO 将 snip 中的占位符替换掉
 	if !empty(simplifed_result) && len(simplifed_result) > default_length 
 		let trim_str = simplifed_result[:default_length] . ".."
 	else
@@ -282,7 +282,7 @@ endfunction
 
 function! s:CloseCompletionMenu()
 	if pumvisible()
-		call s:SendKeys( "\<C-e>" )
+		call s:SendKeys( "\<ESC>a" )
 	endif
 endfunction
 
