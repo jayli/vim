@@ -1,6 +1,13 @@
 "vim: foldmethod=marker
 "help ins-completion
-"
+" TODO
+" - 各种补全形态的支持，包括支持 File 匹配
+" - 各种语言的词表收集
+" - js include 的文件词表生成记录入buf
+" - bugfix，":"隔断的单词匹配不出来
+"   bugfix，就近匹配？
+"   bugfix，snip词表排序
+" - _vimrc 整理 & easycomplete 抽离成插件
 let s:default_completion = {
 			\		'start_column': -1,
 			\		'candidates': []

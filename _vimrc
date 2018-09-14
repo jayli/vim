@@ -75,7 +75,7 @@ set nu
 
 "状态栏
 set laststatus=2
-set statusline=%<[%n]\ %F\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}][%{&ff}][ASCII=\%03.3b]\ %-10.(%l,%c%V%)\ %P
+"状态栏样式定义在~/.vim/plug/statusline.vim
 
 "欢迎文字
 autocmd VimEnter * echo "Welcome back jayli :)"
@@ -227,12 +227,6 @@ set t_Co=256
 "colorscheme distinguished
 colorscheme molokai 
 
-"hack for elflord 
-"状态栏样式hack，针对evening,包括gui模式下的状态栏样式
-hi StatusLine  cterm=bold ctermbg=236 ctermfg=white guifg=darkblue guibg=white
-hi StatusLineNC	ctermbg=236 ctermfg=darkgray guifg=darkblue guibg=white
-hi TabLineFill cterm=bold ctermbg=237 ctermfg=black guibg=black guifg=black
-hi TabLineSel cterm=bold ctermbg=darkblue ctermfg=white guibg=blue guifg=white
 
 "显示tab line
 set showtabline=2
