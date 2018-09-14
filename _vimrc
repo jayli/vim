@@ -186,7 +186,8 @@ inoremap <C-O> <C-X><C-O><C-P>
 inoremap <expr> <CR> pumvisible()?"\<C-Y>":"\<CR>"
 
 " Ctrl-K 代码片段补全（代替zencoding）
-" 可删掉
+" 不可删掉，C-K 还是必要的，在完全键入一个缩写单词，没有匹配窗口，直接点击回车
+" 不好使，必须使用C-K展开
 imap <C-K> <Plug>snipMateNextOrTrigger
 smap <C-K> <Plug>snipMateNextOrTrigger
 
@@ -297,9 +298,4 @@ augroup END
 
 " 开启 Pathogen 插件管理
 execute pathogen#infect()
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""
-
 
