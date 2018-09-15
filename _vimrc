@@ -313,10 +313,10 @@ augroup END
 execute pathogen#infect()
 
 " popup菜单样式
-highlight Pmenu guibg=#EE0000 ctermbg=19
-highlight PmenuSel guibg=#660000 ctermbg=gray guifg=yellow ctermfg=black
-highlight PmenuSbar guibg=#990000 ctermbg=blue
-highlight PmenuThumb guifg=yellow ctermfg=darkred
+"highlight Pmenu guibg=#EE0000 ctermbg=19
+"highlight PmenuSel guibg=#660000 ctermbg=gray guifg=yellow ctermfg=black
+"highlight PmenuSbar guibg=#990000 ctermbg=blue
+"highlight PmenuThumb guifg=yellow ctermfg=darkred
 		
 	
 set cursorline

@@ -20,6 +20,8 @@ function! easycomplete#Enable()
 	inoremap <expr> <CR> TypeEnterWithPUM()
 endfunction
 
+
+
 "function s:GetLangTypeRawStr(lang) {{{
 function! s:GetLangTypeRawStr(lang)
 	let lang_abbr = {}
@@ -174,8 +176,10 @@ function! s:MixinBufKeywordAndSnippets(keywords,snippets)
 	for [k,v] in items(a:snippets)
 		let snip_obj = s:GetSnip(v)
 		let snip_body = s:trim(get(snip_obj,'snipbody'))
-		let menu_str = s:GetLangTypeRawStr(get(snip_obj,'langtype')) . snip_body
-		call add(snipabbr_list, {"word": k , "menu": menu_str})
+		"let menu_str = s:GetLangTypeRawStr(get(snip_obj,'langtype')) . snip_body
+		"let menu_str = snip_body
+		let menu_kind = s:StringTrim(s:GetLangTypeRawStr(get(snip_obj,'langtype')))
+		call add(snipabbr_list, {"word": k , "menu": snip_body, "kind": menu_kind})
 	endfor
 	call extend(snipabbr_list , a:keywords)
 	return snipabbr_list
@@ -199,6 +203,13 @@ function! s:GetSnip(snipobj)
 		endif
 	endif
 	return {"snipbody":snip_body,"langtype":lang_type}
+endfunction
+
+function! s:StringTrim(str)
+	if !empty(a:str)
+		return substitute(a:str, "^\\s\\+\\(.\\{\-}\\)\\s\\+$","\\1","g")
+	endif
+	return ""
 endfunction
 
 function! s:trim(localstr)
