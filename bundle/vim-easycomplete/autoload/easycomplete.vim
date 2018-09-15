@@ -1,6 +1,7 @@
 "vim: foldmethod=marker
 "help ins-completion
 " TODO
+" - 如果一个单词刚好只有一个匹配，或者匹配不出东西，点击tab是没有反应的
 " - 各种补全形态的支持，包括支持 File 匹配
 " - 各种语言的词表收集
 " - js include 的文件词表生成记录入buf
