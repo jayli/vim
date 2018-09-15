@@ -317,9 +317,22 @@ function! easycomplete#CompleteFunc( findstart, base )
 	let words =  [a:base,{"word":"apple","menu":"sdfdsf"},"apple2","iphone","123455","const","EasyCompleteStart"]
 	let keywords_result = uniq(filter(s:GetKeywords(),'matchstrpos(v:val, "'.a:base.'")[1] == 0'))
 	let snippets_result = g:GetSnippets(deepcopy([&filetype]),a:base)
-	"execute "echo '". string(snippets_result) ."'"
+	let all_result = s:MixinBufKeywordAndSnippets(keywords_result, snippets_result)
 
-	return s:MixinBufKeywordAndSnippets(keywords_result, snippets_result)
+	" TODO 如果匹配不出任何结果，还是执行原有按键，我这里用tab
+	" 还有一种选择，暂停行为，给出match不成功的提示，强化insert输入tab用s-tab
+	" ，而不是一味求全tab的容错，容错不报错也是一个问题
+	if len(all_result) == 0
+		call s:CloseCompletionMenu()
+		call s:SendKeys("\<Tab>")
+		return 0
+	endif
+	" 还有一种情况不作处理，如果刚好match一个关键词，这时点击tab无响应，提示只
+	" 有一个match，这里没有执行tab前进，是因为如果执行tab前进，将分辨不出该次
+	" 是匹配一个成功前进，还是完全没有匹配成功而前进，这里只有匹配不成功才tab
+	" 前进，还需要进一步推敲
+
+	return all_result
 	"return s:completion.candidates
 endfunction
 

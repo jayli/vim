@@ -162,11 +162,24 @@ function! CleverTab()
 		return "\<Tab>"
 	elseif strpart( getline('.'), col('.')-2, col('.')-1 ) =~ '\s'  
 		return "\<Tab>"
-	elseif exists('b:snip_state') 
+	elseif exists("g:snipMate") && exists('b:snip_state') 
+		" 代码已经完成展开时，编辑代码占位符，用tab进行占位符之间的跳转
+		let g:kk = 1
 		let jump = b:snip_state.jump_stop(0)
 		if type(jump) == 1 " 返回字符串
 			" 等同于 return "\<C-R>=snipMate#TriggerSnippet()\<CR>"
 			return jump
+		endif
+	elseif exists("g:snipMate")
+		let word = matchstr(getline('.'), '\S\+\%'.col('.').'c')
+		let list = snipMate#GetSnippetsForWordBelowCursor(word, 1)
+
+		if snipMate#CanBeTriggered() && !empty(list) && len(list) == 1
+			call feedkeys( "\<Plug>snipMateNextOrTrigger" )
+			return ""
+		else
+			"唤醒easycomplete菜单
+			return "\<C-X>\<C-U>"
 		endif
 	else
 		"唤醒easycomplete菜单
@@ -298,4 +311,17 @@ augroup END
 
 " 开启 Pathogen 插件管理
 execute pathogen#infect()
+
+" popup菜单样式
+highlight Pmenu guibg=#EE0000 ctermbg=19
+highlight PmenuSel guibg=#660000 ctermbg=gray guifg=yellow ctermfg=black
+highlight PmenuSbar guibg=#990000 ctermbg=blue
+highlight PmenuThumb guifg=yellow ctermfg=darkred
+		
+	
+set cursorline
+
+"highlight LeaderTab guifg=#666666 ctermbg=16
+"match LeaderTab /^\t\+$/
+
 
