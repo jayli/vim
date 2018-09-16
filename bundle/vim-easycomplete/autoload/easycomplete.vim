@@ -245,7 +245,14 @@ function! s:GetBufKeywords()
 			call extend(s:tmpkeywords, split(line,'[^A-Za-z0-9_#]'))
 		endfor
 	endfor
-	return s:ArrayDistinct(s:tmpkeywords)
+	let keywordList = s:ArrayDistinct(s:tmpkeywords)
+	let keywordFormedList = []
+	for v in keywordList
+		"{"word": v, "kind": "[ID]"})
+		" TODO 增加 menu 和 kind
+		call add(keywordFormedList, v )
+	endfor
+	return keywordFormedList
 endfunction
 
 function! s:GetDictKeywords()
@@ -274,17 +281,17 @@ function! s:ArrayDistinct( list )
 	if empty(a:list)
 		return []
 	else
-		let s:tmparray = [] 
-		let s:uniqlist = uniq(a:list)
-		for item in s:uniqlist
+		let tmparray = [] 
+		let uniqlist = uniq(a:list)
+		for item in uniqlist
 			"index(s:tmparray,item) < 0 &&
 			if !empty(item) && 
 					\ !str2nr(item) &&
 					\ len(item) != 1
-				call add(s:tmparray,item)
+				call add(tmparray,item)
 			endif
 		endfor
-		return s:tmparray
+		return tmparray
 	endif
 endfunction
 
