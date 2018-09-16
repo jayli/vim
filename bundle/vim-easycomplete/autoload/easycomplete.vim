@@ -409,7 +409,12 @@ function! easycomplete#TypingAPath()
 	let prefx = line[0:coln]
 	
 	"TODO 这个正则不完善，如果是一个字符 / 或者 . 就不行了
+	"TODO 如果输入一个单词 easy<Tab>，这时也要匹配当前目录中 easy* 的文件
 	let fpath = matchstr(prefx,"[\\/\\.][\\.\\/a-zA-Z0-9\\_\\-\\s]\\+") 
+	"if len(fpath) == 0
+	"	fpath = matchstr(prefx,"[^\\.\\/a-zA-Z0-9\\_\\-\\s][\\/\\.]") 
+	"endif
+
 
 	let pathDict = {}
 
