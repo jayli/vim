@@ -321,6 +321,7 @@ function! s:GetWrappedBufKeywordList(keywordList)
 	return wrappedList
 endfunction
 
+
 function! s:GetWrappedDictKeywordList()
 	if exists("b:globalDictKeywords")
 		return b:globalDictKeywords
@@ -401,8 +402,22 @@ function! s:CloseCompletionMenu()
 	endif
 endfunction
 
-function! s:FilterKeywords()
+" 判断当前是否正在输入一个地址path
+function! easycomplete#TypingAPath()
+	let line = getline('.')
+	let coln = col('.') - 1
+	let prefx = line[0:coln]
+	
+	"TODO 这个正则不完善，如果是一个字符 / 或者 . 就不行了
+	let fpath = matchstr(prefx,"[\\/\\.][\\.\\/a-zA-Z0-9\\_\\-\\s]\\+") 
 
+	let pathDict = {}
+
+	let pathDict.fpath = fpath
+	let pathDict.start = coln - len(fpath)
+	let pathDict.isPath = !empty(fpath) && len(fpath) > 0 ? 1 : 0
+
+	return pathDict
 endfunction
 
 "Hook Entry
@@ -416,6 +431,7 @@ endfunction
 "	./Foo		[Dir]
 "	./Foo/a/b/	[File]
 function! easycomplete#CompleteFunc( findstart, base )
+
 	if a:findstart
 		" locate the start of the word
 		let line = getline('.')
@@ -425,6 +441,7 @@ function! easycomplete#CompleteFunc( findstart, base )
 		endwhile
 		return start
 	endif
+
 	let words =  [a:base,{"word":"apple","menu":"sdfdsf"},"apple2","iphone","123455","const","EasyCompleteStart"]
 	let keywords_result = s:GetKeywords(a:base)
 	let snippets_result = g:GetSnippets(deepcopy([&filetype]),a:base)

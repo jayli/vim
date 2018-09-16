@@ -156,15 +156,17 @@ nmap <S-M> <ESC>:call g:TransformSpaceTo4Tab()<CR>
 
 "tab自动补全
 function! CleverTab()
+	let fpath = easycomplete#TypingAPath()
 	if pumvisible()
 		return "\<C-N>"
+	elseif fpath.isPath " 如果匹配一个path
+		return "\<C-X>\<C-F>"
 	elseif strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
 		return "\<Tab>"
 	elseif strpart( getline('.'), col('.')-2, col('.')-1 ) =~ '\s'  
 		return "\<Tab>"
 	elseif exists("g:snipMate") && exists('b:snip_state') 
 		" 代码已经完成展开时，编辑代码占位符，用tab进行占位符之间的跳转
-		let g:kk = 1
 		let jump = b:snip_state.jump_stop(0)
 		if type(jump) == 1 " 返回字符串
 			" 等同于 return "\<C-R>=snipMate#TriggerSnippet()\<CR>"
