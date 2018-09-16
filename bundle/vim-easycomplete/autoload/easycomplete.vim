@@ -16,6 +16,20 @@ let s:default_completion = {
 let s:completion = s:default_completion
 
 function! easycomplete#Enable()
+	" Without this flag in cpoptions, critical YCM mappings do not work. There's
+	" no way to not have this and have YCM working, so force the flag.
+	set cpoptions+=B
+	" We need menuone in completeopt, otherwise when there's only one candidate
+	" for completion, the menu doesn't show up.
+	set completeopt-=menu
+	set completeopt+=menuone
+	" This is unnecessary with our features. People use this option to insert
+	" the common prefix of all the matches and then add more differentiating chars
+	" so that they can select a more specific match. With our features, they
+	" don't need to insert the prefix; they just type the differentiating chars.
+	" Also, having this option set breaks the plugin.
+	set completeopt-=longest
+
 	let &completefunc = 'easycomplete#CompleteFunc' "C-X C-U X-N 触发
 	inoremap <expr> <CR> TypeEnterWithPUM()
 endfunction
@@ -185,6 +199,7 @@ function! s:MixinBufKeywordAndSnippets(keywords,snippets)
 	return snipabbr_list
 endfunction
 
+
 function! s:GetSnip(snipobj)
 	let errmsg = "[Unknown snippet]"
 	let snip_body = ""
@@ -345,12 +360,7 @@ function! easycomplete#CompleteFunc( findstart, base )
 		call s:SendKeys("\<Tab>")
 		return 0
 	endif
-	" 还有一种情况不作处理，如果刚好match一个关键词，这时点击tab无响应，提示只
-	" 有一个match，这里没有执行tab前进，是因为如果执行tab前进，将分辨不出该次
-	" 是匹配一个成功前进，还是完全没有匹配成功而前进，这里只有匹配不成功才tab
-	" 前进，还需要进一步推敲
 
 	return all_result
-	"return s:completion.candidates
 endfunction
 
