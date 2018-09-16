@@ -248,43 +248,117 @@ function! g:GetSnippets(scopes, trigger)
 	return {}
 endfunction
 
-function! s:GetKeywords()
-	return s:ArrayDistinct(extend(s:GetBufKeywords(),s:GetDictKeywords()))
+function! s:GetKeywords(base)
+	let bufKeywordList = s:GetBufKeywordsList()
+	let wrappedBufKeywordList = s:GetWrappedBufKeywordList(bufKeywordList)
+	return s:MenuArrayDistinct(extend(
+								\		wrappedBufKeywordList,
+								\		s:GetWrappedDictKeywordList()
+								\	),
+								\	a:base)
 endfunction
 
-function! s:GetBufKeywords()
-	let s:tmpkeywords = []
+"popup菜单内关键词去重
+"传入的list不应包含snippet缩写
+"base: 要匹配的原始字符串
+function! s:MenuArrayDistinct(menuList, base)
+	if empty(a:menuList) || len(a:menuList) == 0
+		return []
+	endif
+
+	let menulist_tmp = []
+	for item in a:menuList
+		call add(menulist_tmp, item.word)
+	endfor
+
+	let menulist_filter = uniq(filter(menulist_tmp,
+							\ 'matchstrpos(v:val, "'.a:base.'")[1] == 0'))
+
+	let menulist_assetlist = [] "[word1,word2,word3...]
+	let menulist_result = [] "[{word:word1,kind..},{word:word2,kind..}..]
+
+	for item in a:menuList
+		let word = get(item, "word")
+		if index(menulist_assetlist, word) >= 0
+			continue
+		elseif index(menulist_filter, word) >= 0
+			call add(menulist_result,deepcopy(item))
+			call add(menulist_assetlist, word)
+		endif
+	endfor
+
+	return menulist_result
+endfunction
+
+function! s:GetBufKeywordsList()
+	let tmpkeywords = []
 	for buf in getbufinfo()
 		let lines = getbufline(buf.bufnr, 1 ,"$")
 		for line in lines
-			call extend(s:tmpkeywords, split(line,'[^A-Za-z0-9_#]'))
+			call extend(tmpkeywords, split(line,'[^A-Za-z0-9_#]'))
 		endfor
 	endfor
-	let keywordList = s:ArrayDistinct(s:tmpkeywords)
+	let keywordList = s:ArrayDistinct(tmpkeywords)
 	let keywordFormedList = []
 	for v in keywordList
-		"{"word": v, "kind": "[ID]"})
-		" TODO 增加 menu 和 kind
 		call add(keywordFormedList, v )
 	endfor
 	return keywordFormedList
 endfunction
 
-function! s:GetDictKeywords()
-	if !empty(g:globalDictKeywords)
-		return g:globalDictKeywords 
+" ['abc','def','efd'] 
+" => [{"word":"abc","kind":"[ID]"},{"word":"def","kind":"[ID]"}...]
+function! s:GetWrappedBufKeywordList(keywordList)
+	if empty(a:keywordList) || len(a:keywordList) == 0
+		return []
 	endif
-	let g:globalDictKeywords = []
+	
+	let wrappedList = []
+	for word_str in a:keywordList
+		" TODO kind 类型需要扩展，menu 需要增加buffer的源
+		call add(wrappedList,{"word":word_str,"kind":"[ID]"})
+	endfor
+	return wrappedList
+endfunction
+
+function! s:GetWrappedDictKeywordList()
+	if exists("b:globalDictKeywords")
+		return b:globalDictKeywords
+	endif
+
+	let b:globalDictKeywords = []
+
 	if !empty(&dictionary)
-		let s:dictsFiles = split(&dictionary,",")
-		let s:dictkeywords = []
-		for onedict in s:dictsFiles 
+		"jayli
+		let dictsFiles = split(&dictionary,",")
+		let dictkeywords = []
+		for onedict in dictsFiles 
 			let lines = readfile(onedict)
+			let filename = substitute(onedict,"^.\\+[\\/]","","g")
+			let localdicts = []
+			let localWrappedList = []
+
+			if empty(lines)
+				continue
+			endif
+
 			for line in lines
-				call extend(s:dictkeywords, split(line,'[^A-Za-z0-9_#]'))
+				call extend(localdicts, split(line,'[^A-Za-z0-9_#]'))
+			endfor
+
+			let localdicts = s:ArrayDistinct(localdicts)
+
+			for item in localdicts
+				call add (dictkeywords, {
+								\	"word" : item ,
+								\	"kind" : "[ID]",
+								\	"menu" : filename 
+								\ })
 			endfor
 		endfor
-		return s:ArrayDistinct(s:dictkeywords)
+
+		let b:globalDictKeywords = dictkeywords
+		return dictkeywords
 	else 
 		return []
 	endif
@@ -327,6 +401,10 @@ function! s:CloseCompletionMenu()
 	endif
 endfunction
 
+function! s:FilterKeywords()
+
+endfunction
+
 "Hook Entry
 "菜单样式
 "包括：当前缓冲区keywords，字典keywords，代码片段缩写，YCM 所辖每个语言的补全
@@ -348,7 +426,7 @@ function! easycomplete#CompleteFunc( findstart, base )
 		return start
 	endif
 	let words =  [a:base,{"word":"apple","menu":"sdfdsf"},"apple2","iphone","123455","const","EasyCompleteStart"]
-	let keywords_result = uniq(filter(s:GetKeywords(),'matchstrpos(v:val, "'.a:base.'")[1] == 0'))
+	let keywords_result = s:GetKeywords(a:base)
 	let snippets_result = g:GetSnippets(deepcopy([&filetype]),a:base)
 	let all_result = s:MixinBufKeywordAndSnippets(keywords_result, snippets_result)
 
