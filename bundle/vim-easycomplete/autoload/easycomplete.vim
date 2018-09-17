@@ -315,7 +315,6 @@ function! s:GetWrappedBufKeywordList(keywordList)
 	
 	let wrappedList = []
 	for word_str in a:keywordList
-		" TODO kind 类型需要扩展，menu 需要增加buffer的源
 		call add(wrappedList,{"word":word_str,"kind":"[ID]"})
 	endfor
 	return wrappedList
@@ -406,15 +405,14 @@ endfunction
 function! easycomplete#TypingAPath()
 	let line = getline('.')
 	let coln = col('.') - 1
-	let prefx = line[0:coln]
+	let prefx = ' ' . line[0:coln]
+
 	
 	"TODO 这个正则不完善，如果是一个字符 / 或者 . 就不行了
 	"TODO 如果输入一个单词 easy<Tab>，这时也要匹配当前目录中 easy* 的文件
-	let fpath = matchstr(prefx,"[\\/\\.][\\.\\/a-zA-Z0-9\\_\\-\\s]\\+") 
-	"if len(fpath) == 0
-	"	fpath = matchstr(prefx,"[^\\.\\/a-zA-Z0-9\\_\\-\\s][\\/\\.]") 
-	"endif
-
+	
+	let fpath = matchstr(prefx,"\\([\\(\\) \"'\\t\\[\\]\\{\\}]\\)\\@<=" .
+				\	"\\([\\/\\.]\\+[\\.\\/a-zA-Z0-9\\_\\- ]\\+\\|[\\.\\/]\\)") 
 
 	let pathDict = {}
 
