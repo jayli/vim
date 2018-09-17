@@ -329,7 +329,6 @@ function! s:GetWrappedDictKeywordList()
 	let b:globalDictKeywords = []
 
 	if !empty(&dictionary)
-		"jayli
 		let dictsFiles = split(&dictionary,",")
 		let dictkeywords = []
 		for onedict in dictsFiles 
@@ -408,23 +407,65 @@ function! easycomplete#TypingAPath()
 	let prefx = ' ' . line[0:coln]
 
 	"TODO 这个正则不完善，如果是一个字符 / 或者 . 就不行了
-	"TODO 如果输入一个单词 easy<Tab>，这时也要匹配当前目录中 easy* 的文件
-	
+	"438行有一个bug
 	let fpath = matchstr(prefx,"\\([\\(\\) \"'\\t\\[\\]\\{\\}]\\)\\@<=" .
 				\	"\\([\\/\\.]\\+[\\.\\/a-zA-Z0-9\\_\\- ]\\+\\|[\\.\\/]\\)") 
 
 	let pathDict = {}
 
 	let pathDict.fpath = fpath
-	let pathDict.start = coln - len(fpath)
+	let pathDict.start = coln - len(fpath) + 1
 	let pathDict.isPath = !empty(fpath) && len(fpath) > 0 ? 1 : 0
 
 	return pathDict
 endfunction
 
-" 根据输入的path匹配出结果
-function! s:walkAroundDir(path)
+" 根据输入的path匹配出结果，return ['f1','f2','d1','d2']
+" ./ => 当前bufpath查询
+" ../../ => 同上
+" /a/b/c => 直接查询
+function! s:GetDirAndFiles(path)
+	" TODO path 匹配出来的结果不对 jayli 从这里开始调试
+	let fname = bufname('%')
+	let bufpath = s:GetPathName(fname)
 
+	if len(a:path) > 0 && a:path[0] == "."
+		let path = simplify(bufpath . a:path)
+	else
+		let path = simplify(a:path)
+	endif
+
+	" Bug:
+	" let full_pathname
+	" if s:GetFileName(full_pathname) == 0  
+	" 第二行的 full_pathname 无法tab匹配出来
+	if s:GetFileName(path) == 0
+		" 查找目录下的文件和目录
+		let result_list = split(system('ls '. path), "\n")
+	else
+		" 查找目录下匹配文件名前缀的文件和目录
+		let result_list = split(system('ls '. s:GetPathName(path)), "\n")
+		let result_list = filter(result_list, 
+							\ 'matchstrpos(v:val, "'.s:GetFileName(path).'")[1] == 0'))
+	endif
+	return result_list
+endfunction
+
+function! s:GetFileName(path)
+	let path =  simplify(a:path)
+	let fname = matchstr(path,"\\([\\/]\\)\\@<=[^\\/]\\+$")
+	
+	if len(fname) > 0
+		return fname
+	else
+		return 0
+	endif
+endfunction
+
+function! s:GetPathName(path)
+	let path =  simplify(a:path)
+	let pathname = matchstr(path,"^.*\\/")
+	return pathname
 endfunction
 
 "function! easycomplete#
@@ -440,6 +481,17 @@ endfunction
 "	./Foo		[Dir]
 "	./Foo/a/b/	[File]
 function! easycomplete#CompleteFunc( findstart, base )
+
+	if exists("g:typing_path") && g:typing_path.isPath
+		" ./a/b/c/d
+		" /a/b/c/ds
+		" /a/b/c/d/
+		if a:findstart
+			return g:typing_path.start
+		endif
+		let result = s:GetDirAndFiles(g:typing_path.fpath)
+		return result
+	endif
 
 	if a:findstart
 		" locate the start of the word

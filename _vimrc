@@ -156,11 +156,12 @@ nmap <S-M> <ESC>:call g:TransformSpaceTo4Tab()<CR>
 
 "tab自动补全
 function! CleverTab()
-	let fpath = easycomplete#TypingAPath()
+	let g:typing_path = easycomplete#TypingAPath()
 	if pumvisible()
 		return "\<C-N>"
-	elseif fpath.isPath " 如果匹配一个path
-		return "\<C-X>\<C-F>"
+	elseif g:typing_path.isPath " 如果匹配一个path
+		"return "\<C-X>\<C-F>"
+		return "\<C-X>\<C-U>"
 	elseif strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
 		return "\<Tab>"
 	elseif strpart( getline('.'), col('.')-2, col('.')-1 ) =~ '\s'  
