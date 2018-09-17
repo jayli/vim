@@ -327,3 +327,9 @@ set cursorline
 "match LeaderTab /^\t\+$/
 
 
+function g:Foo()
+	redi => result
+	silent! execute('!ls')
+	redi END
+	return result
+endfunction

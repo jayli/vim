@@ -407,7 +407,6 @@ function! easycomplete#TypingAPath()
 	let coln = col('.') - 1
 	let prefx = ' ' . line[0:coln]
 
-	
 	"TODO 这个正则不完善，如果是一个字符 / 或者 . 就不行了
 	"TODO 如果输入一个单词 easy<Tab>，这时也要匹配当前目录中 easy* 的文件
 	
@@ -422,6 +421,13 @@ function! easycomplete#TypingAPath()
 
 	return pathDict
 endfunction
+
+" 根据输入的path匹配出结果
+function! s:walkAroundDir(path)
+
+endfunction
+
+"function! easycomplete#
 
 "Hook Entry
 "菜单样式
