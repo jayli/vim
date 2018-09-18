@@ -327,10 +327,4 @@ set cursorline
 "highlight LeaderTab guifg=#666666 ctermbg=16
 "match LeaderTab /^\t\+$/
 
-
-function g:Foo()
-	redi => result
-	silent! execute('!ls')
-	redi END
-	return result
-endfunction
+xmap ga <Plug>(EasyAlign)
