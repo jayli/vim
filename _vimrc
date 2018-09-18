@@ -317,16 +317,10 @@ augroup END
 " 开启 Pathogen 插件管理
 execute pathogen#infect()
 
-" popup菜单样式
-"highlight Pmenu guibg=#EE0000 ctermbg=19
-"highlight PmenuSel guibg=#660000 ctermbg=gray guifg=yellow ctermfg=black
-"highlight PmenuSbar guibg=#990000 ctermbg=blue
-"highlight PmenuThumb guifg=yellow ctermfg=darkred
-		
-	
 set cursorline
 
 "highlight LeaderTab guifg=#666666 ctermbg=16
 "match LeaderTab /^\t\+$/
 
-xmap ga <Plug>(EasyAlign)
+" 选择模式中激发
+xmap al <Plug>(EasyAlign)
