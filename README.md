@@ -115,5 +115,6 @@ JSLint：js语法检查（选用）
 - Pathogen（<https://github.com/tpope/vim-pathogen>）
 - vim-go（<https://github.com/fatih/vim-go>）
 - vim-javascript（<https://github.com/pangloss/vim-javascript>）
+- vim-easy-align（<https://github.com/junegunn/vim-easy-align>）
 
 
