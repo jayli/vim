@@ -401,20 +401,31 @@ function! s:CloseCompletionMenu()
 endfunction
 
 " 判断当前是否正在输入一个地址path
-function! easycomplete#TypingAPath()
+function! easycomplete#TypingAPath(base)
+	" 这里不清楚为什么
+	" 输入 ./a/b/c ，./a/b/  两者得到的prefx都为空
+	" 前者应该得到c，
+	" 这里只能临时将base透传进来表示文件名
 	let line = getline('.')
 	let coln = col('.') - 1
 	let prefx = ' ' . line[0:coln]
 
 	"TODO 这个正则不完善，如果是一个字符 / 或者 . 就不行了
 	"438行有一个bug
+	" fpath和spath只是path，没有filename
 	let fpath = matchstr(prefx,"\\([\\(\\) \"'\\t\\[\\]\\{\\}]\\)\\@<=" .
 				\	"\\([\\/\\.]\\+[\\.\\/a-zA-Z0-9\\_\\- ]\\+\\|[\\.\\/]\\)") 
 
+	" 兼容单个/匹配的情况
+	let spath = substitute(fpath,"^[\\.\\/].*\\/","./","g") 
+
 	let pathDict = {}
 
-	let pathDict.fpath = fpath
-	let pathDict.start = coln - len(fpath) + 1
+	let pathDict.fname = a:base
+	let pathDict.fpath = s:GetPathName(fpath)	" fullpath
+	let pathDict.spath = s:GetPathName(spath)	" shortpath
+	let pathDict.full_path_start = coln - len(fpath) + 2
+	let pathDict.short_path_start = coln - len(spath) + 2
 	let pathDict.isPath = !empty(fpath) && len(fpath) > 0 ? 1 : 0
 
 	return pathDict
@@ -424,29 +435,33 @@ endfunction
 " ./ => 当前bufpath查询
 " ../../ => 同上
 " /a/b/c => 直接查询
-function! s:GetDirAndFiles(path)
-	" TODO path 匹配出来的结果不对 jayli 从这里开始调试
+function! s:GetDirAndFiles(typing_path)
+	let fpath = a:typing_path.fpath
 	let fname = bufname('%')
 	let bufpath = s:GetPathName(fname)
 
-	if len(a:path) > 0 && a:path[0] == "."
-		let path = simplify(bufpath . a:path)
+	if len(fpath) > 0 && fpath[0] == "."
+		let path = simplify(bufpath . fpath)
 	else
-		let path = simplify(a:path)
+		let path = simplify(fpath)
 	endif
 
 	" Bug:
 	" let full_pathname
 	" if s:GetFileName(full_pathname) == 0  
 	" 第二行的 full_pathname 无法tab匹配出来
-	if s:GetFileName(path) == 0
+	if a:typing_path.fname == ""
 		" 查找目录下的文件和目录
-		let result_list = split(system('ls '. path), "\n")
+		let result_list = systemlist('ls '. path)
 	else
+		" 带有filename
 		" 查找目录下匹配文件名前缀的文件和目录
-		let result_list = split(system('ls '. s:GetPathName(path)), "\n")
+		let g:cmd = 'ls '. s:GetPathName(path) .
+					\ ' | grep -i ^' . a:typing_path.fname
+		let result_list = systemlist('ls '. s:GetPathName(path) . 
+										\ " 2>/dev/null") 
 		let result_list = filter(result_list, 
-							\ 'matchstrpos(v:val, "'.s:GetFileName(path).'")[1] == 0'))
+				\ 'v:val =~ "'. a:typing_path.fname . '"')
 	endif
 	return result_list
 endfunction
@@ -454,12 +469,7 @@ endfunction
 function! s:GetFileName(path)
 	let path =  simplify(a:path)
 	let fname = matchstr(path,"\\([\\/]\\)\\@<=[^\\/]\\+$")
-	
-	if len(fname) > 0
-		return fname
-	else
-		return 0
-	endif
+	return fname
 endfunction
 
 function! s:GetPathName(path)
@@ -481,18 +491,22 @@ endfunction
 "	./Foo		[Dir]
 "	./Foo/a/b/	[File]
 function! easycomplete#CompleteFunc( findstart, base )
+	let typing_path = easycomplete#TypingAPath(a:base)
 
-	if exists("g:typing_path") && g:typing_path.isPath
+	" 如果正在敲入一个文件路径
+	if typing_path.isPath
 		" ./a/b/c/d
+		" ../asdf./
 		" /a/b/c/ds
 		" /a/b/c/d/
 		if a:findstart
-			return g:typing_path.start
+			return typing_path.short_path_start
 		endif
-		let result = s:GetDirAndFiles(g:typing_path.fpath)
+		let result = s:GetDirAndFiles(typing_path)
 		return result
 	endif
 
+	" 正常关键字处理
 	if a:findstart
 		" locate the start of the word
 		let line = getline('.')
