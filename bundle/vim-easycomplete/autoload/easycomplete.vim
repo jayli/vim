@@ -158,7 +158,7 @@ function! CleverTab()
 		" 空行
 		return "\<Tab>"
 	elseif match(strpart(getline('.'), 0 ,col('.') - 1)[0:col('.')-1],"\\(\\w\\|\\/\\)$") < 0
-		" 如果正在输入一个字母
+		" 如果正在输入一个非字母，也不是'/'
 		return "\<Tab>"
 	elseif exists("g:snipMate") && exists('b:snip_state') 
 		" 代码已经完成展开时，编辑代码占位符，用tab进行占位符之间的跳转
