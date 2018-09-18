@@ -154,50 +154,7 @@ endfunction
 "配置缩进整理快捷键
 nmap <S-M> <ESC>:call g:TransformSpaceTo4Tab()<CR>
 
-"tab自动补全
-function! CleverTab()
-	if pumvisible()
-		return "\<C-N>"
-	elseif strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$' || 
-				\ strpart( getline('.'), col('.')-2, col('.')-1 ) =~ '\s' || 
-				\ len(getline('.')) == 0 
-		" 如果整行是空行
-		" 前一个字符是空格
-		" 空行
-		return "\<Tab>"
-	elseif match(strpart(getline('.'), 0 ,col('.') - 1)[0:col('.')-1],"\\(\\w\\|\\/\\)$") < 0
-		" 如果正在输入一个字母
-		return "\<Tab>"
-	elseif exists("g:snipMate") && exists('b:snip_state') 
-		" 代码已经完成展开时，编辑代码占位符，用tab进行占位符之间的跳转
-		let jump = b:snip_state.jump_stop(0)
-		if type(jump) == 1 " 返回字符串
-			" 等同于 return "\<C-R>=snipMate#TriggerSnippet()\<CR>"
-			return jump
-		endif
-	elseif exists("g:snipMate")
-		let word = matchstr(getline('.'), '\S\+\%'.col('.').'c')
-		let list = snipMate#GetSnippetsForWordBelowCursor(word, 1)
 
-		if snipMate#CanBeTriggered() && !empty(list) && len(list) == 1
-			call feedkeys( "\<Plug>snipMateNextOrTrigger" )
-			return ""
-		else
-			"唤醒easycomplete菜单
-			return "\<C-X>\<C-U>"
-		endif
-	else
-		"唤醒easycomplete菜单
-		return "\<C-X>\<C-U>"
-	endif
-endfunction
-
-function! CleverShiftTab()
-	return pumvisible()?"\<C-P>":"\<Tab>"
-endfunction
-
-inoremap <Tab> <C-R>=CleverTab()<CR>
-inoremap <S-Tab> <C-R>=CleverShiftTab()<CR>
 inoremap <C-F> <C-X><C-F><C-P> 
 inoremap <C-O> <C-X><C-O><C-P>
 " 回车选中

@@ -118,3 +118,6 @@ JSLint：js语法检查（选用）
 - vim-easy-align（<https://github.com/junegunn/vim-easy-align>）
 
 
+------
+
+不能和 SuperTab 共用

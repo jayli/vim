@@ -1,41 +1,41 @@
 "vim: foldmethod=marker
-"help ins-completion
+"
 " TODO
-" - 如果一个单词刚好只有一个匹配，或者匹配不出东西，点击tab是没有反应的
-" - 各种补全形态的支持，包括支持 File 匹配
-" - 各种语言的词表收集
-" - js include 的文件词表生成记录入buf
-" - bugfix，":"隔断的单词匹配不出来
-"   bugfix，就近匹配？
-"   bugfix，snip词表排序
+" - 如果一个单词刚好只有一个匹配，或者匹配不出东西，点击tab是没有反应的,fixed
+" - 各种补全形态的支持，包括支持 File 匹配,done
+" - 各种语言的词表收集,doing
+" - js include 的文件词表生成记录入buf,later
+" - bugfix，":"隔断的单词匹配不出来,later
+"   bugfix，就近匹配？,later
+"   bugfix，snip词表排序, later
 " - _vimrc 整理 & easycomplete 抽离成插件
-let s:default_completion = {
-			\		'start_column': -1,
-			\		'candidates': []
-			\ }
-let s:completion = s:default_completion
+"
+"
+"
+" 自动依赖 snipMate
 
+" 插件初始化入口
 function! easycomplete#Enable()
-	" Without this flag in cpoptions, critical YCM mappings do not work. There's
-	" no way to not have this and have YCM working, so force the flag.
+	" VI 兼容模式，连续输入时的popup兼容性好
 	set cpoptions+=B
-	" We need menuone in completeopt, otherwise when there's only one candidate
-	" for completion, the menu doesn't show up.
+	" completeopt 需要设置成 menuone，不然如果只有一个展示
+	" 列表时，菜单往往无法弹出
 	set completeopt-=menu
 	set completeopt+=menuone
-	" This is unnecessary with our features. People use this option to insert
-	" the common prefix of all the matches and then add more differentiating chars
-	" so that they can select a more specific match. With our features, they
-	" don't need to insert the prefix; they just type the differentiating chars.
-	" Also, having this option set breaks the plugin.
+	" 这个是非必要设置，通常用来表示可以为所有匹配项插入通用前缀符，这样就可以
+	" 为不同匹配项设置特定的标识，这个插件不需要这么复杂的设置。同时，设置
+	" longest可以阻断插件的正常运行
 	set completeopt-=longest
-
-	let &completefunc = 'easycomplete#CompleteFunc' "C-X C-U X-N 触发
+	" <C-X><C-U><C-N>时触发默认关键词匹配，函数劫持至此
+	let &completefunc = 'easycomplete#CompleteFunc'
+	" 插入模式下的回车事件监听
 	inoremap <expr> <CR> TypeEnterWithPUM()
+	" 插入模式下 Tab 和 Shift-Tab 的监听
+	inoremap <Tab> <C-R>=CleverTab()<CR>
+	inoremap <S-Tab> <C-R>=CleverShiftTab()<CR>
 endfunction
 
-
-
+" 根据 vim-snippets 整理出目前支持的语言种类和缩写
 "function s:GetLangTypeRawStr(lang) {{{
 function! s:GetLangTypeRawStr(lang)
 	let lang_abbr = {}
@@ -146,18 +146,66 @@ function! s:GetLangTypeRawStr(lang)
 endfunction
 "}}}
 
-function! TypeEnterWithPUM()
-	"如果浮窗存在
-	if pumvisible() 
+"CleverTab tab 自动补全逻辑
+function! CleverTab()
+	if pumvisible()
+		return "\<C-N>"
+	elseif strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$' || 
+				\ strpart( getline('.'), col('.')-2, col('.')-1 ) =~ '\s' || 
+				\ len(getline('.')) == 0 
+		" 如果整行是空行
+		" 前一个字符是空格
+		" 空行
+		return "\<Tab>"
+	elseif match(strpart(getline('.'), 0 ,col('.') - 1)[0:col('.')-1],"\\(\\w\\|\\/\\)$") < 0
+		" 如果正在输入一个字母
+		return "\<Tab>"
+	elseif exists("g:snipMate") && exists('b:snip_state') 
+		" 代码已经完成展开时，编辑代码占位符，用tab进行占位符之间的跳转
+		let jump = b:snip_state.jump_stop(0)
+		if type(jump) == 1 " 返回字符串
+			" 等同于 return "\<C-R>=snipMate#TriggerSnippet()\<CR>"
+			return jump
+		endif
+	elseif exists("g:snipMate")
 		let word = matchstr(getline('.'), '\S\+\%'.col('.').'c')
 		let list = snipMate#GetSnippetsForWordBelowCursor(word, 1)
+
+		if snipMate#CanBeTriggered() && !empty(list) && len(list) == 1
+			call feedkeys( "\<Plug>snipMateNextOrTrigger" )
+			return ""
+		else
+			"唤醒easycomplete菜单
+			return "\<C-X>\<C-U>"
+		endif
+	else
+		"唤醒easycomplete菜单
+		return "\<C-X>\<C-U>"
+	endif
+endfunction
+
+" CleverShiftTab 逻辑判断，无补全菜单情况下输出<Tab>
+" Shift-Tab 在插入模式下输出为 Tab，是我个人习惯
+" TODO 是否要抽离到 vimrc 中？
+function! CleverShiftTab()
+	return pumvisible()?"\<C-P>":"\<Tab>"
+endfunction
+
+" 回车事件监听
+function! TypeEnterWithPUM()
+	" 如果浮窗存在
+	if pumvisible() 
+		" 得到当前光标处已匹配的单词
+		let word = matchstr(getline('.'), '\S\+\%'.col('.').'c')
+		" 根据单词查找 snippets 中的匹配项
+		let list = snipMate#GetSnippetsForWordBelowCursor(word, 1)
+		" 关闭浮窗
 		call s:CloseCompletionMenu()
 
 		"是否前缀可被匹配 && 是否完全匹配到snippet
 		if snipMate#CanBeTriggered() && !empty(list)
 			call feedkeys( "\<Plug>snipMateNextOrTrigger" )
 		endif
-
 		return ""
 	else
 		"除此之外还是回车的正常行为
@@ -165,7 +213,11 @@ function! TypeEnterWithPUM()
 	endif
 endfunction
 
-"'${1:obj}.ajaxSend(function (${1:request, settings}) {
+" 将 snippets 原始格式做简化，用作浮窗提示展示用
+" 主要将原有格式里的占位符替换成单个单词，比如下面是原始串
+" ${1:obj}.ajaxSend(function (${1:request, settings}) {
+" 替换为=>
+" obj.ajaxSend(function (request, settings) {
 function! s:GetSnippetSimplified(snippet_str)
 	let pfx_len = match(a:snippet_str,"${[0-9]:")
 	if !empty(a:snippet_str) && pfx_len < 0
@@ -176,32 +228,35 @@ function! s:GetSnippetSimplified(snippet_str)
 	return simplified_str
 endfunction
 
+" 插入模式下模拟按键点击
 function! s:SendKeys( keys )
 	call feedkeys( a:keys, 'in' )
 endfunction
 
+" 将Buff关键字和Snippets做合并
 " keywords is List
 " snippets is Dict
 function! s:MixinBufKeywordAndSnippets(keywords,snippets)
-	if empty(a:snippets)
+	if empty(a:snippets) || len(a:snippets) == 0
 		return a:keywords
 	endif
+
 	let snipabbr_list = []
 	for [k,v] in items(a:snippets)
-		let snip_obj = s:GetSnip(v)
-		let snip_body = s:trim(get(snip_obj,'snipbody'))
-		"let menu_str = s:GetLangTypeRawStr(get(snip_obj,'langtype')) . snip_body
-		"let menu_str = snip_body
+		let snip_obj  = s:GetSnip(v)
+		let snip_body = s:MenuStringTrim(get(snip_obj,'snipbody'))
 		let menu_kind = s:StringTrim(s:GetLangTypeRawStr(get(snip_obj,'langtype')))
 		call add(snipabbr_list, {"word": k , "menu": snip_body, "kind": menu_kind})
 	endfor
+
 	call extend(snipabbr_list , a:keywords)
 	return snipabbr_list
 endfunction
 
-
+" 从一个完整的SnipObject中得到Snippet最有用的两个信息
+" 一个是snip原始代码片段，一个是语言类型
 function! s:GetSnip(snipobj)
-	let errmsg = "[Unknown snippet]"
+	let errmsg    = "[Unknown snippet]"
 	let snip_body = ""
 	let lang_type = ""
 
@@ -220,6 +275,7 @@ function! s:GetSnip(snipobj)
 	return {"snipbody":snip_body,"langtype":lang_type}
 endfunction
 
+" 相当于 trim，去掉首尾的空字符
 function! s:StringTrim(str)
 	if !empty(a:str)
 		return substitute(a:str, "^\\s\\+\\(.\\{\-}\\)\\s\\+$","\\1","g")
@@ -227,7 +283,8 @@ function! s:StringTrim(str)
 	return ""
 endfunction
 
-function! s:trim(localstr)
+" 弹窗内需要展示的代码提示片段的 'Trim'
+function! s:MenuStringTrim(localstr)
 	let default_length = 33
 	let simplifed_result = s:GetSnippetSimplified(a:localstr)
 
@@ -240,7 +297,7 @@ function! s:trim(localstr)
 	return split(trim_str,"[\n]")[0]
 endfunction
 
-" get snippets
+" 如果 vim-snipmate 已经安装，用这个插件的方法取 snippets
 function! g:GetSnippets(scopes, trigger)
 	if exists("g:snipMate")
 		return snipMate#GetSnippets(a:scopes, a:trigger)
@@ -248,19 +305,20 @@ function! g:GetSnippets(scopes, trigger)
 	return {}
 endfunction
 
+" 读取缓冲区词表和字典词表，两者合并输出大词表
 function! s:GetKeywords(base)
-	let bufKeywordList = s:GetBufKeywordsList()
+	let bufKeywordList        = s:GetBufKeywordsList()
 	let wrappedBufKeywordList = s:GetWrappedBufKeywordList(bufKeywordList)
 	return s:MenuArrayDistinct(extend(
-								\		wrappedBufKeywordList,
-								\		s:GetWrappedDictKeywordList()
-								\	),
-								\	a:base)
+			\		wrappedBufKeywordList,
+			\		s:GetWrappedDictKeywordList()
+			\	),
+			\	a:base)
 endfunction
 
-"popup菜单内关键词去重
-"传入的list不应包含snippet缩写
-"base: 要匹配的原始字符串
+"popup 菜单内关键词去重，只做buff和dict里的keyword去重
+"传入的 list 不应包含 snippet 缩写
+"base 是要匹配的原始字符串
 function! s:MenuArrayDistinct(menuList, base)
 	if empty(a:menuList) || len(a:menuList) == 0
 		return []
@@ -272,10 +330,12 @@ function! s:MenuArrayDistinct(menuList, base)
 	endfor
 
 	let menulist_filter = uniq(filter(menulist_tmp,
-							\ 'matchstrpos(v:val, "'.a:base.'")[1] == 0'))
+						\ 'matchstrpos(v:val, "'.a:base.'")[1] == 0'))
 
-	let menulist_assetlist = [] "[word1,word2,word3...]
-	let menulist_result = [] "[{word:word1,kind..},{word:word2,kind..}..]
+	"[word1,word2,word3...]
+	let menulist_assetlist = [] 
+	"[{word:word1,kind..},{word:word2,kind..}..]
+	let menulist_result = [] 
 
 	for item in a:menuList
 		let word = get(item, "word")
@@ -290,23 +350,28 @@ function! s:MenuArrayDistinct(menuList, base)
 	return menulist_result
 endfunction
 
+" 获取当前所有 buff 内的关键词列表
 function! s:GetBufKeywordsList()
 	let tmpkeywords = []
 	for buf in getbufinfo()
 		let lines = getbufline(buf.bufnr, 1 ,"$")
 		for line in lines
+			" 获取 buff keyword 的正则表达式
 			call extend(tmpkeywords, split(line,'[^A-Za-z0-9_#]'))
 		endfor
 	endfor
+
 	let keywordList = s:ArrayDistinct(tmpkeywords)
 	let keywordFormedList = []
 	for v in keywordList
 		call add(keywordFormedList, v )
 	endfor
+
 	return keywordFormedList
 endfunction
 
-" ['abc','def','efd'] 
+" 将 Buff 关键词简单列表转换为补全浮窗所需的列表格式
+" 比如原始简单列表是 ['abc','def','efd'] ，输出为
 " => [{"word":"abc","kind":"[ID]"},{"word":"def","kind":"[ID]"}...]
 function! s:GetWrappedBufKeywordList(keywordList)
 	if empty(a:keywordList) || len(a:keywordList) == 0
@@ -320,7 +385,9 @@ function! s:GetWrappedBufKeywordList(keywordList)
 	return wrappedList
 endfunction
 
-
+" 将字典简单词表转换为补全浮窗所需的列表格式
+" 比如字典原始列表为 ['abc','def'] ，输出为
+" => [{"word":'abc',"kind":"[ID]","menu":"common.dict"}...]
 function! s:GetWrappedDictKeywordList()
 	if exists("b:globalDictKeywords")
 		return b:globalDictKeywords
@@ -328,13 +395,21 @@ function! s:GetWrappedDictKeywordList()
 
 	let b:globalDictKeywords = []
 
+	" 如果当前 Buff 所读取的字典目录存在
 	if !empty(&dictionary)
-		let dictsFiles = split(&dictionary,",")
+		let dictsFiles   = split(&dictionary,",")
 		let dictkeywords = []
 		for onedict in dictsFiles 
-			let lines = readfile(onedict)
-			let filename = substitute(onedict,"^.\\+[\\/]","","g")
-			let localdicts = []
+			try
+				let lines = readfile(onedict)
+			catch /.*/
+				echoe "关键词字典不存在!请删除该字典配置 ". 
+							\ "dictionary-=".onedict
+				continue
+			endtry
+
+			let filename         = substitute(onedict,"^.\\+[\\/]","","g")
+			let localdicts       = []
 			let localWrappedList = []
 
 			if empty(lines)
@@ -363,8 +438,7 @@ function! s:GetWrappedDictKeywordList()
 	endif
 endfunction
 
-" jayli here,done
-" 纯数字要删除掉
+" List 去重，类似 uniq，纯数字要去掉
 function! s:ArrayDistinct( list )
 	if empty(a:list)
 		return []
@@ -372,7 +446,6 @@ function! s:ArrayDistinct( list )
 		let tmparray = [] 
 		let uniqlist = uniq(a:list)
 		for item in uniqlist
-			"index(s:tmparray,item) < 0 &&
 			if !empty(item) && 
 					\ !str2nr(item) &&
 					\ len(item) != 1
@@ -383,17 +456,7 @@ function! s:ArrayDistinct( list )
 	endif
 endfunction
 
-function! s:EasyComplete()
-	"if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-	"	call s:SendKeys( "\<Tab>" )
-	return
-	if s:completion.start_column > col( '.' ) || empty( s:completion.candidates )
-		call s:CloseCompletionMenu()
-	else
-		call s:SendKeys( "\<C-X>\<C-U>\<C-P>" )
-	endif
-endfunction
-
+" 关闭补全浮窗
 function! s:CloseCompletionMenu()
 	if pumvisible()
 		call s:SendKeys( "\<ESC>a" )
@@ -404,30 +467,30 @@ endfunction
 function! easycomplete#TypingAPath(base)
 	" 这里不清楚为什么
 	" 输入 ./a/b/c ，./a/b/  两者得到的prefx都为空
-	" 前者应该得到c，
+	" 前者应该得到 c
 	" 这里只能临时将base透传进来表示文件名
-	let line = getline('.')
-	let coln = col('.') - 1
+	let line  = getline('.')
+	let coln  = col('.') - 1
 	let prefx = ' ' . line[0:coln]
 
-	"TODO 这个正则不完善，如果是一个字符 / 或者 . 就不行了
-	"438行有一个bug
-	" fpath和spath只是path，没有filename
+	" 需要注意，参照上一个注释，fpath和spath只是path，没有filename
+	" 从正在输入的一整行字符(行首到光标)中匹配出一个path出来
 	let fpath = matchstr(prefx,"\\([\\(\\) \"'\\t\\[\\]\\{\\}]\\)\\@<=" .
 				\	"\\([\\/\\.]\\+[\\.\\/a-zA-Z0-9\\_\\- ]\\+\\|[\\.\\/]\\)") 
 
-	" 兼容单个/匹配的情况
+	" 兼容单个 '/' 匹配的情况
 	let spath = substitute(fpath,"^[\\.\\/].*\\/","./","g") 
 
-	let pathDict = {}
-
-	let pathDict.fname = a:base
-	let pathDict.fpath = s:GetPathName(fpath)	" fullpath
-	let pathDict.spath = s:GetPathName(spath)	" shortpath
-	let pathDict.full_path_start = coln - len(fpath) + 2
+	let pathDict                  = {}
+	let pathDict.fname            = a:base
+	let pathDict.fpath            = s:GetPathName(fpath)	" fullpath
+	let pathDict.spath            = s:GetPathName(spath)	" shortpath
+	let pathDict.full_path_start  = coln - len(fpath) + 2
 	let pathDict.short_path_start = coln - len(spath) + 2
+
+	" 排除掉输入注释的情况
+	" TODO: bug => 如果输入'//'紧跟<Tab>出来仍然会<C-X><C-U><C-N>出补全菜单
 	if match(prefx,"\\(\\/\\/\\|\\/\\*\\)") < 0
-		" 排除掉注释的情况
 		let pathDict.isPath = !empty(fpath) && len(fpath) > 0 ? 1 : 0
 	else
 		let pathDict.isPath = 0
@@ -436,13 +499,13 @@ function! easycomplete#TypingAPath(base)
 	return pathDict
 endfunction
 
-" 根据输入的path匹配出结果，return ['f1','f2','d1','d2']
-" ./ => 当前bufpath查询
-" ../../ => 同上
-" /a/b/c => 直接查询
+" 根据输入的 path 匹配出结果，返回的是一个List ['f1','f2','d1','d2']
+" ./ => 基于当前 bufpath 查询
+" ../../ => 当前buf文件所在的目录向上追溯2次查询
+" /a/b/c => 直接从根查询
 function! s:GetDirAndFiles(typing_path)
-	let fpath = a:typing_path.fpath
-	let fname = bufname('%')
+	let fpath   = a:typing_path.fpath
+	let fname   = bufname('%')
 	let bufpath = s:GetPathName(fname)
 
 	if len(fpath) > 0 && fpath[0] == "."
@@ -451,21 +514,17 @@ function! s:GetDirAndFiles(typing_path)
 		let path = simplify(fpath)
 	endif
 
-	" Bug:
-	" let full_pathname
-	" if s:GetFileName(full_pathname) == 0  
-	" 第二行的 full_pathname 无法tab匹配出来
-	let skofyou = 0
 	if a:typing_path.fname == ""
 		" 查找目录下的文件和目录
 		let result_list = systemlist('ls '. path)
 	else
-		" 带有filename
-		" 查找目录下匹配文件名前缀的文件和目录
+		" 带有 filename 查找目录下匹配文件名前缀的文件和目录
 		let g:cmd = 'ls '. s:GetPathName(path) .
 					\ ' | grep -i ^' . a:typing_path.fname
+		" 这里没考虑Cygwin的情况
 		let result_list = systemlist('ls '. s:GetPathName(path) . 
 										\ " 2>/dev/null") 
+		" 使用filter过滤，没有使用grep过滤，以便后续性能调优
 		let result_list = filter(result_list, 
 				\ 'v:val =~ "'. a:typing_path.fname . '"')
 	endif
@@ -473,6 +532,8 @@ function! s:GetDirAndFiles(typing_path)
 	return s:GetWrappedFileAndDirsList(result_list, s:GetPathName(path))
 endfunction
 
+" 将某个目录下查找出的列表 List 的每项识别出目录和文件
+" 并转换成补全浮窗所需的展示格式
 function! s:GetWrappedFileAndDirsList(rlist, fpath)
 	if len(a:rlist) == 0
 		return []
@@ -492,33 +553,40 @@ function! s:GetWrappedFileAndDirsList(rlist, fpath)
 	return result_with_kind
 endfunction
 
+" 从一个完整的 path 串中得到 FileName
+" 输入的 Path 串可以带有文件名
 function! s:GetFileName(path)
-	let path =  simplify(a:path)
+	let path  = simplify(a:path)
 	let fname = matchstr(path,"\\([\\/]\\)\\@<=[^\\/]\\+$")
 	return fname
 endfunction
 
+" 同上
 function! s:GetPathName(path)
 	let path =  simplify(a:path)
 	let pathname = matchstr(path,"^.*\\/")
 	return pathname
 endfunction
 
-"Hook Entry
-"菜单样式
-"包括：当前缓冲区keywords，字典keywords，代码片段缩写，YCM 所辖每个语言的补全
-"	fun			
-"	Funny
-"	Function	[Dict]
-"	Function	javascript function PH (a,b)
-"	function	[ID]
-"	./Foo		[Dir]
-"	./Foo/a/b/	[File]
+" 补全菜单展示逻辑入口，光标跟随或者<Tab>键呼出
+" 由于性能问题，推荐<Tab>键呼出
+" 菜单格式说明（参照 YouCompleteMe 的菜单格式）
+" 目前包括四类：当前缓冲区keywords，字典keywords，代码片段缩写，目录查找
+" 其中目录查找和其他三类不混排（同样参照 YouCompleteMe的逻辑）
+" 补全菜单格式样例 =>
+"	Function	[JS]	javascript function PH (a,b)
+"	fun			[ID]
+"	Funny		[ID]
+"	Function	[ID]	common.dict
+"	function	[ID]	node.dict
+"	./Foo		[File]
+"	./b/		[Dir]
 function! easycomplete#CompleteFunc( findstart, base )
 	let typing_path = easycomplete#TypingAPath(a:base)
 
 	" 如果正在敲入一个文件路径
 	if typing_path.isPath
+		" 兼容这几种情况 =>
 		" ./a/b/c/d
 		" ../asdf./
 		" /a/b/c/ds
@@ -526,13 +594,14 @@ function! easycomplete#CompleteFunc( findstart, base )
 		if a:findstart
 			return typing_path.short_path_start
 		endif
+		" 查找目录
 		let result = s:GetDirAndFiles(typing_path)
 		return result
 	endif
 
-	" 正常关键字处理
+	" 常规的关键字处理
 	if a:findstart
-		" locate the start of the word
+		" 定位当前关键字的起始位置
 		let line = getline('.')
 		let start = col('.') - 1
 		while start > 0 && line[start - 1] =~ '\a'
@@ -541,13 +610,16 @@ function! easycomplete#CompleteFunc( findstart, base )
 		return start
 	endif
 
+	" 获得各类关键字的匹配结果
 	let keywords_result = s:GetKeywords(a:base)
 	let snippets_result = g:GetSnippets(deepcopy([&filetype]),a:base)
-	let all_result = s:MixinBufKeywordAndSnippets(keywords_result, snippets_result)
+	let all_result      = s:MixinBufKeywordAndSnippets(keywords_result, snippets_result)
 
-	" TODO 如果匹配不出任何结果，还是执行原有按键，我这里用tab
-	" 还有一种选择，暂停行为，给出match不成功的提示，强化insert输入tab用s-tab
-	" ，而不是一味求全tab的容错，容错不报错也是一个问题
+	" TODO 如果匹配不出任何结果，还是执行原有按键，我这里用tab，实际上还
+	" 有一种选择，暂停行为，给出match不成功的提示，我建议要强化insert输入
+	" tab 用 s-tab (我个人习惯)，而不是一味求全 tab 的容错，容错不报错也
+	" 是一个问题，Shift-Tab 被有些人用来设定为Tab回退，可能会被用不习惯，
+	" 这里需要读者注意
 	if len(all_result) == 0
 		call s:CloseCompletionMenu()
 		call s:SendKeys("\<Tab>")
