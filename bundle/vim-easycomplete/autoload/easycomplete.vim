@@ -40,109 +40,109 @@ endfunction
 function! s:GetLangTypeRawStr(lang)
 	let lang_abbr = {}
 	
-	letlang_abbr['_']               = "[_]"
-	letlang_abbr['actionscript']    = "[As]"
-	letlang_abbr['ada']             = "[Ada]"
-	letlang_abbr['alpaca']          = "[alp]"
-	letlang_abbr['apache']          = "[apa]"
-	letlang_abbr['arduino']         = "[ard]"
-	letlang_abbr['autoit']          = "[aut]"
-	letlang_abbr['awk']             = "[Awk]"
-	letlang_abbr['c']               = "[C]"
-	letlang_abbr['chef']            = "[chef]"
-	letlang_abbr['clojure']         = "[cloj]"
-	letlang_abbr['cmake']           = "[cmk]"
-	letlang_abbr['codeigniter']     = "[code]"
-	letlang_abbr['coffee']          = "[coff]"
-	letlang_abbr['cpp']             = "[Cpp]"
-	letlang_abbr['crystal']         = "[cyl]"
-	letlang_abbr['cs']              = "[Cs]"
-	letlang_abbr['css']             = "[Css]"
-	letlang_abbr['cuda']            = "[cuda]"
-	letlang_abbr['d']               = "[D]"
-	letlang_abbr['dart']            = "[dart]"
-	letlang_abbr['django']          = "[dja]"
-	letlang_abbr['dosini']          = "[Dos]"
-	letlang_abbr['eelixir']         = "[elix]"
-	letlang_abbr['elixir']          = "[elix]"
-	letlang_abbr['elm']             = "[elm]"
-	letlang_abbr['erlang']          = "[elng]"
-	letlang_abbr['eruby']           = "[Ruby]"
-	letlang_abbr['falcon']          = "[falc]"
-	letlang_abbr['fortran']         = "[fort]"
-	letlang_abbr['go']              = "[Go]"
-	letlang_abbr['haml']            = "[haml]"
-	letlang_abbr['handlebars']      = "[hand]"
-	letlang_abbr['haskell']         = "[hskl]"
-	letlang_abbr['html']            = "[Html]"
-	letlang_abbr['htmldjango']      = "[Html]"
-	letlang_abbr['htmltornado']     = "[Html]"
-	letlang_abbr['idris']           = "[diri]"
-	letlang_abbr['jade']            = "[Jade]"
-	letlang_abbr['java']            = "[Java]"
-	letlang_abbr['javascript']      = "[JS]"
-	letlang_abbr['jinja']           = "[jinj]"
-	letlang_abbr['jsp']             = "[JSP]"
-	letlang_abbr['julia']           = "[jul]"
-	letlang_abbr['kotlin']          = "[kotl]"
-	letlang_abbr['laravel']         = "[lar]"
-	letlang_abbr['ledger']          = "[ledg]"
-	letlang_abbr['lfe']             = "[lfe]"
-	letlang_abbr['ls']              = "[Ls]"
-	letlang_abbr['lua']             = "[Lua]"
-	letlang_abbr['make']            = "[Make]"
-	letlang_abbr['mako']            = "[Mako]"
-	letlang_abbr['markdown']        = "[mkd]"
-	letlang_abbr['matlab']          = "[mtl]"
-	letlang_abbr['mustache']        = "[mst]"
-	letlang_abbr['objc']            = "[OC]"
-	letlang_abbr['ocaml']           = "[OC]"
-	letlang_abbr['openfoam']        = "[opf]"
-	letlang_abbr['perl']            = "[Perl]"
-	letlang_abbr['perl6']           = "[Perl]"
-	letlang_abbr['php']             = "[Php]"
-	letlang_abbr['plsql']           = "[Sql]"
-	letlang_abbr['po']              = "[po]"
-	letlang_abbr['processing']      = "[prc]"
-	letlang_abbr['progress']        = "[prg]"
-	letlang_abbr['ps1']             = "[Ps1]"
-	letlang_abbr['puppet']          = "[ppt]"
-	letlang_abbr['purescript']      = "[ps]"
-	letlang_abbr['python']          = "[PY]"
-	letlang_abbr['r']               = "[R]"
-	letlang_abbr['rails']           = "[Rail]"
-	letlang_abbr['reason']          = "[rea]"
-	letlang_abbr['rst']             = "[Rst]"
-	letlang_abbr['ruby']            = "[Ruby]"
-	letlang_abbr['rust']            = "[Rust]"
-	letlang_abbr['sass']            = "[Sass]"
-	letlang_abbr['scala']           = "[scl]"
-	letlang_abbr['scheme']          = "[sch]"
-	letlang_abbr['scss']            = "[scss]"
-	letlang_abbr['sh']              = "[SH]"
-	letlang_abbr['simplemvcf']      = "[spm]"
-	letlang_abbr['slim']            = "[slim]"
-	letlang_abbr['snippets']        = "[snp]"
-	letlang_abbr['sql']             = "[sql]"
-	letlang_abbr['stylus']          = "[stl]"
-	letlang_abbr['supercollider']   = "[sup]"
-	letlang_abbr['systemverilog']   = "[SYS]"
-	letlang_abbr['tcl']             = "[TCL]"
-	letlang_abbr['tex']             = "[TEX]"
-	letlang_abbr['textile']         = "[TEX]"
-	letlang_abbr['twig']            = "[twi]"
-	letlang_abbr['typescript']      = "[TS]"
-	letlang_abbr['typescriptreact'] = "[TS]"
-	letlang_abbr['verilog']         = "[vrl]"
-	letlang_abbr['vhdl']            = "[vhdl]"
-	letlang_abbr['vim']             = "[VIM]"
-	letlang_abbr['vue']             = "[VUE]"
-	letlang_abbr['xml']             = "[XML]"
-	letlang_abbr['xslt']            = "[xslt]"
-	letlang_abbr['yii']             = "[YII]"
-	letlang_abbr['zsh']             = "[ZSH]"
+	let lang_abbr['_']               = "[_]"
+	let lang_abbr['actionscript']    = "[As]"
+	let lang_abbr['ada']             = "[Ada]"
+	let lang_abbr['alpaca']          = "[alp]"
+	let lang_abbr['apache']          = "[apa]"
+	let lang_abbr['arduino']         = "[ard]"
+	let lang_abbr['autoit']          = "[aut]"
+	let lang_abbr['awk']             = "[Awk]"
+	let lang_abbr['c']               = "[C]"
+	let lang_abbr['chef']            = "[chef]"
+	let lang_abbr['clojure']         = "[cloj]"
+	let lang_abbr['cmake']           = "[cmk]"
+	let lang_abbr['codeigniter']     = "[code]"
+	let lang_abbr['coffee']          = "[coff]"
+	let lang_abbr['cpp']             = "[Cpp]"
+	let lang_abbr['crystal']         = "[cyl]"
+	let lang_abbr['cs']              = "[Cs]"
+	let lang_abbr['css']             = "[Css]"
+	let lang_abbr['cuda']            = "[cuda]"
+	let lang_abbr['d']               = "[D]"
+	let lang_abbr['dart']            = "[dart]"
+	let lang_abbr['django']          = "[dja]"
+	let lang_abbr['dosini']          = "[Dos]"
+	let lang_abbr['eelixir']         = "[elix]"
+	let lang_abbr['elixir']          = "[elix]"
+	let lang_abbr['elm']             = "[elm]"
+	let lang_abbr['erlang']          = "[elng]"
+	let lang_abbr['eruby']           = "[Ruby]"
+	let lang_abbr['falcon']          = "[falc]"
+	let lang_abbr['fortran']         = "[fort]"
+	let lang_abbr['go']              = "[Go]"
+	let lang_abbr['haml']            = "[haml]"
+	let lang_abbr['handlebars']      = "[hand]"
+	let lang_abbr['haskell']         = "[hskl]"
+	let lang_abbr['html']            = "[Html]"
+	let lang_abbr['htmldjango']      = "[Html]"
+	let lang_abbr['htmltornado']     = "[Html]"
+	let lang_abbr['idris']           = "[diri]"
+	let lang_abbr['jade']            = "[Jade]"
+	let lang_abbr['java']            = "[Java]"
+	let lang_abbr['javascript']      = "[JS]"
+	let lang_abbr['jinja']           = "[jinj]"
+	let lang_abbr['jsp']             = "[JSP]"
+	let lang_abbr['julia']           = "[jul]"
+	let lang_abbr['kotlin']          = "[kotl]"
+	let lang_abbr['laravel']         = "[lar]"
+	let lang_abbr['ledger']          = "[ledg]"
+	let lang_abbr['lfe']             = "[lfe]"
+	let lang_abbr['ls']              = "[Ls]"
+	let lang_abbr['lua']             = "[Lua]"
+	let lang_abbr['make']            = "[Make]"
+	let lang_abbr['mako']            = "[Mako]"
+	let lang_abbr['markdown']        = "[mkd]"
+	let lang_abbr['matlab']          = "[mtl]"
+	let lang_abbr['mustache']        = "[mst]"
+	let lang_abbr['objc']            = "[OC]"
+	let lang_abbr['ocaml']           = "[OC]"
+	let lang_abbr['openfoam']        = "[opf]"
+	let lang_abbr['perl']            = "[Perl]"
+	let lang_abbr['perl6']           = "[Perl]"
+	let lang_abbr['php']             = "[Php]"
+	let lang_abbr['plsql']           = "[Sql]"
+	let lang_abbr['po']              = "[po]"
+	let lang_abbr['processing']      = "[prc]"
+	let lang_abbr['progress']        = "[prg]"
+	let lang_abbr['ps1']             = "[Ps1]"
+	let lang_abbr['puppet']          = "[ppt]"
+	let lang_abbr['purescript']      = "[ps]"
+	let lang_abbr['python']          = "[PY]"
+	let lang_abbr['r']               = "[R]"
+	let lang_abbr['rails']           = "[Rail]"
+	let lang_abbr['reason']          = "[rea]"
+	let lang_abbr['rst']             = "[Rst]"
+	let lang_abbr['ruby']            = "[Ruby]"
+	let lang_abbr['rust']            = "[Rust]"
+	let lang_abbr['sass']            = "[Sass]"
+	let lang_abbr['scala']           = "[scl]"
+	let lang_abbr['scheme']          = "[sch]"
+	let lang_abbr['scss']            = "[scss]"
+	let lang_abbr['sh']              = "[SH]"
+	let lang_abbr['simplemvcf']      = "[spm]"
+	let lang_abbr['slim']            = "[slim]"
+	let lang_abbr['snippets']        = "[snp]"
+	let lang_abbr['sql']             = "[sql]"
+	let lang_abbr['stylus']          = "[stl]"
+	let lang_abbr['supercollider']   = "[sup]"
+	let lang_abbr['systemverilog']   = "[SYS]"
+	let lang_abbr['tcl']             = "[TCL]"
+	let lang_abbr['tex']             = "[TEX]"
+	let lang_abbr['textile']         = "[TEX]"
+	let lang_abbr['twig']            = "[twi]"
+	let lang_abbr['typescript']      = "[TS]"
+	let lang_abbr['typescriptreact'] = "[TS]"
+	let lang_abbr['verilog']         = "[vrl]"
+	let lang_abbr['vhdl']            = "[vhdl]"
+	let lang_abbr['vim']             = "[VIM]"
+	let lang_abbr['vue']             = "[VUE]"
+	let lang_abbr['xml']             = "[XML]"
+	let lang_abbr['xslt']            = "[xslt]"
+	let lang_abbr['yii']             = "[YII]"
+	let lang_abbr['zsh']             = "[ZSH]"
 
-	return has_key(lang_abbr,a:lang) ? get(lang_abbr,a:lang) : "[Ukn]"
+	return has_key(lang_abbr, a:lang) ? get(lang_abbr, a:lang) : "[Ukn]"
 endfunction
 "}}}
 
@@ -455,6 +455,7 @@ function! s:GetDirAndFiles(typing_path)
 	" let full_pathname
 	" if s:GetFileName(full_pathname) == 0  
 	" 第二行的 full_pathname 无法tab匹配出来
+	let skofyou = 0
 	if a:typing_path.fname == ""
 		" 查找目录下的文件和目录
 		let result_list = systemlist('ls '. path)
@@ -468,7 +469,27 @@ function! s:GetDirAndFiles(typing_path)
 		let result_list = filter(result_list, 
 				\ 'v:val =~ "'. a:typing_path.fname . '"')
 	endif
-	return result_list
+
+	return s:GetWrappedFileAndDirsList(result_list, s:GetPathName(path))
+endfunction
+
+function! s:GetWrappedFileAndDirsList(rlist, fpath)
+	if len(a:rlist) == 0
+		return []
+	endif
+	
+	let result_with_kind = []
+
+	for item in a:rlist
+		let localfile = simplify(a:fpath . '/' . item)
+		if isdirectory(localfile)
+			call add(result_with_kind, {"word": item . "/", "kind" : "[Dir]"})
+		else
+			call add(result_with_kind, {"word": item , "kind" : "[File]"})
+		endif
+	endfor
+
+	return result_with_kind
 endfunction
 
 function! s:GetFileName(path)
@@ -482,8 +503,6 @@ function! s:GetPathName(path)
 	let pathname = matchstr(path,"^.*\\/")
 	return pathname
 endfunction
-
-"function! easycomplete#
 
 "Hook Entry
 "菜单样式
@@ -522,7 +541,6 @@ function! easycomplete#CompleteFunc( findstart, base )
 		return start
 	endif
 
-	let words =  [a:base,{"word":"apple","menu":"sdfdsf"},"apple2","iphone","123455","const","EasyCompleteStart"]
 	let keywords_result = s:GetKeywords(a:base)
 	let snippets_result = g:GetSnippets(deepcopy([&filetype]),a:base)
 	let all_result = s:MixinBufKeywordAndSnippets(keywords_result, snippets_result)

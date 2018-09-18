@@ -156,15 +156,17 @@ nmap <S-M> <ESC>:call g:TransformSpaceTo4Tab()<CR>
 
 "tab自动补全
 function! CleverTab()
-	"let g:typing_path = easycomplete#TypingAPath()
 	if pumvisible()
 		return "\<C-N>"
-	"elseif g:typing_path.isPath " 如果匹配一个path
-		"return "\<C-X>\<C-F>"
-		"return "\<C-X>\<C-U>"
-	elseif strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+	elseif strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$' || 
+				\ strpart( getline('.'), col('.')-2, col('.')-1 ) =~ '\s' || 
+				\ len(getline('.')) == 0 
+		" 如果整行是空行
+		" 前一个字符是空格
+		" 空行
 		return "\<Tab>"
-	elseif strpart( getline('.'), col('.')-2, col('.')-1 ) =~ '\s'  
+	elseif match(strpart(getline('.'), 0 ,col('.') - 1)[0:col('.')-1],"\\(\\w\\|\\/\\)$") < 0
+		" 如果正在输入一个字母
 		return "\<Tab>"
 	elseif exists("g:snipMate") && exists('b:snip_state') 
 		" 代码已经完成展开时，编辑代码占位符，用tab进行占位符之间的跳转
