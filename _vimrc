@@ -131,10 +131,6 @@ vnoremap Y "+y
 map <C-l> <ESC>10l
 map <C-h> <ESC>10h
 
-"一个tab占4个空格
-set ts=4
-set sw=4
-
 "tab尺寸
 set shiftwidth=4
 set tabstop=4   "tab
@@ -155,19 +151,22 @@ endfunction
 nmap <S-M> <ESC>:call g:TransformSpaceTo4Tab()<CR>
 
 
-inoremap <C-F> <C-X><C-F><C-P> 
-inoremap <C-O> <C-X><C-O><C-P>
+"inoremap <C-F> <C-X><C-F><C-P> 
+"inoremap <C-O> <C-X><C-O><C-P>
 " 回车选中
-inoremap <expr> <CR> pumvisible()?"\<C-Y>":"\<CR>"
+"inoremap <expr> <CR> pumvisible()?"\<C-Y>":"\<CR>"
 
 " Ctrl-K 代码片段补全（代替zencoding）
 " 不可删掉，C-K 还是必要的，在完全键入一个缩写单词，没有匹配窗口，直接点击回车
 " 不好使，必须使用C-K展开
-imap <C-K> <Plug>snipMateNextOrTrigger
-smap <C-K> <Plug>snipMateNextOrTrigger
+"imap <silent> <C-K> <Plug>snipMateNextOrTrigger
+"smap <silent> <C-K> <Plug>snipMateNextOrTrigger
 
-let g:snipMate = {}
-let g:snipMate.description_in_completion=1
+imap <Tab> <Plug>EasyCompTabTrigger
+imap <S-Tab> <Plug>EasyCompShiftTabTrigger
+
+"let g:snipMate = {}
+"let g:snipMate.description_in_completion=1
 
 "css 文件输入:匹配关键字
 autocmd Filetype css inoremap <buffer>  :  :<C-X><C-O><C-P>

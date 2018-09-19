@@ -1,18 +1,24 @@
-"vim: foldmethod=marker
+" File:			easycomplete.vim
+" Author:		@jayli <https://github.com/jayli/>
+" Description:	easycomplete.vim 是 vim-easycomplete 插件的启动文件，
+"				easycomplete 实现了针对字典和 buff keyword 的自动补全，不依赖
+"				于其他语言，完全基于 VimL 实现，安装比较干净，同时该插件兼容了
+"				snipMate 和其携带的 snipets 代码片段，书写代码超级舒服
+"				改文件是主要的逻辑，说明均已注释跟随在代码里
 "
-" TODO
-" - 如果一个单词刚好只有一个匹配，或者匹配不出东西，点击tab是没有反应的,fixed
-" - 各种补全形态的支持，包括支持 File 匹配,done
-" - 各种语言的词表收集,doing
-" - js include 的文件词表生成记录入buf,later
-" - bugfix，":"隔断的单词匹配不出来,later
-"   bugfix，就近匹配？,later
-"   bugfix，snip词表排序, later
-" - _vimrc 整理 & easycomplete 抽离成插件
+"				更多信息：
+"					<https://github.com/jayli/vim-easycomplete>
+"				Thanks for SnipMate: 
+"					<https://www.vim.org/scripts/script.php?script_id=2540>
 "
-"
-"
-" 自动依赖 snipMate
+" TODO:
+" - [fixed] 如果一个单词刚好只有一个匹配，或者匹配不出东西，点击tab是没有反应
+" - [fixed] 各种补全形态的支持，包括支持 File 匹配
+" - [doing] 各种语言的词表收集,doing
+" - [later] js include 的文件词表生成记录入buf
+" - [later] ":"隔断的单词匹配不出来,later
+" - [later] 单词位置的就近匹配
+" - [later] snip 词表排序
 
 " 插件初始化入口
 function! easycomplete#Enable()
@@ -31,8 +37,11 @@ function! easycomplete#Enable()
 	" 插入模式下的回车事件监听
 	inoremap <expr> <CR> TypeEnterWithPUM()
 	" 插入模式下 Tab 和 Shift-Tab 的监听
-	inoremap <Tab> <C-R>=CleverTab()<CR>
-	inoremap <S-Tab> <C-R>=CleverShiftTab()<CR>
+	" inoremap <Tab> <C-R>=CleverTab()<CR>
+	" inoremap <S-Tab> <C-R>=CleverShiftTab()<CR>
+	inoremap <silent> <Plug>EasyCompTabTrigger  <C-R>=easycomplete#CleverTab()<CR>
+	inoremap <silent> <Plug>EasyCompShiftTabTrigger  <C-R>=easycomplete#CleverShiftTab()<CR>
+
 endfunction
 
 " 根据 vim-snippets 整理出目前支持的语言种类和缩写
@@ -147,19 +156,9 @@ endfunction
 "}}}
 
 "CleverTab tab 自动补全逻辑
-function! CleverTab()
+function! easycomplete#CleverTab()
 	if pumvisible()
 		return "\<C-N>"
-	elseif strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$' || 
-				\ strpart( getline('.'), col('.')-2, col('.')-1 ) =~ '\s' || 
-				\ len(getline('.')) == 0 
-		" 如果整行是空行
-		" 前一个字符是空格
-		" 空行
-		return "\<Tab>"
-	elseif match(strpart(getline('.'), 0 ,col('.') - 1)[0:col('.')-1],"\\(\\w\\|\\/\\)$") < 0
-		" 如果正在输入一个非字母，也不是'/'
-		return "\<Tab>"
 	elseif exists("g:snipMate") && exists('b:snip_state') 
 		" 代码已经完成展开时，编辑代码占位符，用tab进行占位符之间的跳转
 		let jump = b:snip_state.jump_stop(0)
@@ -167,6 +166,17 @@ function! CleverTab()
 			" 等同于 return "\<C-R>=snipMate#TriggerSnippet()\<CR>"
 			return jump
 		endif
+	elseif strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$' || 
+				\ strpart( getline('.'), col('.')-2, col('.')-1 ) =~ '\s' || 
+				\ len(getline('.')) == 0 
+		" 如果整行是空行
+		" 前一个字符是空格
+		" 空行
+		return "\<Tab>"
+	elseif match(strpart(getline('.'), 0 ,col('.') - 1)[0:col('.')-1],
+												\ "\\(\\w\\|\\/\\)$") < 0
+		" 如果正在输入一个非字母，也不是'/'
+		return "\<Tab>"
 	elseif exists("g:snipMate")
 		let word = matchstr(getline('.'), '\S\+\%'.col('.').'c')
 		let list = snipMate#GetSnippetsForWordBelowCursor(word, 1)
@@ -187,26 +197,32 @@ endfunction
 " CleverShiftTab 逻辑判断，无补全菜单情况下输出<Tab>
 " Shift-Tab 在插入模式下输出为 Tab，是我个人习惯
 " TODO 是否要抽离到 vimrc 中？
-function! CleverShiftTab()
+function! easycomplete#CleverShiftTab()
 	return pumvisible()?"\<C-P>":"\<Tab>"
 endfunction
 
-" 回车事件监听
+" 回车事件的行为，如果补全浮窗内点击回车，要判断是否
+" 插入 snipmete 展开后的代码，否则还是默认回车事件
 function! TypeEnterWithPUM()
 	" 如果浮窗存在
-	if pumvisible() 
-		" 得到当前光标处已匹配的单词
-		let word = matchstr(getline('.'), '\S\+\%'.col('.').'c')
-		" 根据单词查找 snippets 中的匹配项
-		let list = snipMate#GetSnippetsForWordBelowCursor(word, 1)
-		" 关闭浮窗
-		call s:CloseCompletionMenu()
+	if pumvisible()
+		if exists("g:snipMate")
+			" 得到当前光标处已匹配的单词
+			let word = matchstr(getline('.'), '\S\+\%'.col('.').'c')
+			" 根据单词查找 snippets 中的匹配项
+			let list = snipMate#GetSnippetsForWordBelowCursor(word, 1)
+			" 关闭浮窗
+			call s:CloseCompletionMenu()
 
-		"是否前缀可被匹配 && 是否完全匹配到snippet
-		if snipMate#CanBeTriggered() && !empty(list)
-			call feedkeys( "\<Plug>snipMateNextOrTrigger" )
+			"是否前缀可被匹配 && 是否完全匹配到snippet
+			if snipMate#CanBeTriggered() && !empty(list)
+				call feedkeys( "\<Plug>snipMateNextOrTrigger" )
+			endif
+			return ""
+		else
+			call s:CloseCompletionMenu()
+			return ""
 		endif
-		return ""
 	else
 		"除此之外还是回车的正常行为
 		return "\<CR>"
@@ -629,3 +645,4 @@ function! easycomplete#CompleteFunc( findstart, base )
 	return all_result
 endfunction
 
+"vim: foldmethod=marker:softtabstop=4:tabstop=4:shiftwidth=4
