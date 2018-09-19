@@ -4,7 +4,7 @@
 
 一个简单轻便的 VIM 自动补全插件。@author：[拔赤](https://github.com/jayli)
 
-![](https://github.com/jayli/jayli.github.com/raw/master/photo/assets/vim-easycomplete.gif)
+![](https://raw.githubusercontent.com/jayli/jayli.github.com/master/photo/assets/vim-easycomplete.gif)
 
 为什么又一个轮子？已有的 VIM 补全能力不够用吗：
 
