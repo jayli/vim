@@ -4,7 +4,7 @@
 
 一个简单轻便的 VIM 自动补全插件。@author：[拔赤](https://github.com/jayli)
 
-![](https://gw.alicdn.com/tfs/LB1wEy4bzTpK1RjSZKPXXa3UpXa-800-409.gif)
+![](https://gw.alicdn.com/tfs/TB1ZhTAbCzqK1RjSZPcXXbTepXa-1000-510.gif)
 
 为什么又一个轮子？已有的 VIM 补全能力不够用吗：
 
@@ -73,7 +73,7 @@ VIM 自带 <kbd>C-X C-F</kbd> 来呼出文件路径匹配窗，也很好用，�
 
 <img src="https://gw.alicdn.com/tfs/TB1sbagbAvoK1RjSZFDXXXY3pXa-1078-448.png" width=350>
 
-代码片段内的占位符填充的动作和 SnipMate 保持一样，用<kbd>Tab</kbd>键切换下一个占位符。比如[这个例子](https://gw.alicdn.com/tfs/LB1wEy4bzTpK1RjSZKPXXa3UpXa-800-409.gif)展示了代码补全的情形。
+代码片段内的占位符填充的动作和 SnipMate 保持一样，用 <kbd>Tab</kbd> 键切换下一个占位符。比如[这个例子](https://gw.alicdn.com/tfs/LB1wEy4bzTpK1RjSZKPXXa3UpXa-800-409.gif)展示了代码补全的情形。
 
 ### VIM 代码补全的一些思考
 
