@@ -8,7 +8,7 @@
 
 为什么又一个轮子？已有的 VIM 补全能力不够用吗：
 
-- [Omni-Completion](http://vim.wikia.com/wiki/Omni_completion)：VIM 默认代码补全，内置了一些常用语言的关键词，由于词表不能自由增减而且很古老，准确度已经大大下降了，但对于 HTML 和 CSS 来说还是很好的一个选择，优点是 VIM 自带，不用再安装了，使用<kbd>C-X C-O</kbd>呼出
+- [Omni-Completion](http://vim.wikia.com/wiki/Omni_completion)：VIM 默认代码补全，内置了一些常用语言的关键词，由于词表不能自由增减而且很古老，准确度已经大大下降了，但对于 HTML 和 CSS 来说还是很好的一个选择，优点是 VIM 自带，不用再安装了，使用 <kbd>C-X C-O</kbd> 呼出
 - [YouCompleteMe](https://github.com/Valloric/YouCompleteMe)：这是一个非常棒的代码提示引擎，由 Google 工程师 Val Markovic 开发。YCM 非常适合写 C、CPP 和 Python，因为插件是基于 Python 的，编译安装后运行时速度很快，能够做到跟指敲击的自动补全，能够对 Python 做到一定程度的词义分析，给出更智能的提示，是 Python 编程最佳选择。YCM 有三个缺陷，第一是强依赖 Python，每次安装必须要重新编译，不够轻便携带，第二是语法上的支持稍弱，更没有整合进代码片段的缩写展开，第三，启动速度是最慢的，在 MacBookPro 上打开 VIM 要卡上 600 到 800 毫秒。
 - [SnipMate](https://github.com/garbas/vim-snipmate)：非常棒的代码展开补全工具，完全基于 VimL 实现，便携性很好，但它是一个类似 Zencoding 的代码展开工具，不带补全提示。
 - [Deoplete](https://github.com/Shougo/deoplete.nvim)：和 YouCompleteMe 齐名的补全框架，作者是日本人。该插件只能运行在 [VIM8](https://github.com/vim/vim/releases/tag/v8.1.0408) 或者 [Neovim](https://github.com/neovim/neovim) 之上，而且必须依赖 Python3，便携性不佳，配置起来超级复杂，适合 VIM 深度玩家。
@@ -16,7 +16,7 @@
 - [Zencoding](https://github.com/mattn/emmet-vim)：古老但很酷的 html 编程利器，适合写标签，自定义代码片段难度极高，毕竟太古老了，轻易用不到。
 - [TernJS](http://ternjs.net/)：TernJS 不是一个完整的插件，是一个 JavaScript 解释器，用来生成 JS 语法树，可以内嵌到一些插件里，辅助做到 JS 的上下文语义的提示补全，这个项目已经不维护了，另外两个缺陷是配置相对复杂，不够所见所得，还有就是不能做到 100% 的基于语义的补全，比如`var a = require("http")`，`a.`也做不到补全`http`模块成员，这个是 JS 这类脚本编程的通病。
 
-我的需求散落在各个插件里，四个主要需求，第一，浮窗提示，第二，支持代码片段提示+展开，第三，优先选择关键词和词表匹配，第四，因为经常登录服务器，除了要支持 VIM7 以外，还要便于携带和安装，登录一台裸机，一个命令快速搞定，所以不能有 Python 依赖，要纯 VimL 实现。最后，相比于输入跟随提示（略干扰），我更习惯<kbd>Tab</kbd>提示。以上这些插件均不能同时满足我这四个需求，不得已我造了 [Vim-EasyComplete](https://github.com/jayli/vim-easycomplete)。
+我的需求散落在各个插件里，四个主要需求，第一，浮窗提示，第二，支持代码片段提示+展开，第三，优先选择关键词和词表匹配，第四，因为经常登录服务器，除了要支持 VIM7 以外，还要便于携带和安装，登录一台裸机，一个命令快速搞定，所以不能有 Python 依赖，要纯 VimL 实现。最后，相比于输入跟随提示（略干扰），我更习惯 <kbd>Tab</kbd> 提示。以上这些插件均不能同时满足我这四个需求，不得已我造了 [Vim-EasyComplete](https://github.com/jayli/vim-easycomplete)。
 
 因为要用到代码片段展开，Vim-EasyComplete 只对 SnipMate 有依赖，SnipMate 也是干净的 VimL 实现。当然，SnipMate 没有安装，EasyComplete 也是可以正常工作的。
 
@@ -40,12 +40,12 @@ VIM 插件安装极其方便，可选 Pathogen、Vundle 等很棒的插件管理
 
 ### 配置
 
-我习惯使用<kbd>Tab</kbd>键呼出补全菜单，如果遇到<kbd>Tab</kbd>键在插入模式下不能输出原始 Tab，我会习惯性的敲入<kbd>Shift-Tab</kbd>。这里以配置`Tab`键唤醒补全菜单为例：在`.vimrc`中加入：
+我习惯使用 <kbd>Tab</kbd> 键呼出补全菜单，如果遇到 <kbd>Tab</kbd> 键在插入模式下不能输出原始 `Tab`，我会习惯性的敲入 <kbd>Shift-Tab</kbd> 。这里以配置 <kbd>Tab</kbd> 键唤醒补全菜单为例：在`.vimrc`中加入：
 
-	imap <Tab> <Plug>EasyCompTabTrigger
+	imap <Tab>   <Plug>EasyCompTabTrigger
 	imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 
-这里起主要作用的是第一行，第二行<kbd>Shift-Tab</kbd>为可选，我这里将`Shift-Tab`也定义为了插入模式下前进一个`Tab`。
+这里起主要作用的是第一行，第二行 <kbd>Shift-Tab</kbd> 为可选，我这里将 <kbd>Shift-Tab</kbd> 也定义为了插入模式下前进一个 <kbd>Tab</kbd>。
 
 > SnipMate 的代码补全功能已经整合入了 EasyComplete，原则上是不用针对 SnipMate 做额外配置的，安装好就好了。
 
@@ -55,7 +55,7 @@ EasyComplete 目前有四种常见用法：关键词补全、字典补全、文�
 
 #### - 关键字补全和字典补全
 
-和 VIM 自带的智能补全<kbd>C-X C-N</kbd>能力一致，从当前缓冲区和字典中解析出关键词匹配出来，速度也是最快的。单词输入时按<kbd>Tab</kbd>呼出补全菜单，字典配置方法`set dictionary={你的字典文件}`，样例如下，用<kbd>Tab</kbd>和<kbd>Shift-Tab</kbd>键来切换下一个和上一个匹配词。
+和 VIM 自带的智能补全 <kbd>C-X C-N</kbd> 能力一致，从当前缓冲区和字典中解析出关键词匹配出来，速度也是最快的。单词输入时按 <kbd>Tab</kbd> 呼出补全菜单，字典配置方法`set dictionary={你的字典文件}`，样例如下，用 <kbd>Tab</kbd> 和 <kbd>Shift-Tab</kbd> 键来切换下一个和上一个匹配词。
 
 <img src="https://gw.alicdn.com/tfs/TB1qJ6dbpzqK1RjSZSgXXcpAVXa-1260-440.png" width=400>
 
@@ -63,13 +63,13 @@ EasyComplete 目前有四种常见用法：关键词补全、字典补全、文�
 
 #### - 文件路径补全
 
-VIM 自带<kbd>C-X C-F</kbd>来呼出文件路径匹配窗，也很好用，但补全窗口的起点是整个路径匹配的起点，占太多屏幕面积，这里参照 YCM 重写了路径匹配的逻辑。插件会判断你是否正在输入一个路径，尤其是当你输入`./`或者`/`，也可紧跟要匹配的文件名或者目录名片段，点击<kbd>Tab</kbd>呼出匹配项。
+VIM 自带 <kbd>C-X C-F</kbd> 来呼出文件路径匹配窗，也很好用，但补全窗口的起点是整个路径匹配的起点，占太多屏幕面积，这里参照 YCM 重写了路径匹配的逻辑。插件会判断你是否正在输入一个路径，尤其是当你输入`./`或者`/`，也可紧跟要匹配的文件名或者目录名片段，点击 <kbd>Tab</kbd> 呼出匹配项。
 
 <img src="https://gw.alicdn.com/tfs/TB1go_hbzTpK1RjSZKPXXa3UpXa-1560-818.png" width=450>
 
 #### - 代码片段补全（基于 SnipMate）
 
-当安装了 SnipMate，补全窗口中会自动带上可匹配的代码片段缩写，比如下图示例一个 VIM 文件中输入`he`点击<kbd>Tab</kbd>，匹配窗里第一行是可展开的代码片段，点击回车将插入代码段，支持的代码段来自于[vim-snippets](https://github.com/honza/vim-snippets)，可以[在这里](https://github.com/honza/vim-snippets/tree/master/snippets)查看有哪些可用的代码片段。
+当安装了 SnipMate，补全窗口中会自动带上可匹配的代码片段缩写，比如下图示例一个 VIM 文件中输入`he`点击 <kbd>Tab</kbd> ，匹配窗里第一行是可展开的代码片段，点击回车将插入代码段，支持的代码段来自于[vim-snippets](https://github.com/honza/vim-snippets)，可以[在这里](https://github.com/honza/vim-snippets/tree/master/snippets)查看有哪些可用的代码片段。
 
 <img src="https://gw.alicdn.com/tfs/TB1sbagbAvoK1RjSZFDXXXY3pXa-1078-448.png" width=350>
 
