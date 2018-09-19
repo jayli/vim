@@ -262,6 +262,8 @@ function! s:MixinBufKeywordAndSnippets(keywords,snippets)
 		let snip_obj  = s:GetSnip(v)
 		let snip_body = s:MenuStringTrim(get(snip_obj,'snipbody'))
 		let menu_kind = s:StringTrim(s:GetLangTypeRawStr(get(snip_obj,'langtype')))
+		" kind 内以尖括号表示语言类型
+		let menu_kind = substitute(menu_kind,"\\[\\(\\w\\+\\)\\]","\<\\1\>","g")
 		call add(snipabbr_list, {"word": k , "menu": snip_body, "kind": menu_kind})
 	endfor
 
