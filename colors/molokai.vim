@@ -182,6 +182,8 @@ if &t_Co > 255
    hi MoreMsg         ctermfg=229
    hi Operator        ctermfg=161
 
+"hi Pmenu           ctermfg=black  ctermbg=75
+
    " complete menu
    hi Pmenu           ctermfg=81  ctermbg=16
    hi PmenuSel        ctermfg=255 ctermbg=242
