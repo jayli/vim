@@ -2,8 +2,6 @@
 
 by 拔赤
 
-![](https://gw.alicdn.com/tfs/TB1uVEntWAoBKNjSZSyXXaHAVXa-2224-1364.png)
-
 ## 安装
 
 ### 脚本安装
