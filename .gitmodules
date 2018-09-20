@@ -1,3 +1,6 @@
 [submodule "bundle/vim-easycomplete"]
 	path = bundle/vim-easycomplete
 	url = https://github.com/jayli/vim-easycomplete
+[submodule "bundle/vim-dictionary"]
+	path = bundle/vim-dictionary
+	url = https://github.com/jayli/vim-dictionary.git
