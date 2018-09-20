@@ -159,14 +159,8 @@ imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 "imap <silent> <C-K> <Plug>snipMateNextOrTrigger
 "smap <silent> <C-K> <Plug>snipMateNextOrTrigger
 
-
-"let g:snipMate = {}
-"let g:snipMate.description_in_completion=1
-
 "css 文件输入:匹配关键字
 autocmd Filetype css inoremap <buffer>  :  :<C-X><C-O><C-P>
-"javascript 文件输入.匹配关键字
-"autocmd Filetype javascript inoremap <buffer>  .  .<C-X><C-O><C-P>
 
 "退出模式，退出时保留残存窗口
 set t_ti=
@@ -196,7 +190,6 @@ set t_Co=256
 "colorscheme gemcolors 
 "colorscheme distinguished
 colorscheme molokai 
-
 
 "显示tab line
 set showtabline=2
@@ -258,8 +251,3 @@ xmap al <Plug>(EasyAlign)
 
 " 开启 Pathogen 插件管理
 execute pathogen#infect()
-
-
-"highlight LeaderTab guifg=#666666 ctermbg=16
-"match LeaderTab /^\t\+$/
-
