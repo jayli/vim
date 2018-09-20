@@ -16,8 +16,6 @@ au BufRead,BufNewFile *.xtpl,*.we,*.vue,*.jsx set filetype=html
 au BufRead,BufNewFile *.swift set filetype=javascript
 " 识别markdown文件
 au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=markdown
-" 识别go文件
-au BufRead,BufNewFile *.go   set filetype=go
 
 "默认长度的空格
 set backspace=indent,eol,start
@@ -70,12 +68,15 @@ hi ErrorMsg     term=reverse ctermbg=Red ctermfg=White
 set incsearch
 set hlsearch
 
+"高亮当前行和行号
+set cursorline
+
 "显示行号
 set nu
 
 "状态栏
 set laststatus=2
-"状态栏样式定义在~/.vim/plug/statusline.vim
+"状态栏样式定义在~/.vim/plugin/moonline.vim
 
 "欢迎文字
 autocmd VimEnter * echo "Welcome back jayli :)"
@@ -115,7 +116,7 @@ syntax enable
 syntax on
 
 " JSHint
-map <F8> :JSHint<CR>
+nmap <F8> :JSHint<CR>
 
 "tab操作多文件
 nmap <C-t> :tabnew 
@@ -150,20 +151,14 @@ endfunction
 "配置缩进整理快捷键
 nmap <S-M> <ESC>:call g:TransformSpaceTo4Tab()<CR>
 
+" Tab 键的配置，基本上都交给 vim-easycomplete 来搞定了
+imap <Tab> <Plug>EasyCompTabTrigger
+imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 
-"inoremap <C-F> <C-X><C-F><C-P> 
-"inoremap <C-O> <C-X><C-O><C-P>
-" 回车选中
-"inoremap <expr> <CR> pumvisible()?"\<C-Y>":"\<CR>"
-
-" Ctrl-K 代码片段补全（代替zencoding）
-" 不可删掉，C-K 还是必要的，在完全键入一个缩写单词，没有匹配窗口，直接点击回车
-" 不好使，必须使用C-K展开
+" 如果 Tab 不好使，必须使用C-K展开
 "imap <silent> <C-K> <Plug>snipMateNextOrTrigger
 "smap <silent> <C-K> <Plug>snipMateNextOrTrigger
 
-imap <Tab> <Plug>EasyCompTabTrigger
-imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 
 "let g:snipMate = {}
 "let g:snipMate.description_in_completion=1
@@ -210,15 +205,7 @@ set showtabline=2
 set tabpagemax=40
 
 "关键词字典
-set dictionary-=$HOME/.vim/dict/common.dict dictionary+=$HOME/.vim/dict/common.dict
 set complete-=k complete +=k
-
-au FileType javascript set dictionary+=$HOME/.vim/dict/node.dict
-
-" zen coding 配置
-"let g:user_zen_expandabbr_key = '<C-k>' "设置为ctrl+k,展开
-
-"set completeopt=longest,menu
 
 " 注释生成
 let g:DoxygenToolkit_authorName="jayli, bachi@taobao.com" 
@@ -265,18 +252,14 @@ let g:go_highlight_build_constraints = 1
 " JavaScript 编程配置
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
-augroup javascript_folding
-	au!
-	au FileType javascript,vim setlocal foldmethod=marker
-augroup END
+
+" 选择模式中激发对齐
+xmap al <Plug>(EasyAlign)
 
 " 开启 Pathogen 插件管理
 execute pathogen#infect()
 
-set cursorline
 
 "highlight LeaderTab guifg=#666666 ctermbg=16
 "match LeaderTab /^\t\+$/
 
-" 选择模式中激发
-xmap al <Plug>(EasyAlign)
