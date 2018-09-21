@@ -177,6 +177,10 @@ if has("unix") && !has("mac")
 	set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ Medium\ 10
 endif
 
+"选择编辑器主题
+"colorscheme distinguished
+colorscheme molokai 
+
 " 折叠样式定义
 hi Folded     ctermbg=233
 " 快捷浮窗样式定义
@@ -184,10 +188,6 @@ hi Pmenu      ctermfg=81  ctermbg=235
 hi PmenuSel   ctermfg=255 ctermbg=240
 hi PmenuSbar  ctermbg=235
 hi PmenuThumb ctermbg=234
-
-"选择编辑器主题
-"colorscheme distinguished
-colorscheme molokai 
 
 " GUI 默认主题
 if has("gui_running")
