@@ -252,4 +252,8 @@ xmap al <Plug>(EasyAlign)
 " 开启 Pathogen 插件管理
 execute pathogen#infect()
 
-hi Pmenu  ctermfg=black  ctermbg=75
+hi Pmenu      ctermfg=81  ctermbg=235
+hi PmenuSel   ctermfg=255 ctermbg=240
+hi PmenuSbar  ctermbg=235
+hi PmenuThumb ctermbg=234
+
