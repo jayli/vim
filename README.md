@@ -88,5 +88,3 @@ HTML/JS代码重新整理缩进（不完全格式化）： <kbd>=</kbd>，全文
 - vim-go（<https://github.com/fatih/vim-go>）
 - vim-javascript（<https://github.com/pangloss/vim-javascript>）
 - vim-easy-align（<https://github.com/junegunn/vim-easy-align>）
-
-
