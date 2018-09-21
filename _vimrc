@@ -183,11 +183,20 @@ colorscheme molokai
 
 " 折叠样式定义
 hi Folded     ctermbg=233
-" 快捷浮窗样式定义
-hi Pmenu      ctermfg=81  ctermbg=235
-hi PmenuSel   ctermfg=255 ctermbg=240
-hi PmenuSbar  ctermbg=235
-hi PmenuThumb ctermbg=234
+" 快捷浮窗样式定义，定义了default（暗）和macos（亮）两种样式
+let g:pmenu_scheme = 'default'
+" 常用浮窗样式
+if g:pmenu_scheme == 'default'
+	hi Pmenu      ctermfg=81  ctermbg=235
+	hi PmenuSel   ctermfg=255 ctermbg=240
+	hi PmenuSbar  ctermbg=235
+	hi PmenuThumb ctermbg=234
+elseif g:pmenu_scheme == 'macos'
+	hi Pmenu      ctermfg=234 ctermbg=251
+	hi PmenuSel   ctermfg=255 ctermbg=26
+	hi PmenuSbar  ctermbg=251
+	hi PmenuThumb ctermbg=247
+endif
 
 " GUI 默认主题
 if has("gui_running")
