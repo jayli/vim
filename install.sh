@@ -11,7 +11,7 @@ install() {
     mv ~/.vimrc ~/.vimrc.`date +%Y%m%d%H%M%S`
   fi
 
-  ln -s ~/.vim/vimrc ~/.vimrc
+  ln -s ~/.vim/_vimrc ~/.vimrc
   #cp ~/.vim/_vimrc ~/.vimrc
 
   cd ~/.vim
@@ -24,7 +24,7 @@ install() {
 }
 
 update() {
-  (cd ~/.vim; git pull;git submodule init;git submodule update)
+  (cd ~/.vim; git pull;git submodule foreach git checkout master;)
   #vim +BundleClean +BundleInstall +qall! </dev/tty
 }
 
