@@ -1,19 +1,20 @@
-" A simple Vim/Neovim statusline using moon colors.
+" 一个简单的 VIM 状态条
 "
-" URL:			forked from github.com/bluz71/vim-moon-statusline
-" License:		MIT (https://opensource.org/licenses/MIT)
-" Modified:		Modified by jayli (http://github.com/jayli)
-" Ref:			https://github.com/jayli/moonline.vim	
+" URL:		https://raw.githubusercontent.com/jayli/vim/master/plugin/moonline.vim
+" Author:	Jayli 拔赤
+" License:	MIT (https://opensource.org/licenses/MIT)
+" Modified:	Modified by jayli (http://github.com/jayli)
+" Ref:		https://github.com/jayli/vim
 
 if exists("g:loaded_moon_statusline")
 	finish
 endif
 let g:loaded_moon_statusline = 1
 
-" By default don't display Git branches using the U+E0A0 branch character.
+" 默认不显示Git分支
 let g:moonWithGitBranchCharacter = get(g:, "moonWithGitBranchCharacter", 0)
 
-" By default always use moon colors and ignore any user-defined colors.
+" 颜色配置
 let g:moonHonorUserDefinedColors = get(g:, "moonHonorUserDefinedColors", 0)
 
 let s:modes = {
@@ -42,16 +43,16 @@ let s:crimson = 211
 
 let g:moon_statusline_scheme = "default"
 let s:statusline_scheme_dict = {
-			\	"default" : {
-			\		"white"		: s:white,
-			\		"green"		: s:green,
-			\		"grey"		: s:grey236,
-			\		"emerald"	: s:emerald,
-			\		"blue"		: s:blue,
-			\		"purple"	: s:purple,
-			\		"crimson"	: s:crimson
-			\	}
-			\ }
+		\	"default" : {
+		\		"white"		: s:white,
+		\		"green"		: s:green,
+		\		"grey"		: s:grey236,
+		\		"emerald"	: s:emerald,
+		\		"blue"		: s:blue,
+		\		"purple"	: s:purple,
+		\		"crimson"	: s:crimson
+		\	}
+		\ }
 
 function! s:GetColorSet(scheme)
 	if empty(g:moon_statusline_scheme)
@@ -84,15 +85,15 @@ endfunction
 
 function! s:StatusLine(mode)
 	if &buftype == "nofile" || bufname("%") == "[BufExplorer]"
-		" Don't set a custom status line for file explorers.
+		" 不设置自定义状态栏
 		return
 	elseif a:mode == "not-current"
-		" Status line for inactive windows.
+		" 激活窗口的状态栏
 		setlocal statusline=\ %*%F\ %h%m%r
 		setlocal statusline+=%*%=%-14.(%l,%c%V%)[%L]\ %P
 		return
 	else
-		" Status line for the active window.
+		" 激活窗口的状态栏
 		setlocal statusline=%!MoonStatusLine()
 	endif
 endfunction
