@@ -31,11 +31,12 @@ let s:modes = {
 	\}
 
 " 默认主题颜色
-let s:white   = 251
+let s:white   = 148
+let s:green   = 148
 let s:grey236 = 236
 let s:grey234 = 234
 let s:emerald = 184
-let s:blue    = 27
+let s:blue    = 25
 let s:purple  = 99
 let s:crimson = 211
 
@@ -43,6 +44,7 @@ let g:moon_statusline_scheme = "default"
 let s:statusline_scheme_dict = {
 			\	"default" : {
 			\		"white"		: s:white,
+			\		"green"		: s:green,
 			\		"grey"		: s:grey236,
 			\		"emerald"	: s:emerald,
 			\		"blue"		: s:blue,
@@ -100,13 +102,13 @@ function! s:UserColors()
 		return
 	endif
 
-	exec "highlight User1 ctermbg=25	guibg=" . s:blue .  " ctermfg=white  guifg=" . s:grey234
-	exec "highlight User2 ctermbg=148	guibg=" . s:white.  " ctermfg=234 guifg=" . s:grey234
-	exec "highlight User3 ctermbg=211	guibg=" . s:crimson." ctermfg=black guifg=" . s:grey234
-	exec "highlight User4 ctermbg=99	guibg=" . s:purple. " ctermfg=234 guifg=" . s:grey234
-	exec "highlight User5 ctermbg=236	guibg=" . s:grey236." ctermfg=10  guifg=" . s:emerald . " gui=none"
-	exec "highlight User6 ctermbg=236	guibg=" . s:grey236." ctermfg=251 guifg=" . s:white . " gui=none"
-	exec "highlight User7 ctermbg=236	guibg=" . s:grey236." ctermfg=4	  guifg=" . s:blue . " gui=none"
+	exec "hi User1 ctermbg=".s:blue   ." guibg=".s:blue   ." ctermfg=white guifg=".s:grey234
+	exec "hi User2 ctermbg=".s:green  ." guibg=".s:green  ." ctermfg="            .s:grey234." guifg=".s:grey234
+	exec "hi User3 ctermbg=".s:crimson." guibg=".s:crimson." ctermfg=black guifg=".s:grey234
+	exec "hi User4 ctermbg=".s:purple ." guibg=".s:purple ." ctermfg="            .s:grey234." guifg=".s:grey234
+	exec "hi User5 ctermbg=".s:grey236." guibg=".s:grey236." ctermfg=10  guifg="  .s:emerald." gui=none"
+	exec "hi User6 ctermbg=".s:grey236." guibg=".s:grey236." ctermfg=251 guifg="  .s:white  ." gui=none"
+	exec "hi User7 ctermbg=".s:grey236." guibg=".s:grey236." ctermfg=4	 guifg="  .s:blue   ." gui=none"
 endfunction
 
 augroup moonStatusline
