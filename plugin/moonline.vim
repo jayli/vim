@@ -1,9 +1,9 @@
 " A simple Vim/Neovim statusline using moon colors.
 "
-" URL:					forked from github.com/bluz71/vim-moon-statusline
-" License:			MIT (https://opensource.org/licenses/MIT)
+" URL:			forked from github.com/bluz71/vim-moon-statusline
+" License:		MIT (https://opensource.org/licenses/MIT)
 " Modified:		Modified by jayli (http://github.com/jayli)
-" Ref:		https://github.com/itchyny/lightline.vim	
+" Ref:			https://github.com/jayli/moonline.vim	
 
 if exists("g:loaded_moon_statusline")
 	finish
@@ -30,30 +30,30 @@ let s:modes = {
 	\  "t":			 ["%2*", " term "],
 	\}
 
-" The moon colors (https://github.com/bluz71/vim-moon-colors)
-let s:white		=  251
-let s:grey236 =  236
-let s:grey234 =  234
-let s:emerald =  184
-let s:blue		=  27
-let s:purple	=  99
-let s:crimson =  211
+" 默认主题颜色
+let s:white   = 251
+let s:grey236 = 236
+let s:grey234 = 234
+let s:emerald = 184
+let s:blue    = 27
+let s:purple  = 99
+let s:crimson = 211
 
-"let g:easy_statusline_scheme = "default"
+let g:moon_statusline_scheme = "default"
 let s:statusline_scheme_dict = {
 			\	"default" : {
-			\		"white"		: 251,
-			\		"grey"		: 236,
-			\		"emerald"	: 184,
-			\		"blue"		: 27,
-			\		"purple"	: 99,
-			\		"crimson"	: 211
+			\		"white"		: s:white,
+			\		"grey"		: s:grey236,
+			\		"emerald"	: s:emerald,
+			\		"blue"		: s:blue,
+			\		"purple"	: s:purple,
+			\		"crimson"	: s:crimson
 			\	}
 			\ }
 
 function! s:GetColorSet(scheme)
-	if empty(g:easy_statusline_scheme)
-		let g:easy_statusline_scheme = "default"
+	if empty(g:moon_statusline_scheme)
+		let g:moon_statusline_scheme = "default"
 	endif
 	return get(s:statusline_scheme_dict,a:scheme)
 endfunction
