@@ -29,7 +29,7 @@ Author: [@Jayli](http://jayli.github.io/)
 
 ## 常用命令
 
-**Open**：打开文件，三种方式：
+**Open File**：打开文件，三种方式：
 
 	ctrl-P	→ 模糊匹配文件
 	ctrl-T	→ 打开新窗口
