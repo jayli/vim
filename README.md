@@ -95,7 +95,7 @@ HTML/JS代码重新整理缩进（不完全格式化）： <kbd>=</kbd>，全文
 
 自己配了一个简洁的状态条：[MoonLine](https://raw.githubusercontent.com/jayli/vim/master/plugin/moonline.vim)
 
-![](https://gw.alicdn.com/tfs/TB1NzkVb4TpK1RjSZFGXXcHqFXa-801-139.png)
+<img src="https://gw.alicdn.com/tfs/TB1NzkVb4TpK1RjSZFGXXcHqFXa-801-139.png" width=430>
 
 安装很简单，将文件拷贝到`~/.vim/plugin/`目录下即可，无需配置
 
