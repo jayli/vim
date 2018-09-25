@@ -2,7 +2,7 @@
 
 install() {
   if [ -d "$HOME/.vim" ]; then
-    mv ~/.vim ~/.vim.`date +%Y%m%d%H%M%S`
+    mv $HOME/.vim $HOME/.vim.`date +%Y%m%d%H%M%S`
   fi
 
   git clone git@github.com:jayli/vim.git ~/.vim
@@ -11,10 +11,10 @@ install() {
     mv ~/.vimrc ~/.vimrc.`date +%Y%m%d%H%M%S`
   fi
 
-  ln -s ~/.vim/_vimrc ~/.vimrc
+  ln -s $HOME/.vim/_vimrc $HOME/.vimrc
   #cp ~/.vim/_vimrc ~/.vimrc
 
-  cd ~/.vim
+  cd $HOME/.vim
   git submodule init
   git submodule update
 
@@ -24,7 +24,7 @@ install() {
 }
 
 update() {
-  (cd ~/.vim; git pull;git submodule foreach git checkout master;)
+  (cd $HOME/.vim; git pull;git submodule foreach git checkout master;)
   #vim +BundleClean +BundleInstall +qall! </dev/tty
 }
 
