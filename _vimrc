@@ -140,6 +140,9 @@ nmap <S-M> <ESC>:call g:TransformSpaceTo4Tab()<CR>
 imap <Tab> <Plug>EasyCompTabTrigger
 imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 
+" 打开 ctags
+nmap mm :TagbarToggle<CR>
+
 " 对于自动补全和代码生成如果 Tab 不好使，必须使用 C-K 展开
 "imap <silent> <C-K> <Plug>snipMateNextOrTrigger
 "smap <silent> <C-K> <Plug>snipMateNextOrTrigger

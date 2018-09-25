@@ -35,7 +35,8 @@ Author: [@Jayli](http://jayli.github.io/)
 
 	ctrl-P	→ 模糊匹配文件
 	ctrl-T	→ 打开新窗口
-	wm	→ 选择打开文件
+	wm	→ 选择打开文件（左侧）
+	mm	→ 打开 ctags 窗口（右侧）
 
 **Open Tab**：多标签切换：普通模式下直接按 <kbd>Tab</kbd> ,或 <kbd>Shift-Tab</kbd>
 
