@@ -25,3 +25,6 @@
 [submodule "bundle/vim-go"]
 	path = bundle/vim-go
 	url = git@github.com:fatih/vim-go.git
+[submodule "bundle/vim-easy-align"]
+	path = bundle/vim-easy-align
+	url = git@github.com:junegunn/vim-easy-align.git
