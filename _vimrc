@@ -21,6 +21,10 @@ au BufRead,BufNewFile *.xtpl,*.we,*.vue,*.jsx set filetype=html
 au BufRead,BufNewFile *.swift set filetype=javascript
 " 识别markdown文件
 au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=markdown
+" Go 语言配置：执行`:GoBuild`时先在Buf内检查代码错误
+au BufRead,BufNewFile *.go set autowrite 
+" js文件格式化，Shift-b
+au FileType javascript nnoremap <S-b> :call g:Jsbeautify()<CR>
 "css 文件输入:匹配关键字
 au Filetype css inoremap <buffer>  :  :<C-X><C-O><C-P>
 "默认长度的空格
@@ -130,8 +134,6 @@ nmap <S-M> <ESC>:call g:TransformSpaceTo4Tab()<CR>
 " Tab 键的配置，基本上都交给 vim-easycomplete 来搞定了
 imap <Tab> <Plug>EasyCompTabTrigger
 imap <S-Tab> <Plug>EasyCompShiftTabTrigger
-" js文件格式化，Shift-b
-map <S-b> :call g:Jsbeautify()<CR>
 
 " 对于自动补全和代码生成如果 Tab 不好使，必须使用 C-K 展开
 "imap <silent> <C-K> <Plug>snipMateNextOrTrigger
