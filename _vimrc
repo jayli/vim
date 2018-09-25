@@ -22,7 +22,7 @@ au BufRead,BufNewFile *.swift set filetype=javascript
 " 识别markdown文件
 au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=markdown
 " Go 语言配置：执行`:GoBuild`时先在Buf内检查代码错误
-au BufRead,BufNewFile *.go set autowrite 
+au BufRead,BufNewFile *.go set autowrite
 " js文件格式化，Shift-b
 au FileType javascript nnoremap <S-b> :call g:Jsbeautify()<CR>
 "css 文件输入:匹配关键字
@@ -145,14 +145,19 @@ imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 "
 """""""""""""""""""""""""""""""""""""""""""
 
-" Go 编程配置
+" Go 编程配置：默认配置
 let g:go_disable_autoinstall = 0
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-
+" Go 结构体名字高亮
+let g:go_highlight_types = 1
+" Go 结构体成员高亮
+let g:go_highlight_fields = 1
+" Go 函数名高亮
+let g:go_highlight_function_calls = 1
 " JavaScript 编程配置
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
@@ -181,6 +186,8 @@ endif
 
 "选择编辑器主题
 "colorscheme distinguished
+let g:rehash256 = 0
+let g:molokai_original = 0
 colorscheme molokai 
 
 " 折叠样式定义
