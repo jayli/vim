@@ -4,3 +4,6 @@
 [submodule "bundle/vim-dictionary"]
 	path = bundle/vim-dictionary
 	url = https://github.com/jayli/vim-dictionary.git
+[submodule "bundle/tagbar"]
+	path = bundle/tagbar
+	url = git@github.com:majutsushi/tagbar.git
