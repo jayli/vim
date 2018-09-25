@@ -23,6 +23,11 @@ au BufRead,BufNewFile *.swift set filetype=javascript
 au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=markdown
 " Go 语言配置：执行`:GoBuild`时先在Buf内检查代码错误
 au BufRead,BufNewFile *.go set autowrite
+" Go 语言配置 Tagbar
+au FileType go 
+	\ if executable("ctags") && globpath(&rtp, 'plugin/tagbar.vim') != "" |
+	\	call tagbar#OpenWindow() |
+	\ endif
 " js文件格式化，Shift-b
 au FileType javascript nnoremap <S-b> :call g:Jsbeautify()<CR>
 "css 文件输入:匹配关键字
@@ -220,3 +225,4 @@ endif
 
 " 开启 Pathogen 插件管理
 execute pathogen#infect()
+
