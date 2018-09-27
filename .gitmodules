@@ -30,4 +30,4 @@
 	url = git@github.com:junegunn/vim-easy-align.git
 [submodule "bundle/vim-debugger"]
 	path = bundle/vim-debugger
-	url = git@github.com:idanarye/vim-vebugger.git
+	url = git@github.com:jayli/vim-vebugger.git
