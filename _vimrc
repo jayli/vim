@@ -118,8 +118,8 @@ nmap <S-Tab> :tabprevious<CR>
 vnoremap <C-C> "+y
 vnoremap Y "+y
 "快速左右移动光标
-map <C-l> <ESC>10l
-map <C-h> <ESC>10h
+nnoremap <C-l> 10l
+nnoremap <C-h> 10h
 " 选择模式中触发对齐动作
 xmap al <Plug>(EasyAlign)
 
@@ -220,7 +220,23 @@ if has("gui_running")
 	colorscheme distinguished
 endif
 
+"""""""""""""""""""""""""""""""""""""""""""
+"
+"	JavaScript Vebug 插件快捷键配置 for Debug
+"
+"""""""""""""""""""""""""""""""""""""""""""
 let g:vebugger_leader = "`"
+
+function! RunVBGstartNInspect()
+	call vebugger#ninspect#start(getbufinfo('%')[0].name,{'args':['hello','world']})
+	exec "echom 'JS Debugger Running..'"
+endfunction
+
+"nnoremap <S-R> :call RunVBGstartNInspect()<CR>
+"nnoremap <S-Right> :VBGstepOver<CR>
+"nnoremap <S-Down> :VBGstepIn<CR>
+"nnoremap <S-o> :VBGstepOut<CR>
+"nnoremap <S-C> :VBGcontinue<CR>
 
 """""""""""""""""""""""""""""""""""""""""""
 "
