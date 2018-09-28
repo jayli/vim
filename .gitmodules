@@ -34,6 +34,3 @@
 [submodule "/Users/bachi/.vim/bundle/vimproc.vim"]
 	path = /Users/bachi/.vim/bundle/vimproc.vim
 	url = https://github.com/Shougo/vimproc.vim.git
-[submodule "bundle/AnsiEsc.vim"]
-	path = bundle/AnsiEsc.vim
-	url = git@github.com:vim-scripts/AnsiEsc.vim.git
