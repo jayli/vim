@@ -232,11 +232,11 @@ function! RunVBGstartNInspect()
 	exec "echom 'JS Debugger Running..'"
 endfunction
 
-"nnoremap <S-R> :call RunVBGstartNInspect()<CR>
-"nnoremap <S-Right> :VBGstepOver<CR>
-"nnoremap <S-Down> :VBGstepIn<CR>
-"nnoremap <S-o> :VBGstepOut<CR>
-"nnoremap <S-C> :VBGcontinue<CR>
+nnoremap <S-R> :call RunVBGstartNInspect()<CR>
+nnoremap <S-Right> :VBGstepOver<CR>
+nnoremap <S-Down> :VBGstepIn<CR>
+nnoremap <S-o> :VBGstepOut<CR>
+nnoremap <S-C> :VBGcontinue<CR>
 
 """""""""""""""""""""""""""""""""""""""""""
 "
