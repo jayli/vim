@@ -220,6 +220,8 @@ if has("gui_running")
 	colorscheme distinguished
 endif
 
+let g:vebugger_leader = "`"
+
 """""""""""""""""""""""""""""""""""""""""""
 "
 "	Pathogen 插件启动

@@ -105,6 +105,12 @@
 :FufTaggedFile	fuf.txt	/*:FufTaggedFile*
 :JSHint	jshint.txt	/*:JSHint*
 :MatchDebug	matchit.txt	/*:MatchDebug*
+AnsiEsc	AnsiEsc.txt	/*AnsiEsc*
+AnsiEsc-contents	AnsiEsc.txt	/*AnsiEsc-contents*
+AnsiEsc-copyright	AnsiEsc.txt	/*AnsiEsc-copyright*
+AnsiEsc-history	AnsiEsc.txt	/*AnsiEsc-history*
+AnsiEsc-manual	AnsiEsc.txt	/*AnsiEsc-manual*
+AnsiEsc.txt	AnsiEsc.txt	/*AnsiEsc.txt*
 ClearAllCtrlPCaches	ctrlp.txt	/*ClearAllCtrlPCaches*
 ClearCtrlPCache	ctrlp.txt	/*ClearCtrlPCache*
 ControlP	ctrlp.txt	/*ControlP*
