@@ -28,12 +28,6 @@
 [submodule "bundle/vim-easy-align"]
 	path = bundle/vim-easy-align
 	url = git@github.com:junegunn/vim-easy-align.git
-[submodule "bundle/vim-vebugger"]
-	path = bundle/vim-vebugger
-	url = git@github.com:jayli/vim-vebugger.git
 [submodule "/Users/bachi/.vim/bundle/vimproc.vim"]
 	path = /Users/bachi/.vim/bundle/vimproc.vim
 	url = https://github.com/Shougo/vimproc.vim.git
-[submodule "bundle/vdebug"]
-	path = bundle/vdebug
-	url = git@github.com:vim-vdebug/vdebug.git
