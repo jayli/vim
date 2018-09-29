@@ -103,13 +103,23 @@ function! s:UserColors()
 		return
 	endif
 
-	exec "hi User1 ctermbg=".s:blue   ." guibg=".s:blue   ." ctermfg=white guifg=".s:grey234
-	exec "hi User2 ctermbg=".s:green  ." guibg=".s:green  ." ctermfg="            .s:grey234." guifg=".s:grey234
-	exec "hi User3 ctermbg=".s:crimson." guibg=".s:crimson." ctermfg=black guifg=".s:grey234
-	exec "hi User4 ctermbg=".s:purple ." guibg=".s:purple ." ctermfg="            .s:grey234." guifg=".s:grey234
-	exec "hi User5 ctermbg=".s:grey236." guibg=".s:grey236." ctermfg=10  guifg="  .s:emerald." gui=none"
-	exec "hi User6 ctermbg=".s:grey236." guibg=".s:grey236." ctermfg=251 guifg="  .s:white  ." gui=none"
-	exec "hi User7 ctermbg=".s:grey236." guibg=".s:grey236." ctermfg=4	 guifg="  .s:blue   ." gui=none"
+	if version <= 800
+		exec "hi User1 ctermbg=".s:blue   ." guibg=".s:blue   ." ctermfg=white guifg=".s:grey234
+		exec "hi User2 ctermbg=".s:green  ." guibg=".s:green  ." ctermfg="            .s:grey234." guifg=".s:grey234
+		exec "hi User3 ctermbg=".s:crimson." guibg=".s:crimson." ctermfg=black guifg=".s:grey234
+		exec "hi User4 ctermbg=".s:purple ." guibg=".s:purple ." ctermfg="            .s:grey234." guifg=".s:grey234
+		exec "hi User5 ctermbg=".s:grey236." guibg=".s:grey236." ctermfg=10  guifg="  .s:emerald." gui=none"
+		exec "hi User6 ctermbg=".s:grey236." guibg=".s:grey236." ctermfg=251 guifg="  .s:white  ." gui=none"
+		exec "hi User7 ctermbg=".s:grey236." guibg=".s:grey236." ctermfg=4	 guifg="  .s:blue   ." gui=none"
+	else
+		exec "hi User1 ctermbg=".s:blue   ." ctermfg=white" 
+		exec "hi User2 ctermbg=".s:green  ." ctermfg=".s:grey234
+		exec "hi User3 ctermbg=".s:crimson." ctermfg=black" 
+		exec "hi User4 ctermbg=".s:purple ." ctermfg=".s:grey234
+		exec "hi User5 ctermbg=".s:grey236." ctermfg=10 "
+		exec "hi User6 ctermbg=".s:grey236." ctermfg=251" 
+		exec "hi User7 ctermbg=".s:grey236." ctermfg=4"
+	endif
 endfunction
 
 augroup moonStatusline
