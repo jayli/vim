@@ -227,18 +227,19 @@ endif
 """""""""""""""""""""""""""""""""""""""""""
 let g:vebugger_leader = "`"
 
-function! RunVBGstartNInspect()
-	call vebugger#ninspect#start(getbufinfo('%')[0].name,{'args':['hello','world']})
-	exec "echom 'JS Debugger Running..'"
+function! NodeJSDebugger()
+	let l:command = 'node --inspect-brk '.getbufinfo('%')[0].name
+	exec "echom '>>> ". l:command . " : Press <Ctrl-C> to stop debugger Server...'"
+	if version <= 800
+		call system(l:command . " 2>/dev/null")
+	else 
+		call term_start(l:command . " 2>/dev/null",{'term_finish': 'close'})
+	endif
 endfunction
 
-nnoremap <S-R> :call RunVBGstartNInspect()<CR>
-nnoremap <S-Right> :VBGstepOver<CR>
-nnoremap <S-Down> :VBGstepIn<CR>
-nnoremap <S-o> :VBGstepOut<CR>
-nnoremap <S-C> :VBGcontinue<CR>
+" 开启 NodeJS 调试
+nnoremap <S-R> :call NodeJSDebugger()<CR>
 
-hi Terminal ctermbg=lightgrey ctermfg=blue guibg=lightgrey guifg=blue
 """""""""""""""""""""""""""""""""""""""""""
 "
 "	Pathogen 插件启动

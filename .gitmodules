@@ -34,3 +34,6 @@
 [submodule "/Users/bachi/.vim/bundle/vimproc.vim"]
 	path = /Users/bachi/.vim/bundle/vimproc.vim
 	url = https://github.com/Shougo/vimproc.vim.git
+[submodule "bundle/vdebug"]
+	path = bundle/vdebug
+	url = git@github.com:vim-vdebug/vdebug.git

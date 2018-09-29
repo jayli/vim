@@ -103,4 +103,21 @@ HTML/JS代码重新整理缩进（不完全格式化）： <kbd>=</kbd>，全文
 	cd ~/.vim/plugin/
 	wget https://raw.githubusercontent.com/jayli/vim/master/plugin/moonline.vim
 
+### NodeJS 调试
+
+![](https://gw.alicdn.com/tfs/TB1ci.QegHqK1RjSZJnXXbNLpXa-1414-797.png)
+
+环境依赖：Node、Chrome，推荐 VIM 8.1 及以上，VIM 8.1 开始提供 Terminal 功能，非常方便做调试输出窗。
+
+#### VIM 开启调试
+
+打开 JS 文件，敲击 <kbd>Shift-R</kbd> 开启一个调试，这时开启了一个 Debug 的服务，打开 Chrome DevTool 即可开始调试。关闭调试：<kbd>Ctrl-C</kbd>
+
+#### Chrome DevTool 打开
+
+- 方法A：在 Chrome 地址栏输入`about:inspect`，点击`Open dedicated DevTools for Node` 
+- 方法B：在 Chrome 地址栏输入`chrome://flags/#enable-devtools-experiments`，（下图）将`devtools-experiments`开启，然后每次 <kbd>Command-Alt-I</kbd> 打开开发者工具，点击 <img src="https://gw.alicdn.com/tfs/TB1k0UZehTpK1RjSZFMXXbG_VXa-24-25.png" width=24> （VIM 中开启调试时才出现）
+
+![](https://gw.alicdn.com/tfs/TB1uX3YekzoK1RjSZFlXXai4VXa-744-95.png)
+
 Enjoy yourself！
