@@ -238,6 +238,7 @@ nnoremap <S-Down> :VBGstepIn<CR>
 nnoremap <S-o> :VBGstepOut<CR>
 nnoremap <S-C> :VBGcontinue<CR>
 
+hi Terminal ctermbg=lightgrey ctermfg=blue guibg=lightgrey guifg=blue
 """""""""""""""""""""""""""""""""""""""""""
 "
 "	Pathogen 插件启动
