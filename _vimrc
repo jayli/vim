@@ -240,6 +240,11 @@ endfunction
 " 开启 NodeJS 调试
 nnoremap <S-R> :call NodeJSDebugger()<CR>
 
+"""""""""""""""""""
+" 调试
+
+"let g:vebugger_view_source_cmd='edit'
+"let g:vebugger_use_tags=1
 """""""""""""""""""""""""""""""""""""""""""
 "
 "	Pathogen 插件启动
