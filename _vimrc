@@ -253,4 +253,3 @@ nnoremap <S-R> :call NodeJSDebugger()<CR>
 
 " 开启 Pathogen 插件管理
 execute pathogen#infect()
-
