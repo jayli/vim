@@ -227,18 +227,92 @@ endif
 """""""""""""""""""""""""""""""""""""""""""
 let g:vebugger_leader = "`"
 
+
+" 外挂两个视窗：
+" debugger_window "node inspect" 运行的term
+" g:input_nr	输入窗口
 function! NodeJSDebugger()
 	let l:command = 'node --inspect-brk '.getbufinfo('%')[0].name
+	let l:command = 'node inspect '.getbufinfo('%')[0].name
 	exec "echom '>>> ". l:command . " : Press <Ctrl-C> to stop debugger Server...'"
 	if version <= 800
 		call system(l:command . " 2>/dev/null")
 	else 
-		call term_start(l:command . " 2>/dev/null",{'term_finish': 'close'})
+		"call term_start(l:command . " 2>/dev/null",{'term_finish': 'close'})
+		"5 new
+		"setlocal buftype=nofile
+		"setlocal bufhidden=wipe
+		"let g:input_nr = bufnr('')
+		"let bufwin = bufwinnr(g:input_nr)
+		"noautocmd set nonu
+		"noautocmd wincmd p
+		call term_start(l:command . " 2>/dev/null",{ 
+						\ 'term_finish': 'close',
+						\ 'term_name':'debugger_window',
+						\ 'term_rows':15,
+						\ 'callback':'Term_callback'
+						\ })
+		"exe 'noautocmd '.bufwin.'wincmd w'
+		tnoremap <buffer> <silent> <CR> <C-\><C-n>:call ExecCmd()<CR>i<C-P><Down>
 	endif
+	"call term_wait('debugger_window',1001)
+	"call GetTermCurrentLog()
+endfunction
+
+function! Term_callback(channel, msg)
+	exec "echom 'channel: ".a:channel.", msg:".a:msg."'"
 endfunction
 
 " 开启 NodeJS 调试
 nnoremap <S-R> :call NodeJSDebugger()<CR>
+"nnoremap <S-R> :call DefaultDebugger()<CR>
+
+" 调试输入窗的回车键
+function! ExecCmd()
+	" 当前所在位置是 Input 输入窗
+	"if bufnr('') != g:input_nr
+	"	return "\<CR>"
+	"endif
+	let g:olines = getbufline('debugger_window', 1,'$')
+	"let cmd = getline('.')
+	call term_sendkeys('debugger_window',"\<CR>")
+	return ""
+	"call feedkeys("\<CR>")
+	"sleep 300m
+	call term_wait('debugger_window',300)
+	let g:newlines = getbufline('debugger_window', 1,'$')
+	let g:kk = string(GetUpdateLog(g:olines,g:newlines))
+	" not alowed here ,why
+	" 
+		"call self.addLineToTerminal('','== DEBUGGER TERMINATED ==')
+	" call appendbufline(g:input_nr, line('$'), GetUpdateLog(g:olines,g:newlines)) 
+	"return "\<CR>"
+	return ""
+endfunction
+
+
+function! GetUpdateLog(olines,newlines)
+	return a:newlines[len(a:olines):len(a:newlines)]
+endfunction
+
+
+function! DefaultDebugger()
+	packadd termdebug
+	let termdebugger = "node inspect"
+endfunction
+
+
+function Tapi_Impression(bufnum, arglist)
+	if len(a:arglist) == 2
+		echomsg "impression " . a:arglist[0]
+		echomsg "count " . a:arglist[1]
+	endif
+endfunc
+
+
+function! TermWriteLine(line)
+	call term_sendkeys('debugger_window',a:line."\<CR>")
+endfunction
 
 """""""""""""""""""
 " 调试
@@ -253,3 +327,5 @@ nnoremap <S-R> :call NodeJSDebugger()<CR>
 
 " 开启 Pathogen 插件管理
 execute pathogen#infect()
+
+packadd termdebug
