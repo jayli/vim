@@ -124,7 +124,7 @@ nnoremap <C-h> 10h
 xmap al <Plug>(EasyAlign)
 
 "空格缩进切换Tab，我的习惯 4 个缩进 Tab
-function! g:TransformSpaceTo4Tab()
+function! g:Transform_Space_To_4_Tab()
 	"echo "空格缩进更换为Tab"
 	set ts=2
 	set noexpandtab
@@ -135,7 +135,7 @@ function! g:TransformSpaceTo4Tab()
 endfunction
 
 "配置缩进整理快捷键
-nmap <S-M> <ESC>:call g:TransformSpaceTo4Tab()<CR>
+nmap <S-M> <ESC>:call g:Transform_Space_To_4_Tab()<CR>
 " Tab 键的配置，基本上都交给 vim-easycomplete 来搞定了
 imap <Tab> <Plug>EasyCompTabTrigger
 imap <S-Tab> <Plug>EasyCompShiftTabTrigger
@@ -231,10 +231,11 @@ let g:vebugger_leader = "`"
 " 外挂两个视窗：
 " debugger_window "node inspect" 运行的term
 " g:input_nr	输入窗口
-function! NodeJSDebugger()
+function! NodeJS_Debugger()
 	let l:command = 'node --inspect-brk '.getbufinfo('%')[0].name
 	let l:command = 'node inspect '.getbufinfo('%')[0].name
 	exec "echom '>>> ". l:command . " : Press <Ctrl-C> to stop debugger Server...'"
+	call Create_Debugger()
 	if version <= 800
 		call system(l:command . " 2>/dev/null")
 	else 
@@ -249,70 +250,144 @@ function! NodeJSDebugger()
 		call term_start(l:command . " 2>/dev/null",{ 
 						\ 'term_finish': 'close',
 						\ 'term_name':'debugger_window',
-						\ 'term_rows':15,
-						\ 'callback':'Term_callback'
+						\ 'term_rows':23,
+						\ 'out_cb':'Term_callback',
 						\ })
 		"exe 'noautocmd '.bufwin.'wincmd w'
-		tnoremap <buffer> <silent> <CR> <C-\><C-n>:call ExecCmd()<CR>i<C-P><Down>
+		let g:debugger.term_winnr = bufwinnr('%')
+		tnoremap <buffer> <silent> <CR> <C-\><C-n>:call Special_Cmd_Handler()<CR>i<C-P><Down>
 	endif
-	"call term_wait('debugger_window',1001)
-	"call GetTermCurrentLog()
 endfunction
 
+let g:kk = []
+
 function! Term_callback(channel, msg)
-	exec "echom 'channel: ".a:channel.", msg:".a:msg."'"
+	if empty(a:msg)
+		return
+	endif
+	let m = substitute(a:msg,"\\W\\[\\d\\{-}[a-zA-Z]","","g")
+	let g:msgs = split(m,"\r\n")
+	let g:debugger.log += g:msgs
+	let g:debugger.log += [""]
+	
+	let break_msg = Get_Term_Break_Msg(g:debugger.log)
+	if type(break_msg) == type({})
+		call Debugger_Stop(get(break_msg,'fname'), get(break_msg,'break_line'))
+	endif
+	"exec "echom 'channel: ".a:channel.", msg:".a."'"
+	" TODO: msgs 是输出结果，按行组成一个 List
+endfunction
+
+
+function! Get_Term_Break_Msg(log)
+	if len(a:log) == 0
+		return 0
+	endif
+	let break_line = 0
+	let fname = ''
+	if len(a:log) > 0 
+		" && !empty(a:log[0]) && a:log[0] =~ "break in"
+		for line in a:log
+			let fn = matchstr(line, "\\(break in\\s\\)\\@<=.\\{\-}\\(:\\)\\@=")
+			let nr =  matchstr(line, "\\(^>\\s\\|^>\\)\\@<=\\(\\d\\{1,10000}\\)\\(\\s\\)\\@=")
+			if s:StringTrim(fn) != ''
+				let fname = fn
+			endif
+			if s:StringTrim(nr) != ''
+				let break_line = str2nr(nr)
+			endif
+		endfor
+	endif
+	if break_line != 0 && fname != ''
+		return {"fname":fname, "break_line":break_line}
+	else 
+		return 0
+	endif
+endfunction
+
+" 相当于 trim，去掉首尾的空字符
+function! s:StringTrim(str)
+	if !empty(a:str)
+		return substitute(a:str, "^\\s\\+\\(.\\{\-}\\)\\s\\+$","\\1","g")
+	endif
+	return ""
+endfunction
+
+function! Special_Cmd_Handler()
+	let cmd = getline('.')[0 : col('.')-1]
+	let cmd = substitute(cmd,"^.*> ","","g")
+	if cmd == 'kill'
+		" 关掉term
+		call Close_Term()
+	endif
+	call term_sendkeys('debugger_window',"\<CR>")
+endfunction
+
+function! Close_Term()
+	call term_sendkeys('debugger_window',"\<CR>\<C-C>\<C-C>")
+endfunction
+
+function! Create_Debugger()
+	let g:debugger = {}
+	let g:debugger.original_bnr = bufnr('')
+	let g:debugger.original_buf = getbufinfo()
+	let g:debugger.cwd = getcwd()
+	let g:debugger.original_bufname = bufname('%')
+	let g:debugger.original_line_nr = line(".")
+	let g:debugger.original_col_nr = col(".")
+	let g:debugger.buf_winnr = bufwinnr('%')
+	let g:debugger.bufs = []
+	let g:debugger.stop_line = 0
+	let g:debugger.stop_fname = ''
+	let g:debugger.log = []
+	call add(g:debugger.bufs, g:debugger.original_bufname)
+	exec 'sign define stop_point text=>> texthl=SignColumn linehl=CursorLine '
+	return g:debugger
+endfunction
+
+function! Debugger_Stop(fname, line)
+	if !exists("g:debugger")
+		let g:debugger = Create_Debugger()
+	endif
+
+	if a:fname == get(g:debugger,'stop_fname') && a:line == get(g:debugger,'stop_line')
+		return
+	else
+		let g:debugger.stop_fname = a:fname
+		let g:debugger.stop_line = a:line
+	endif
+
+	exec ':' .g:debugger.buf_winnr.'wincmd w'
+	let fname = Debugger_getFile_Buf(a:fname)
+	exec ":sign unplace 1 file=".fname
+	exec ":sign place 1 line=".string(a:line)." name=stop_point file=".fname
+	sleep 100m
+	call cursor(1,1)
+	sleep 100m
+	exec ':' .g:debugger.term_winnr.'wincmd w'
+endfunction
+
+function! Debugger_addFile_to_Buf(fname)
+	exec ":badd ". a:fname
+	exec ":b ". a:fname
+	call add(g:debugger.bufs, a:fname)
+endfunction
+
+function! Debugger_getFile_Buf(fname)
+	" TODO bufname用的相对路径需要改为绝对路径
+	" fnameescape(fnamemodify(l:filename,':p'))
+	if index(g:debugger.bufs , a:fname) < 0 
+		call Debugger_addFile_to_Buf(a:fname)
+	endif
+	if bufname('%') != a:fname
+		"TODO 这一句执行错误 why?
+		exec "noautocmd buffer ".a:fname
+	endif
+	return a:fname
 endfunction
 
 " 开启 NodeJS 调试
-nnoremap <S-R> :call NodeJSDebugger()<CR>
-"nnoremap <S-R> :call DefaultDebugger()<CR>
-
-" 调试输入窗的回车键
-function! ExecCmd()
-	" 当前所在位置是 Input 输入窗
-	"if bufnr('') != g:input_nr
-	"	return "\<CR>"
-	"endif
-	let g:olines = getbufline('debugger_window', 1,'$')
-	"let cmd = getline('.')
-	call term_sendkeys('debugger_window',"\<CR>")
-	return ""
-	"call feedkeys("\<CR>")
-	"sleep 300m
-	call term_wait('debugger_window',300)
-	let g:newlines = getbufline('debugger_window', 1,'$')
-	let g:kk = string(GetUpdateLog(g:olines,g:newlines))
-	" not alowed here ,why
-	" 
-		"call self.addLineToTerminal('','== DEBUGGER TERMINATED ==')
-	" call appendbufline(g:input_nr, line('$'), GetUpdateLog(g:olines,g:newlines)) 
-	"return "\<CR>"
-	return ""
-endfunction
-
-
-function! GetUpdateLog(olines,newlines)
-	return a:newlines[len(a:olines):len(a:newlines)]
-endfunction
-
-
-function! DefaultDebugger()
-	packadd termdebug
-	let termdebugger = "node inspect"
-endfunction
-
-
-function Tapi_Impression(bufnum, arglist)
-	if len(a:arglist) == 2
-		echomsg "impression " . a:arglist[0]
-		echomsg "count " . a:arglist[1]
-	endif
-endfunc
-
-
-function! TermWriteLine(line)
-	call term_sendkeys('debugger_window',a:line."\<CR>")
-endfunction
+nnoremap <S-R> :call NodeJS_Debugger()<CR>
 
 """""""""""""""""""
 " 调试
