@@ -254,12 +254,13 @@ function! NodeJS_Debugger()
 						\ 'out_cb':'Term_callback',
 						\ })
 		"exe 'noautocmd '.bufwin.'wincmd w'
-		let g:debugger.term_winnr = bufwinnr('%')
+		"let g:debugger.term_winnr = bufwinnr('%')
+		let g:debugger.term_winnr = bufnr('debugger_window')
 		tnoremap <buffer> <silent> <CR> <C-\><C-n>:call Special_Cmd_Handler()<CR>i<C-P><Down>
+		call term_wait('debugger_window')
+		call Debugger_Stop_Action(g:debugger.log)
 	endif
 endfunction
-
-let g:kk = []
 
 function! Term_callback(channel, msg)
 	if empty(a:msg)
@@ -270,7 +271,11 @@ function! Term_callback(channel, msg)
 	let g:debugger.log += g:msgs
 	let g:debugger.log += [""]
 	
-	let break_msg = Get_Term_Break_Msg(g:debugger.log)
+	call Debugger_Stop_Action(g:debugger.log)
+endfunction
+
+function! Debugger_Stop_Action(log)
+	let break_msg = Get_Term_Break_Msg(a:log)
 	if type(break_msg) == type({})
 		call Debugger_Stop(get(break_msg,'fname'), get(break_msg,'break_line'))
 	endif
@@ -288,7 +293,7 @@ function! Get_Term_Break_Msg(log)
 	if len(a:log) > 0 
 		" && !empty(a:log[0]) && a:log[0] =~ "break in"
 		for line in a:log
-			let fn = matchstr(line, "\\(break in\\s\\)\\@<=.\\{\-}\\(:\\)\\@=")
+			let fn = matchstr(line, "\\(\\(break in\\|Break on start in\\)\\s\\)\\@<=.\\{\-}\\(:\\)\\@=")
 			let nr =  matchstr(line, "\\(^>\\s\\|^>\\)\\@<=\\(\\d\\{1,10000}\\)\\(\\s\\)\\@=")
 			if s:StringTrim(fn) != ''
 				let fname = fn
@@ -357,14 +362,14 @@ function! Debugger_Stop(fname, line)
 		let g:debugger.stop_line = a:line
 	endif
 
-	exec ':' .g:debugger.buf_winnr.'wincmd w'
+	call execute(g:debugger.term_winnr.'wincmd w','silent!')
 	let fname = Debugger_getFile_Buf(a:fname)
 	exec ":sign unplace 1 file=".fname
 	exec ":sign place 1 line=".string(a:line)." name=stop_point file=".fname
-	sleep 100m
-	call cursor(1,1)
-	sleep 100m
-	exec ':' .g:debugger.term_winnr.'wincmd w'
+	sleep 10m
+	call cursor(a:line,1)
+	"sleep 100m
+	call execute(g:debugger.original_bnr.'wincmd w','silent!')
 endfunction
 
 function! Debugger_addFile_to_Buf(fname)
@@ -379,10 +384,9 @@ function! Debugger_getFile_Buf(fname)
 	if index(g:debugger.bufs , a:fname) < 0 
 		call Debugger_addFile_to_Buf(a:fname)
 	endif
-	if bufname('%') != a:fname
-		"TODO 这一句执行错误 why?
-		exec "noautocmd buffer ".a:fname
-	endif
+	" TODO debugger 里只能获得 文件名，怎么获得文件路径
+	" 比如跟踪到 modules.js 里，怎么也能buffer进来？
+	call execute('buffer '.a:fname,'silent!')
 	return a:fname
 endfunction
 
