@@ -366,7 +366,7 @@ function! Debugger_Stop(fname, line)
 	let fname = Debugger_getFile_Buf(a:fname)
 	exec ":sign unplace 1 file=".fname
 	exec ":sign place 1 line=".string(a:line)." name=stop_point file=".fname
-	sleep 10m
+	sleep 5m
 	call cursor(a:line,1)
 	"sleep 100m
 	call execute(g:debugger.original_bnr.'wincmd w','silent!')
