@@ -228,8 +228,25 @@ endif
 let g:vebugger_leader = "`"
 
 " 开启 NodeJS 调试
-nmap <S-R> <Plug>EasyDebuggerInspect
-nmap <S-W> <Plug>EasyDebuggerWebInspect
+nmap <S-R>   <Plug>EasyDebuggerInspect
+nmap <S-W>   <Plug>EasyDebuggerWebInspect
+" 暂停程序
+nmap <F8>    <Plug>EasyDebuggerPause
+tmap <F8>    <Plug>EasyDebuggerPause
+" 单步执行
+nmap <F9>    <Plug>EasyDebuggerNext
+tmap <F9>    <Plug>EasyDebuggerNext
+" Continue
+nmap <F10>   <Plug>EasyDebuggerContinue
+tmap <F10>   <Plug>EasyDebuggerContinue
+" 进入函数
+nmap <F11>   <Plug>EasyDebuggerStepIn
+tmap <F11>   <Plug>EasyDebuggerStepIn
+" 跳出函数
+nmap <S-F11> <Plug>EasyDebuggerStepOut
+tmap <S-F11> <Plug>EasyDebuggerStepOut
+" 设置断点(TODO)
+nmap <F12>   <Plug>EasyDebuggerSetBreakPoint
 
 """""""""""""""""""
 " 调试
