@@ -225,7 +225,6 @@ endif
 "	JavaScript Vebug 插件快捷键配置 for Debug
 "
 """""""""""""""""""""""""""""""""""""""""""
-let g:vebugger_leader = "`"
 
 " 开启 NodeJS 调试
 nmap <S-R>   <Plug>EasyDebuggerInspect
@@ -248,11 +247,6 @@ tmap <S-F11> <Plug>EasyDebuggerStepOut
 " 设置断点(TODO)
 nmap <F12>   <Plug>EasyDebuggerSetBreakPoint
 
-"""""""""""""""""""
-" 调试
-
-"let g:vebugger_view_source_cmd='edit'
-"let g:vebugger_use_tags=1
 """""""""""""""""""""""""""""""""""""""""""
 "
 "	Pathogen 插件启动
