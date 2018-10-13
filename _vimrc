@@ -112,7 +112,9 @@ nmap <F8> :JSHint<CR>
 " tab操作多文件
 nmap <C-t> :tabnew 
 nmap wm :NERDTreeToggle<CR>
-nmap <Tab> :tabnext<CR> 
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+nmap <Tab> :tabnext<CR> :NERDTreeMirror<CR> 
 nmap <S-Tab> :tabprevious<CR>
 "使用 Ctrl+C 或者 Y 复制到系统剪贴板
 vnoremap <C-C> "+y
