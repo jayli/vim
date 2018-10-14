@@ -2,8 +2,6 @@
 
 Author: [@Jayli](http://jayli.github.io/)
 
-![](https://gw.alicdn.com/tfs/TB1.NH3b7voK1RjSZFwXXciCFXa-2778-1602.png)
-
 ## 安装
 
 ### 脚本安装

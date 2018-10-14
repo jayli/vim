@@ -28,6 +28,8 @@ au FileType go
 	\ if executable("ctags") && globpath(&rtp, 'plugin/tagbar.vim') != "" |
 	\	call tagbar#OpenWindow() |
 	\ endif
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/ignored_files/*
+let g:ctrlp_working_path_mode = 'rw'
 " js文件格式化，Shift-b
 au FileType javascript nnoremap <S-b> :call g:Jsbeautify()<CR>
 "css 文件输入:匹配关键字
