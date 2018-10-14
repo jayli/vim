@@ -203,11 +203,39 @@ if has("unix") && !has("mac")
 	set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ Medium\ 10
 endif
 
-"选择编辑器主题
-"colorscheme distinguished
-let g:rehash256 = 0
+
+
+" 主题设置 colorscheme molokai {{{
 let g:molokai_original = 0
-colorscheme molokai 
+let g:rehash256 = 0
+colorscheme molokai  "}}}
+
+" 主题设置 colorscheme alduin {{{
+let g:alduin_Shout_Become_Ethereal = 1
+"colorscheme alduin "}}}
+
+" 主题设置 colorscheme deep-space {{{
+" 通常 Cterm 不支持真彩色，这里基本用原始色显示，复古风格
+set background=dark
+"colorscheme deep-space "}}}
+
+"colorscheme jellybeans
+"colorscheme distinguished
+"colorscheme abstract
+"colorscheme afterglow
+"colorscheme challenger_deep
+"colorscheme gotham256
+
+" 固定行高样式 Hack
+if exists("g:colors_name") && 
+			\ index([
+			\	'afterglow','jellybeans','distinguished',
+			\	'abstract','molkai','evening','alduin',
+			\	'challenger_deep','deep-space','gotham256'
+			\ ], g:colors_name) >= 0
+	" 固定行高亮样式
+	exec "hi CursorLine ctermbg=233"
+endif 
 
 " 折叠样式定义
 hi Folded     ctermbg=233
