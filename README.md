@@ -42,6 +42,8 @@ Author: [@Jayli](http://jayli.github.io/)
 
 **JSBeautify**：JS代码（完全）格式化：<kbd>Shift-B</kbd>
 
+**Commentary**：批量生成注释，选中模式下按 <kbd>//</kbd>（两个斜线`/`）
+
 HTML/JS代码重新整理缩进（不完全格式化）： <kbd>=</kbd>，全文缩进：
 
 	gg 到达文件头
