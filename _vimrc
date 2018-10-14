@@ -113,6 +113,7 @@ set foldenable
 nmap <F8> :JSHint<CR>
 " tab操作多文件
 nmap <C-t> :tabnew 
+" NERDTree 配置
 nmap wm :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
@@ -153,7 +154,9 @@ nmap mm :TagbarToggle<CR>
 
 " 批量注释：// 批量 Toggle 为注释
 xmap // <Plug>Commentary
-
+" CtrlP 设置
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 """""""""""""""""""""""""""""""""""""""""""
 "
@@ -264,4 +267,3 @@ nmap <F12>   <Plug>EasyDebuggerSetBreakPoint
 " 开启 Pathogen 插件管理
 execute pathogen#infect()
 
-packadd termdebug
