@@ -1,14 +1,16 @@
+" NERDTree 中默认以 Tab 方式打开文件
 call NERDTreeAddKeyMap({
 		\ 'key': 'o',
-		\ 'callback': 'NERDTreeFNHandler',
+		\ 'callback': 'NERDTreeFileNodeHandler',
 		\ 'quickhelpText': 'echo full path of current node',
 		\ 'override':1,
 		\ 'scope': 'FileNode' })
 
-function! NERDTreeFNHandler(filenode)
-	exec "echom 'asdf=".a:0."'"
-	" 在一个 Tab 中打开文件
-	call a:filenode.activate({'reuse': 'all', 'where': 't'})
+function! NERDTreeFileNodeHandler(filenode)
+	call g:NERDTree.Close()
+	call execute("tabnew ". "/" . join(a:filenode.path.pathSegments,"/"))
+	" 这里是 NERDTree 标准的打开 Tab 的方法
+	" call a:filenode.activate({'reuse': 'all', 'where': 't'})
 	" hack from  ~/.vim/bundle/nerdtree/autoload/nerdtree/ui_glue.vim 99 行
 endfunction
 

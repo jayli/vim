@@ -114,7 +114,7 @@ nmap <C-t> :tabnew
 nmap wm :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-nmap <Tab> :tabnext<CR> :NERDTreeMirror<CR> 
+nmap <Tab> :tabnext<CR> 
 nmap <S-Tab> :tabprevious<CR>
 "使用 Ctrl+C 或者 Y 复制到系统剪贴板
 vnoremap <C-C> "+y
