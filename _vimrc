@@ -203,61 +203,97 @@ if has("unix") && !has("mac")
 	set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ Medium\ 10
 endif
 
-
-
-" 主题设置 colorscheme molokai {{{
-let g:molokai_original = 0
-let g:rehash256 = 0
-colorscheme molokai  "}}}
-
-" 主题设置 colorscheme alduin {{{
-let g:alduin_Shout_Become_Ethereal = 1
-"colorscheme alduin "}}}
-
-" 主题设置 colorscheme deep-space {{{
-" 通常 Cterm 不支持真彩色，这里基本用原始色显示，复古风格
-set background=dark
-"colorscheme deep-space "}}}
+"""""""""""" 样式配置
 
 "colorscheme jellybeans
-"colorscheme distinguished
 "colorscheme abstract
 "colorscheme afterglow
 "colorscheme challenger_deep
 "colorscheme gotham256
+"colorscheme iceberg
+
+" 主题设置 colorscheme turtles {{{
+" colorscheme turtles
+" hi LineNR ctermbg=233
+" hi Normal ctermbg=233
+"}}}
+
+" 主题设置 colorscheme sublimemonokai {{{
+"colorscheme sublimemonokai
+"hi LineNR ctermfg=237
+" }}}
+
+" 主题设置 colorscheme BusyBee {{{
+"colorscheme BusyBee
+"hi LineNR ctermbg=0
+" }}}
+
+" 主题设置 colorscheme molokai {{{
+let g:molokai_original = 0
+let g:rehash256 = 0
+colorscheme molokai  
+"}}}
+
+" 主题设置 colorscheme alduin {{{
+" let g:alduin_Shout_Become_Ethereal = 1
+" colorscheme alduin
+" hi CursorLineNR ctermfg=white ctermbg=black
+" }}}
+
+" 主题设置 colorscheme distinguished {{{
+" colorscheme distinguished
+" hi CursorLineNR ctermfg=white ctermbg=black
+" }}}
+
+" 本地全局样式 Hack {{{ 
+" 获得某个样式的 BackgroundColor
+function! s:Get_BgColor(name)
+	if &t_Co > 255 && !has('gui_running')
+		let hlString = s:Highlight_Args(a:name)
+		let bgColor = matchstr(hlString,"\\(\\sctermbg=\\)\\@<=\\d\\{\-}\\(\\s\\)\\@=")
+		if bgColor != ''
+			return str2nr(bgColor)
+		endif
+	endif
+	return 0
+endfunction
+
+function! s:Highlight_Args(name)
+	return 'hi ' . substitute(split(execute('hi ' . a:name), '\n')[0], '\<xxx\>', '', '')
+endfunction
 
 " 固定行高样式 Hack
 if exists("g:colors_name") && 
 			\ index([
 			\	'afterglow','jellybeans','distinguished',
 			\	'abstract','molkai','evening','alduin',
-			\	'challenger_deep','deep-space','gotham256'
+			\	'challenger_deep','gotham256',
+			\	'BusyBee','iceberg','sublimemonokai','turtles'
 			\ ], g:colors_name) >= 0
+	" 折叠样式始终和 Normal 背景色一致
+	exec "hi Folded ctermbg=". s:Get_BgColor('Normal')
 	" 固定行高亮样式
-	exec "hi CursorLine ctermbg=233"
+	exec "hi CursorLine ctermbg=234"
+	if s:Get_BgColor('Normal') == s:Get_BgColor('CursorLine')
+		exec "hi CursorLine ctermbg=" . string(s:Get_BgColor('CursorLine') + 1)
+	endif
+	" 行号和正文样式相等
+	if s:Get_BgColor('LineNr') != s:Get_BgColor('Normal')
+		exec "hi LineNr ctermbg=" . string(s:Get_BgColor('Normal'))
+	endif
 endif 
 
-" 折叠样式定义
-hi Folded     ctermbg=233
-" 快捷浮窗样式定义，定义了default（暗）和macos（亮）两种样式
-let g:pmenu_scheme = 'macos'
-" 常用浮窗样式
-if g:pmenu_scheme == 'default'
-	hi Pmenu      ctermfg=81  ctermbg=235
-	hi PmenuSel   ctermfg=255 ctermbg=240
-	hi PmenuSbar  ctermbg=235
-	hi PmenuThumb ctermbg=234
-elseif g:pmenu_scheme == 'macos'
-	hi Pmenu      ctermfg=234 ctermbg=251
-	hi PmenuSel   ctermfg=255 ctermbg=26
-	hi PmenuSbar  ctermbg=251
-	hi PmenuThumb ctermbg=247
-endif
+let g:Get_BgColor = function("s:Get_BgColor")
+
+" }}}
 
 " GUI 默认主题
 if has("gui_running")
 	colorscheme distinguished
 endif
+
+" 快捷浮窗样式定义，定义了default（暗）和macos（亮）两种样式
+let g:pmenu_scheme = 'macos'
 
 """""""""""""""""""""""""""""""""""""""""""
 "
@@ -294,4 +330,6 @@ nmap <F12>   <Plug>EasyDebuggerSetBreakPoint
 
 " 开启 Pathogen 插件管理
 execute pathogen#infect()
+
+
 
