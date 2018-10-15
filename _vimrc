@@ -265,13 +265,13 @@ endfunction
 " 固定行高样式 Hack
 if exists("g:colors_name") && 
 			\ index([
-			\	'afterglow','jellybeans','distinguished',
+			\	'molokai','afterglow','jellybeans','distinguished',
 			\	'abstract','molkai','evening','alduin',
 			\	'challenger_deep','gotham256',
 			\	'BusyBee','iceberg','sublimemonokai','turtles'
 			\ ], g:colors_name) >= 0
 	" 折叠样式始终和 Normal 背景色一致
-	exec "hi Folded ctermbg=". s:Get_BgColor('Normal')
+	exec "hi Folded ctermbg=". string(s:Get_BgColor('Normal'))
 	" 固定行高亮样式
 	exec "hi CursorLine ctermbg=234"
 	if s:Get_BgColor('Normal') == s:Get_BgColor('CursorLine')
