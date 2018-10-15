@@ -319,7 +319,7 @@ tmap <F9>    <Plug>EasyDebuggerNext
 " Continue
 nmap <F10>   <Plug>EasyDebuggerContinue
 tmap <F10>   <Plug>EasyDebuggerContinue
-" 设置断点(TODO)
+" 设置断点
 nmap <F12>   <Plug>EasyDebuggerSetBreakPoint
 
 """""""""""""""""""""""""""""""""""""""""""
