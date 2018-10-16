@@ -212,9 +212,9 @@ endif
 "colorscheme gotham256
 "colorscheme iceberg
 
-" 主题设置 colorscheme two-firewatch
-set background=dark
-colorscheme two-firewatch
+" 主题设置 colorscheme two-firewatcha 有bug
+"set background=dark
+"colorscheme two-firewatch
 " }}}
 
 " 主题设置 colorscheme turtles {{{
@@ -234,9 +234,9 @@ colorscheme two-firewatch
 " }}}
 
 " 主题设置 colorscheme molokai {{{
-" let g:molokai_original = 0
-" let g:rehash256 = 0
-" colorscheme molokai  
+let g:molokai_original = 0
+let g:rehash256 = 0
+colorscheme molokai  
 "}}}
 
 " 主题设置 colorscheme alduin {{{
