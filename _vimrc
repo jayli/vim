@@ -212,6 +212,11 @@ endif
 "colorscheme gotham256
 "colorscheme iceberg
 
+" 主题设置 colorscheme two-firewatch
+set background=dark
+colorscheme two-firewatch
+" }}}
+
 " 主题设置 colorscheme turtles {{{
 " colorscheme turtles
 " hi LineNR ctermbg=233
@@ -229,9 +234,9 @@ endif
 " }}}
 
 " 主题设置 colorscheme molokai {{{
-let g:molokai_original = 0
-let g:rehash256 = 0
-colorscheme molokai  
+" let g:molokai_original = 0
+" let g:rehash256 = 0
+" colorscheme molokai  
 "}}}
 
 " 主题设置 colorscheme alduin {{{
@@ -267,13 +272,13 @@ if exists("g:colors_name") &&
 			\ index([
 			\	'molokai','afterglow','jellybeans','distinguished',
 			\	'abstract','molkai','evening','alduin',
-			\	'challenger_deep','gotham256',
+			\	'challenger_deep','gotham256','two-firewatch',
 			\	'BusyBee','iceberg','sublimemonokai','turtles'
 			\ ], g:colors_name) >= 0
 	" 折叠样式始终和 Normal 背景色一致
 	exec "hi Folded ctermbg=". string(s:Get_BgColor('Normal'))
 	" 固定行高亮样式
-	exec "hi CursorLine ctermbg=234"
+	exec "hi CursorLine ctermbg=234 cterm=none"
 	if s:Get_BgColor('Normal') == s:Get_BgColor('CursorLine')
 		exec "hi CursorLine ctermbg=" . string(s:Get_BgColor('CursorLine') + 1)
 	endif
