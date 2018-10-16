@@ -18,7 +18,7 @@ au BufRead,BufNewFile *.less,*.scss set filetype=css
 " 将xtpl,vue,jsx识别为html
 au BufRead,BufNewFile *.xtpl,*.we,*.vue,*.jsx set filetype=html
 " 将 swift 识别为 js
-au BufRead,BufNewFile *.swift set filetype=javascript
+au BufRead,BufNewFile *.swift,*.coffee set filetype=javascript
 " 识别markdown文件
 au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=markdown
 " Go 语言配置：执行`:GoBuild`时先在Buf内检查代码错误
@@ -211,6 +211,11 @@ endif
 "colorscheme challenger_deep
 "colorscheme iceberg
 
+" 主题设置 colorscheme monkai {{{
+" colorscheme monokai
+" hi LineNr ctermfg=237
+" }}}
+
 " 主题设置 colorscheme molokai {{{
 let g:molokai_original = 0
 let g:rehash256 = 0
@@ -272,7 +277,7 @@ if exists("g:colors_name") &&
 			\ index([
 			\	'molokai','afterglow','jellybeans','distinguished',
 			\	'abstract','molkai','evening','alduin',
-			\	'challenger_deep','two-firewatch',
+			\	'challenger_deep','two-firewatch','monokai',
 			\	'BusyBee','iceberg','sublimemonokai','turtles'
 			\ ], g:colors_name) >= 0
 	" 折叠样式始终和 Normal 背景色一致
