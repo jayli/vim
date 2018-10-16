@@ -209,12 +209,18 @@ endif
 "colorscheme abstract
 "colorscheme afterglow
 "colorscheme challenger_deep
-"colorscheme gotham256
 "colorscheme iceberg
 
-" 主题设置 colorscheme two-firewatcha 有bug
-"set background=dark
-"colorscheme two-firewatch
+" 主题设置 colorscheme molokai {{{
+let g:molokai_original = 0
+let g:rehash256 = 0
+colorscheme molokai  
+"}}}
+
+" 主题设置 colorscheme two-firewatcha
+" set background=dark
+" colorscheme two-firewatch
+" hi Folded ctermfg=67
 " }}}
 
 " 主题设置 colorscheme turtles {{{
@@ -224,25 +230,19 @@ endif
 "}}}
 
 " 主题设置 colorscheme sublimemonokai {{{
-"colorscheme sublimemonokai
-"hi LineNR ctermfg=237
+" colorscheme sublimemonokai
+" hi LineNR ctermfg=237
 " }}}
 
 " 主题设置 colorscheme BusyBee {{{
-"colorscheme BusyBee
-"hi LineNR ctermbg=0
+" colorscheme BusyBee
+" hi LineNR ctermbg=0
 " }}}
-
-" 主题设置 colorscheme molokai {{{
-let g:molokai_original = 0
-let g:rehash256 = 0
-colorscheme molokai  
-"}}}
 
 " 主题设置 colorscheme alduin {{{
 " let g:alduin_Shout_Become_Ethereal = 1
 " colorscheme alduin
-" hi CursorLineNR ctermfg=white ctermbg=black
+" hi CursorLineNR ctermfg=235 ctermbg=white
 " }}}
 
 " 主题设置 colorscheme distinguished {{{
@@ -272,7 +272,7 @@ if exists("g:colors_name") &&
 			\ index([
 			\	'molokai','afterglow','jellybeans','distinguished',
 			\	'abstract','molkai','evening','alduin',
-			\	'challenger_deep','gotham256','two-firewatch',
+			\	'challenger_deep','two-firewatch',
 			\	'BusyBee','iceberg','sublimemonokai','turtles'
 			\ ], g:colors_name) >= 0
 	" 折叠样式始终和 Normal 背景色一致
