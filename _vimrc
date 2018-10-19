@@ -211,6 +211,14 @@ endif
 "colorscheme challenger_deep
 "colorscheme iceberg
 
+
+" 主题设置 colorscheme open-color {{{
+" colorscheme open-color
+" set background=dark
+" hi LineNR ctermbg=233
+" hi Normal ctermbg=233
+" }}}
+
 " 主题设置 colorscheme monkai {{{
 " colorscheme monokai
 " hi LineNr ctermfg=237
@@ -276,7 +284,7 @@ endfunction
 if exists("g:colors_name") && 
 			\ index([
 			\	'molokai','afterglow','jellybeans','distinguished',
-			\	'abstract','molkai','evening','alduin',
+			\	'abstract','molkai','evening','alduin','open-color',
 			\	'challenger_deep','two-firewatch','monokai',
 			\	'BusyBee','iceberg','sublimemonokai','turtles'
 			\ ], g:colors_name) >= 0
