@@ -203,7 +203,7 @@ if has("unix") && !has("mac")
 	set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ Medium\ 10
 endif
 
-"""""""""""" 样式配置
+"""""""""""" 主题样式配置
 
 "colorscheme jellybeans
 "colorscheme abstract
@@ -211,24 +211,10 @@ endif
 "colorscheme challenger_deep
 "colorscheme iceberg
 
-
-" 主题设置 colorscheme open-color {{{
-" colorscheme open-color
-" set background=dark
-" hi LineNR ctermbg=233
-" hi Normal ctermbg=233
-" }}}
-
 " 主题设置 colorscheme monkai {{{
 " colorscheme monokai
 " hi LineNr ctermfg=237
 " }}}
-
-" 主题设置 colorscheme molokai {{{
-let g:molokai_original = 0
-let g:rehash256 = 0
-colorscheme molokai  
-"}}}
 
 " 主题设置 colorscheme two-firewatcha
 " set background=dark
@@ -262,6 +248,21 @@ colorscheme molokai
 " colorscheme distinguished
 " hi CursorLineNR ctermfg=white ctermbg=black
 " }}}
+
+" 主题设置 colorscheme open-color {{{
+colorscheme open-color
+set background=dark
+hi CursorLineNR ctermfg=248 ctermbg=233
+hi SignColumn ctermfg=118 ctermbg=235
+hi LineNR ctermbg=233 ctermfg=237
+hi Normal ctermbg=233
+" }}}
+
+" 主题设置 colorscheme molokai {{{
+" let g:molokai_original = 0
+" let g:rehash256 = 0
+" colorscheme molokai  
+"}}}
 
 " 本地全局样式 Hack {{{ 
 " 获得某个样式的 BackgroundColor
