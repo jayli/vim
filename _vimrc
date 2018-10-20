@@ -249,6 +249,7 @@ endif
 " hi CursorLineNR ctermfg=white ctermbg=black
 " }}}
 
+" TODO
 " 主题设置 colorscheme open-color {{{
 colorscheme open-color
 set background=dark
@@ -256,6 +257,7 @@ hi CursorLineNR ctermfg=248 ctermbg=233
 hi SignColumn ctermfg=118 ctermbg=235
 hi LineNR ctermbg=233 ctermfg=237
 hi Normal ctermbg=233
+hi Todo ctermfg=231 ctermbg=232 cterm=bold
 " }}}
 
 " 主题设置 colorscheme molokai {{{
