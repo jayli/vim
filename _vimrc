@@ -318,7 +318,7 @@ let g:pmenu_scheme = 'macos'
 
 """""""""""""""""""""""""""""""""""""""""""
 "
-"	JavaScript Vebug 插件快捷键配置 for Debug
+"	JavaScript EasyDebugger 插件快捷键配置 for Debug
 "
 """""""""""""""""""""""""""""""""""""""""""
 
