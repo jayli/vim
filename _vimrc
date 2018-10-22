@@ -323,25 +323,25 @@ let g:pmenu_scheme = 'macos'
 """""""""""""""""""""""""""""""""""""""""""
 
 " 开启 NodeJS 调试
-nmap <S-R>   <Plug>EasyDebuggerInspect
-nmap <S-W>   <Plug>EasyDebuggerWebInspect
+au FileType javascript nmap <S-R>   <Plug>EasyDebuggerInspect
+au FileType javascript nmap <S-W>   <Plug>EasyDebuggerWebInspect
 " 暂停程序
-nmap <F7>    <Plug>EasyDebuggerPause
-tmap <F7>    <Plug>EasyDebuggerPause
+au FileType javascript nmap <F7>    <Plug>EasyDebuggerPause
+au FileType javascript tmap <F7>    <Plug>EasyDebuggerPause
 " 进入函数
-nmap <F8>   <Plug>EasyDebuggerStepIn
-tmap <F8>   <Plug>EasyDebuggerStepIn
+au FileType javascript nmap <F8>   <Plug>EasyDebuggerStepIn
+au FileType javascript tmap <F8>   <Plug>EasyDebuggerStepIn
 " 跳出函数
-nmap <S-F8> <Plug>EasyDebuggerStepOut
-tmap <S-F8> <Plug>EasyDebuggerStepOut
+au FileType javascript nmap <S-F8> <Plug>EasyDebuggerStepOut
+au FileType javascript tmap <S-F8> <Plug>EasyDebuggerStepOut
 " 单步执行
-nmap <F9>    <Plug>EasyDebuggerNext
-tmap <F9>    <Plug>EasyDebuggerNext
+au FileType javascript nmap <F9>    <Plug>EasyDebuggerNext
+au FileType javascript tmap <F9>    <Plug>EasyDebuggerNext
 " Continue
-nmap <F10>   <Plug>EasyDebuggerContinue
-tmap <F10>   <Plug>EasyDebuggerContinue
+au FileType javascript nmap <F10>   <Plug>EasyDebuggerContinue
+au FileType javascript tmap <F10>   <Plug>EasyDebuggerContinue
 " 设置断点
-nmap <F12>   <Plug>EasyDebuggerSetBreakPoint
+au FileType javascript nmap <F12>   <Plug>EasyDebuggerSetBreakPoint
 
 """""""""""""""""""""""""""""""""""""""""""
 "
