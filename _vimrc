@@ -251,14 +251,19 @@ endif
 
 " TODO
 " 主题设置 colorscheme open-color {{{
-colorscheme open-color
-set background=dark
-hi CursorLineNR ctermfg=248 ctermbg=233
-hi SignColumn ctermfg=118 ctermbg=235
-hi LineNR ctermbg=233 ctermfg=237
-hi Normal ctermbg=233
-hi Todo ctermfg=231 ctermbg=232 cterm=bold
+" colorscheme open-color
+" set background=dark
+" hi CursorLineNR ctermfg=248 ctermbg=233
+" hi SignColumn ctermfg=118 ctermbg=235
+" hi LineNR ctermbg=233 ctermfg=237
+" hi Normal ctermbg=233
+" hi Todo ctermfg=231 ctermbg=232 cterm=bold
 " }}}
+
+" 主题设置 colorscheme onedark {{{
+colorscheme onedark
+hi Normal ctermbg=234
+"}}}
 
 " 主题设置 colorscheme molokai {{{
 " let g:molokai_original = 0
@@ -288,7 +293,7 @@ if exists("g:colors_name") &&
 			\ index([
 			\	'molokai','afterglow','jellybeans','distinguished',
 			\	'abstract','molkai','evening','alduin','open-color',
-			\	'challenger_deep','two-firewatch','monokai',
+			\	'challenger_deep','two-firewatch','monokai','onedark',
 			\	'BusyBee','iceberg','sublimemonokai','turtles'
 			\ ], g:colors_name) >= 0
 	" 折叠样式始终和 Normal 背景色一致
@@ -297,6 +302,9 @@ if exists("g:colors_name") &&
 	exec "hi CursorLine ctermbg=234 cterm=none"
 	if s:Get_BgColor('Normal') == s:Get_BgColor('CursorLine')
 		exec "hi CursorLine ctermbg=" . string(s:Get_BgColor('CursorLine') + 1)
+	endif
+	if s:Get_BgColor('CursorLine') == s:Get_BgColor('StatusLine')
+		exec "hi StatusLine ctermbg=" . string(s:Get_BgColor('CursorLine') + 1)
 	endif
 	" 行号和正文样式相等
 	if s:Get_BgColor('LineNr') != s:Get_BgColor('Normal')
