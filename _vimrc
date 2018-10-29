@@ -87,6 +87,7 @@ set guifontset=*-r-*
 "语法高亮
 syntax enable
 syntax on
+let &synmaxcol=500
 "tab尺寸定义
 set shiftwidth=4
 set tabstop=4   "tab
@@ -350,6 +351,7 @@ nmap <F10>   <Plug>EasyDebuggerContinue
 tmap <F10>   <Plug>EasyDebuggerContinue
 " 设置断点
 nmap <F12>   <Plug>EasyDebuggerSetBreakPoint
+
 
 """""""""""""""""""""""""""""""""""""""""""
 "
