@@ -18,17 +18,17 @@ let g:moonWithGitBranchCharacter = get(g:, "moonWithGitBranchCharacter", 0)
 let g:moonHonorUserDefinedColors = get(g:, "moonHonorUserDefinedColors", 0)
 
 let s:modes = {
-	\  "n":			 ["%1*", " normal "],
-	\  "i":			 ["%2*", " insert "],
-	\  "R":			 ["%4*", " r-mode "],
-	\  "v":			 ["%3*", " visual "],
-	\  "V":			 ["%3*", " v-line "],
-	\  "\<C-v>":	 ["%3*", " v-rect "],
-	\  "c":			 ["%1*", " c-mode "],
-	\  "s":			 ["%3*", " select "],
-	\  "S":			 ["%3*", " s-line "],
-	\  "\<C-s>":	 ["%3*", " s-rect "],
-	\  "t":			 ["%2*", " term "],
+	\  "n":			 ["%1*", " Normal "],
+	\  "i":			 ["%2*", " Insert "],
+	\  "R":			 ["%4*", " R-mode "],
+	\  "v":			 ["%3*", " Visual "],
+	\  "V":			 ["%3*", " V-line "],
+	\  "\<C-v>":	 ["%3*", " V-rect "],
+	\  "c":			 ["%1*", " C-mode "],
+	\  "s":			 ["%3*", " Select "],
+	\  "S":			 ["%3*", " S-line "],
+	\  "\<C-s>":	 ["%3*", " S-rect "],
+	\  "t":			 ["%2*", " Term "],
 	\}
 
 " 默认主题颜色
