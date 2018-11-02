@@ -252,18 +252,19 @@ endif
 
 " TODO
 " 主题设置 colorscheme open-color {{{
-" colorscheme open-color
-" set background=dark
-" hi CursorLineNR ctermfg=248 ctermbg=233
-" hi SignColumn ctermfg=118 ctermbg=235
-" hi LineNR ctermbg=233 ctermfg=237
-" hi Normal ctermbg=233
-" hi Todo ctermfg=231 ctermbg=232 cterm=bold
+colorscheme open-color
+set background=dark
+hi CursorLineNR ctermfg=248 ctermbg=233
+hi SignColumn ctermfg=118 ctermbg=235
+hi LineNR ctermbg=233 ctermfg=237
+hi Normal ctermbg=233
+hi Todo ctermfg=231 ctermbg=232 cterm=bold
+hi Identifier cterm=none
 " }}}
 
 " 主题设置 colorscheme onedark {{{
-colorscheme onedark
-hi Normal ctermbg=234
+" colorscheme onedark
+" hi Normal ctermbg=234
 "}}}
 
 " 主题设置 colorscheme molokai {{{
@@ -305,7 +306,7 @@ if exists("g:colors_name") &&
 		exec "hi CursorLine ctermbg=" . string(s:Get_BgColor('CursorLine') + 1)
 	endif
 	if s:Get_BgColor('CursorLine') == s:Get_BgColor('StatusLine')
-		exec "hi StatusLine ctermbg=" . string(s:Get_BgColor('CursorLine') + 1)
+		exec "hi StatusLine cterm=none ctermbg=" . string(s:Get_BgColor('CursorLine') + 1)
 	endif
 	" 行号和正文样式相等
 	if s:Get_BgColor('LineNr') != s:Get_BgColor('Normal')

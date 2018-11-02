@@ -135,9 +135,9 @@ augroup END
 call s:UserColors()
 
 "状态栏样式hack，针对evening,包括gui模式下的状态栏样式
-hi StatusLine ctermfg=white
-hi StatusLineNC ctermbg=235 ctermfg=248
-hi TabLineFill cterm=bold ctermbg=234 ctermfg=black guibg=black guifg=black
+hi StatusLine cterm=none ctermbg=236 ctermfg=white
+hi StatusLineNC cterm=none ctermbg=235 ctermfg=247
+hi TabLineFill cterm=bold ctermbg=none ctermfg=none
 hi TabLineSel ctermbg=25  ctermfg=white guibg=blue guifg=white
 hi TabLine ctermbg=249 ctermfg=232
 hi Visual cterm=NONE ctermbg=17
