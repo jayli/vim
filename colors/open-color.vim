@@ -179,7 +179,7 @@ if has('gui_running') || &t_Co == 88 || &t_Co == 256
     call s:Hi('Folded', s:oc['gray'][6], s:oc['gray'][9])
     " set foldcolumn=1
     call s:Hi('FoldColumn', s:oc['gray'][6], s:oc['gray'][9])
-    call s:Hi('MatchParen', '', s:oc['gray'][6])
+    call s:Hi('MatchParen', '', s:oc['gray'][7])
 
     " -- INSERT --
     call s:Hi('ModeMsg', s:oc['gray'][2], '')
