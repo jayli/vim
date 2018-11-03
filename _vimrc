@@ -352,10 +352,19 @@ tmap <F10>   <Plug>EasyDebuggerContinue
 " 设置断点
 nmap <F12>   <Plug>EasyDebuggerSetBreakPoint
 
-" 性能相关
+"""""""""""""""""""""""""""""""""""""""""""
+"
+"	防止 VIM 运行太卡
+"
+"""""""""""""""""""""""""""""""""""""""""""
+
 au Filetype go,javascript,python,vim,shell,ruby,c,css,html set synmaxcol=300
+let g:matchparen_timeout = 20
+let g:matchparen_insert_timeout = 20
 set nocursorcolumn
 set norelativenumber
+set lazyredraw
+
 
 """""""""""""""""""""""""""""""""""""""""""
 "
