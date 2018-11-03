@@ -87,7 +87,6 @@ set guifontset=*-r-*
 "语法高亮
 syntax enable
 syntax on
-let &synmaxcol=500
 "tab尺寸定义
 set shiftwidth=4
 set tabstop=4   "tab
@@ -353,6 +352,10 @@ tmap <F10>   <Plug>EasyDebuggerContinue
 " 设置断点
 nmap <F12>   <Plug>EasyDebuggerSetBreakPoint
 
+" 性能相关
+au Filetype go,javascript,python,vim,shell,ruby,c,css,html set synmaxcol=300
+set nocursorcolumn
+set norelativenumber
 
 """""""""""""""""""""""""""""""""""""""""""
 "
