@@ -3,6 +3,7 @@
 " for 拔赤, 欢迎拷贝
 " MoreInfo:	https://github.com/jayli/vim
 
+
 """""""""""""""""""""""""""""""""""""""""""
 "
 "	VIM 基础配置
@@ -105,6 +106,19 @@ set foldenable
 
 """""""""""""""""""""""""""""""""""""""""""
 "
+"	防止 VIM 运行太卡
+"
+"""""""""""""""""""""""""""""""""""""""""""
+
+au Filetype go,javascript,python,vim,shell,ruby,c,css,html setlocal synmaxcol=300
+let g:matchparen_timeout = 20
+let g:matchparen_insert_timeout = 20
+set nocursorcolumn
+set norelativenumber
+set lazyredraw
+
+"""""""""""""""""""""""""""""""""""""""""""
+"
 "	VIM 按键映射定义
 "
 """""""""""""""""""""""""""""""""""""""""""
@@ -164,7 +178,7 @@ let g:ctrlp_cmd = 'CtrlP'
 "
 """""""""""""""""""""""""""""""""""""""""""
 
-" Go 编程配置：默认配置
+" Go 编程配置：默认配置：vim-go 所需
 let g:go_disable_autoinstall = 0
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -177,7 +191,7 @@ let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 " Go 函数名高亮
 let g:go_highlight_function_calls = 1
-" JavaScript 编程配置
+" JavaScript 编程配置，vim-javascript 所需
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
@@ -186,22 +200,11 @@ let g:javascript_plugin_flow = 1
 "	VIM 主题设置
 "
 """""""""""""""""""""""""""""""""""""""""""
-
-"底部&顶部状态栏配置，样式定义在~/.vim/plugin/moonline.vim
-"显示顶部Tabline
-set showtabline=2
-"显示底部Statusline
-set laststatus=2
+" 先关掉tabline和statusline，最后初始化完成后打开
+set showtabline=1
+set laststatus=1
 " 颜色设置
 set t_Co=256
-
-" 字体设置
-if has("unix") && !has("mac")
-	set guifont=Inconsolata\ Medium\ 11
-	" gui下字体默认样式
-	set guifont=Courier\ 10\ Pitch
-	set guifontwide=WenQuanYi\ Micro\ Hei\ Mono\ Medium\ 10
-endif
 
 """""""""""" 主题样式配置
 
@@ -299,6 +302,8 @@ if exists("g:colors_name") &&
 			\ ], g:colors_name) >= 0
 	" 折叠样式始终和 Normal 背景色一致
 	exec "hi Folded ctermbg=". string(s:Get_BgColor('Normal'))
+	" Tab 栏背景样式始终和 Normal 背景色一致
+	exec "hi TabLineFill cterm=bold ctermfg=".string(s:Get_BgColor('Normal'))." ctermbg=".string(s:Get_BgColor('Normal'))
 	" 固定行高亮样式
 	exec "hi CursorLine ctermbg=234 cterm=none"
 	if s:Get_BgColor('Normal') == s:Get_BgColor('CursorLine')
@@ -311,9 +316,8 @@ if exists("g:colors_name") &&
 	if s:Get_BgColor('LineNr') != s:Get_BgColor('Normal')
 		exec "hi LineNr ctermbg=" . string(s:Get_BgColor('Normal'))
 	endif
-endif 
 
-let g:Get_BgColor = function("s:Get_BgColor")
+endif 
 
 " }}}
 
@@ -322,12 +326,12 @@ if has("gui_running")
 	colorscheme distinguished
 endif
 
-" 快捷浮窗样式定义，定义了default（暗）和macos（亮）两种样式
+" 快捷浮窗样式定义，定义了default（暗）和macos（亮）两种样式，插件 vim-easycomplete 所需
 let g:pmenu_scheme = 'macos'
 
 """""""""""""""""""""""""""""""""""""""""""
 "
-"	JavaScript EasyDebugger 插件快捷键配置 for Debug
+"	JavaScript EasyDebugger 插件快捷键配置 for Debug，插件 vim-easydebugger 所需
 "
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -354,20 +358,6 @@ nmap <F12>   <Plug>EasyDebuggerSetBreakPoint
 
 """""""""""""""""""""""""""""""""""""""""""
 "
-"	防止 VIM 运行太卡
-"
-"""""""""""""""""""""""""""""""""""""""""""
-
-au Filetype go,javascript,python,vim,shell,ruby,c,css,html set synmaxcol=300
-let g:matchparen_timeout = 20
-let g:matchparen_insert_timeout = 20
-set nocursorcolumn
-set norelativenumber
-set lazyredraw
-
-
-"""""""""""""""""""""""""""""""""""""""""""
-"
 "	Pathogen 插件启动
 "
 """""""""""""""""""""""""""""""""""""""""""
@@ -375,5 +365,13 @@ set lazyredraw
 " 开启 Pathogen 插件管理
 execute pathogen#infect()
 
+"""""""""""""""""""""""""""""""""""""""""""
+"
+"	显示顶部 Tabbar 和底部 Statusline
+"
+"""""""""""""""""""""""""""""""""""""""""""
 
-
+"底部&顶部状态栏配置，样式定义在~/.vim/plugin/moonline.vim
+"最后显示顶部Tabline 和底部 statusline
+set showtabline=2
+set laststatus=2
