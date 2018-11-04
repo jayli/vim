@@ -12,6 +12,7 @@
 
 " 使用vim默认配置，推荐这样做
 set nocompatible 
+" 语法高亮先关掉
 syntax off
 " 识别文件类型
 filetype plugin indent on 
@@ -43,6 +44,9 @@ set viminfo='20,\"50
 set formatoptions=mtcql
 "鼠标隐藏,鼠标右键无作用
 set mouse=v
+" 先关掉tabline和statusline，最后初始化完成后打开
+set showtabline=1
+set laststatus=1
 
 " 打开文件时，自动定位到上次光标位置
 if has ( "autocmd" )
@@ -114,6 +118,7 @@ let g:matchparen_insert_timeout = 20
 set nocursorcolumn
 set norelativenumber
 set lazyredraw
+
 
 """""""""""""""""""""""""""""""""""""""""""
 "
@@ -240,9 +245,6 @@ execute pathogen#infect()
 "语法高亮
 syntax enable
 syntax on
-" 先关掉tabline和statusline，最后初始化完成后打开
-set showtabline=1
-set laststatus=1
 " 颜色设置
 set t_Co=256
 
@@ -340,10 +342,11 @@ if exists("g:colors_name") &&
 			\	'challenger_deep','two-firewatch','monokai','onedark',
 			\	'BusyBee','iceberg','sublimemonokai','turtles'
 			\ ], g:colors_name) >= 0
+	" Tab 栏背景样式始终和 Normal 背景色一致
+	exec "hi TabLineFill cterm=none ctermfg=".string(s:Get_BgColor('Normal'))." ctermbg=".string(s:Get_BgColor('Normal'))
+	call execute("redraw","silent!")
 	" 折叠样式始终和 Normal 背景色一致
 	exec "hi Folded ctermbg=". string(s:Get_BgColor('Normal'))
-	" Tab 栏背景样式始终和 Normal 背景色一致
-	exec "hi TabLineFill cterm=bold ctermfg=".string(s:Get_BgColor('Normal'))." ctermbg=".string(s:Get_BgColor('Normal'))
 	" 固定行高亮样式
 	exec "hi CursorLine ctermbg=234 cterm=none"
 	if s:Get_BgColor('Normal') == s:Get_BgColor('CursorLine')
@@ -356,7 +359,6 @@ if exists("g:colors_name") &&
 	if s:Get_BgColor('LineNr') != s:Get_BgColor('Normal')
 		exec "hi LineNr ctermbg=" . string(s:Get_BgColor('Normal'))
 	endif
-
 endif 
 
 " }}}
@@ -376,4 +378,3 @@ endif
 "最后显示顶部Tabline 和底部 statusline
 set showtabline=2
 set laststatus=2
-
