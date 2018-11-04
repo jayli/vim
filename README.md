@@ -109,5 +109,9 @@ HTML/JS代码重新整理缩进（不完全格式化）： <kbd>=</kbd>，全文
 
 依赖插件 [Vim-EasyDebugger](https://github.com/jayli/vim-easydebugger)
 
+### VIM 卡顿
+
+VIM 打开大文件和语法复杂的文件都会卡顿，卡顿来源于两方面：一插件的滥用，二语法文件不够精简。所以一定要确保只留必要插件，非必要插件不要安装，语法文件复杂直接影响到运行时的卡顿，js 和 go 语法高亮逻辑很简单，一般不会卡顿，但类似 shell 和 vimL 这种语法超级复杂的语言，必须要对 syntax 文件进行瘦身，取子集，尽量避免语法的正则渲染，最好是关键字的枚举，我只对 vimL 的 syntax 文件做了一定的瘦身，性能上只能说勉强达标。
+
 Enjoy yourself！
 
