@@ -12,6 +12,7 @@
 
 " 使用vim默认配置，推荐这样做
 set nocompatible 
+syntax off
 " 识别文件类型
 filetype plugin indent on 
 " 将less,scss识别为css
@@ -85,9 +86,6 @@ set modelines=0
 set fileencodings=ucs-bom,utf-8,GB18030,gbk,big5
 "gui字体，随意模式
 set guifontset=*-r-*
-"语法高亮
-syntax enable
-syntax on
 "tab尺寸定义
 set shiftwidth=4
 set tabstop=4   "tab
@@ -195,11 +193,53 @@ let g:go_highlight_function_calls = 1
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
+" 快捷浮窗样式定义，定义了default（暗）和macos（亮）两种样式，插件 vim-easycomplete 所需
+let g:pmenu_scheme = 'macos'
+
+"""""""""""""""""""""""""""""""""""""""""""
+"
+"	EasyDebugger 插件快捷键配置 for Debug，插件 vim-easydebugger 所需
+"
+"""""""""""""""""""""""""""""""""""""""""""
+
+" 开启 NodeJS 调试
+nmap <S-R>   <Plug>EasyDebuggerInspect
+nmap <S-W>   <Plug>EasyDebuggerWebInspect
+" 暂停程序
+nmap <F7>    <Plug>EasyDebuggerPause
+tmap <F7>    <Plug>EasyDebuggerPause
+" 进入函数
+nmap <F8>   <Plug>EasyDebuggerStepIn
+tmap <F8>   <Plug>EasyDebuggerStepIn
+" 跳出函数
+nmap <S-F8> <Plug>EasyDebuggerStepOut
+tmap <S-F8> <Plug>EasyDebuggerStepOut
+" 单步执行
+nmap <F9>    <Plug>EasyDebuggerNext
+tmap <F9>    <Plug>EasyDebuggerNext
+" Continue
+nmap <F10>   <Plug>EasyDebuggerContinue
+tmap <F10>   <Plug>EasyDebuggerContinue
+" 设置断点
+nmap <F12>   <Plug>EasyDebuggerSetBreakPoint
+
+"""""""""""""""""""""""""""""""""""""""""""
+"
+"	Pathogen 插件启动
+"
+"""""""""""""""""""""""""""""""""""""""""""
+
+" 开启 Pathogen 插件管理
+execute pathogen#infect()
+
 """""""""""""""""""""""""""""""""""""""""""
 "
 "	VIM 主题设置
 "
 """""""""""""""""""""""""""""""""""""""""""
+"语法高亮
+syntax enable
+syntax on
 " 先关掉tabline和statusline，最后初始化完成后打开
 set showtabline=1
 set laststatus=1
@@ -326,45 +366,6 @@ if has("gui_running")
 	colorscheme distinguished
 endif
 
-" 快捷浮窗样式定义，定义了default（暗）和macos（亮）两种样式，插件 vim-easycomplete 所需
-let g:pmenu_scheme = 'macos'
-
-"""""""""""""""""""""""""""""""""""""""""""
-"
-"	JavaScript EasyDebugger 插件快捷键配置 for Debug，插件 vim-easydebugger 所需
-"
-"""""""""""""""""""""""""""""""""""""""""""
-
-" 开启 NodeJS 调试
-nmap <S-R>   <Plug>EasyDebuggerInspect
-nmap <S-W>   <Plug>EasyDebuggerWebInspect
-" 暂停程序
-nmap <F7>    <Plug>EasyDebuggerPause
-tmap <F7>    <Plug>EasyDebuggerPause
-" 进入函数
-nmap <F8>   <Plug>EasyDebuggerStepIn
-tmap <F8>   <Plug>EasyDebuggerStepIn
-" 跳出函数
-nmap <S-F8> <Plug>EasyDebuggerStepOut
-tmap <S-F8> <Plug>EasyDebuggerStepOut
-" 单步执行
-nmap <F9>    <Plug>EasyDebuggerNext
-tmap <F9>    <Plug>EasyDebuggerNext
-" Continue
-nmap <F10>   <Plug>EasyDebuggerContinue
-tmap <F10>   <Plug>EasyDebuggerContinue
-" 设置断点
-nmap <F12>   <Plug>EasyDebuggerSetBreakPoint
-
-"""""""""""""""""""""""""""""""""""""""""""
-"
-"	Pathogen 插件启动
-"
-"""""""""""""""""""""""""""""""""""""""""""
-
-" 开启 Pathogen 插件管理
-execute pathogen#infect()
-
 """""""""""""""""""""""""""""""""""""""""""
 "
 "	显示顶部 Tabbar 和底部 Statusline
@@ -375,3 +376,4 @@ execute pathogen#infect()
 "最后显示顶部Tabline 和底部 statusline
 set showtabline=2
 set laststatus=2
+
