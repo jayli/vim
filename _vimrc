@@ -128,7 +128,7 @@ nmap <F8> :JSHint<CR>
 " tab操作多文件
 nmap <C-t> :tabnew 
 " NERDTree 配置
-nmap wm :NERDTreeToggle<CR>
+nmap wm :NERDTreeRefreshRoot<CR>:NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 nmap <Tab> :tabnext<CR> 
