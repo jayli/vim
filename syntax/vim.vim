@@ -224,22 +224,22 @@ syn match	vimSubstFlags   contained	"[&cegiIpr]\+"
 syn match	vimString	"[^(,]'[^']\{-}\zs'"
 
 " Marks, Registers, Addresses, Filters: {{{2
-syn match	vimMark	"'[a-zA-Z0-9]\ze[-+,!]"	nextgroup=vimOper,vimMarkNumber,vimSubst
-syn match	vimMark	"'[<>]\ze[-+,!]"		nextgroup=vimOper,vimMarkNumber,vimSubst
-syn match	vimMark	",\zs'[<>]\ze"		nextgroup=vimOper,vimMarkNumber,vimSubst
-syn match	vimMark	"[!,:]\zs'[a-zA-Z0-9]"	nextgroup=vimOper,vimMarkNumber,vimSubst
-syn match	vimMark	"\<norm\%[al]\s\zs'[a-zA-Z0-9]"	nextgroup=vimOper,vimMarkNumber,vimSubst
-syn match	vimMarkNumber	"[-+]\d\+"		contained contains=vimOper nextgroup=vimSubst2
+"syn match	vimMark	"'[a-zA-Z0-9]\ze[-+,!]"	nextgroup=vimOper,vimMarkNumber,vimSubst
+"syn match	vimMark	"'[<>]\ze[-+,!]"		nextgroup=vimOper,vimMarkNumber,vimSubst
+"syn match	vimMark	",\zs'[<>]\ze"		nextgroup=vimOper,vimMarkNumber,vimSubst
+"syn match	vimMark	"[!,:]\zs'[a-zA-Z0-9]"	nextgroup=vimOper,vimMarkNumber,vimSubst
+"syn match	vimMark	"\<norm\%[al]\s\zs'[a-zA-Z0-9]"	nextgroup=vimOper,vimMarkNumber,vimSubst
+"syn match	vimMarkNumber	"[-+]\d\+"		contained contains=vimOper nextgroup=vimSubst2
 syn match	vimPlainMark contained	"'[a-zA-Z0-9]"
 
-syn match	vimRegister	'[^,;[{: \t]\zs"[a-zA-Z0-9.%#:_\-/]\ze[^a-zA-Z_":0-9]'
-syn match	vimRegister	'\<norm\s\+\zs"[a-zA-Z0-9]'
-syn match	vimRegister	'\<normal\s\+\zs"[a-zA-Z0-9]'
-syn match	vimRegister	'@"'
+" syn match	vimRegister	'[^,;[{: \t]\zs"[a-zA-Z0-9.%#:_\-/]\ze[^a-zA-Z_":0-9]'
+" syn match	vimRegister	'\<norm\s\+\zs"[a-zA-Z0-9]'
+" syn match	vimRegister	'\<normal\s\+\zs"[a-zA-Z0-9]'
+" syn match	vimRegister	'@"'
 syn match	vimPlainRegister contained	'"[a-zA-Z0-9\-:.%#*+=]'
 
-syn match	vimAddress	",\zs[.$]"	skipwhite nextgroup=vimSubst1
-syn match	vimAddress	"%\ze\a"	skipwhite nextgroup=vimString,vimSubst1
+" syn match	vimAddress	",\zs[.$]"	skipwhite nextgroup=vimSubst1
+" syn match	vimAddress	"%\ze\a"	skipwhite nextgroup=vimString,vimSubst1
 
 syn match	vimFilter contained	"^!.\{-}\(|\|$\)"		contains=vimSpecFile
 syn match	vimFilter contained	"\A!.\{-}\(|\|$\)"ms=s+1	contains=vimSpecFile,vimFunction,vimFuncName,vimOperParen
