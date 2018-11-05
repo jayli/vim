@@ -1,6 +1,8 @@
 " Vim syntax file
 " Language:	Vim 8.0 script
 " Maintainer:	Charles E. Campbell <NdrOchipS@PcampbellAfamily.Mbiz>
+" Modified by jayli, 原始文件性能有很大问题，我做了精简，保留最核心的语法识别
+" ，不常用的我大部分都删掉了
 " Last Change:	July 31, 2018
 " Version:	8.0-19
 " URL:	http://www.drchip.org/astronaut/vim/index.html#SYNTAX_VIM
