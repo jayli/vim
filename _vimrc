@@ -12,7 +12,8 @@
 
 " 使用vim默认配置，推荐这样做
 set nocompatible 
-" 语法高亮先关掉
+" 为了避免加载 Plugin 过程中的抖动，高亮行号先关掉，语法高亮先关掉，最后再打开
+setlocal nocursorline
 syntax off
 " 识别文件类型
 filetype plugin indent on 
@@ -120,6 +121,7 @@ set norelativenumber
 set lazyredraw
 
 
+
 """""""""""""""""""""""""""""""""""""""""""
 "
 "	VIM 按键映射定义
@@ -155,6 +157,7 @@ function! g:Transform_Space_To_4_Tab()
 	execute "%retab!"
 	execute "echo \"缩进符切换为 4 字符宽 Tab !\""
 endfunction
+
 
 "配置缩进整理快捷键
 nmap <S-M> <ESC>:call g:Transform_Space_To_4_Tab()<CR>
@@ -247,6 +250,7 @@ syntax enable
 syntax on
 " 颜色设置
 set t_Co=256
+
 
 """""""""""" 主题样式配置
 
@@ -344,7 +348,6 @@ if exists("g:colors_name") &&
 			\ ], g:colors_name) >= 0
 	" Tab 栏背景样式始终和 Normal 背景色一致
 	exec "hi TabLineFill cterm=none ctermfg=".string(s:Get_BgColor('Normal'))." ctermbg=".string(s:Get_BgColor('Normal'))
-	call execute("redraw","silent!")
 	" 折叠样式始终和 Normal 背景色一致
 	exec "hi Folded ctermbg=". string(s:Get_BgColor('Normal'))
 	" 固定行高亮样式
@@ -378,3 +381,4 @@ endif
 "最后显示顶部Tabline 和底部 statusline
 set showtabline=2
 set laststatus=2
+setlocal cursorline
