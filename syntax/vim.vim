@@ -147,23 +147,6 @@ syn keyword vimPattern  contained	start	skip	end
 syn cluster	vimUserCmdList	contains=vimAddress,vimSyntax,vimHighlight,vimAutoCmd,vimCmplxRepeat,vimComment,vimCtrlChar,vimEscapeBrace,vimFilter,vimFunc,vimFuncName,vimFunction,vimFunctionError,vimIsCommand,vimMark,vimNotation,vimNumber,vimOper,vimRegion,vimRegister,vimLet,vimSet,vimSetEqual,vimSetString,vimSpecFile,vimString,vimSubst,vimSubstRep,vimSubstRange,vimSynLine
 syn keyword	vimUserCommand	contained	com[mand]
 syn match	vimUserCmd	"\<com\%[mand]!\=\>.*$"	contains=vimUserAttrb,vimUserCommand,@vimUserCmdList
-"syn match	vimUserAttrbError	contained	"-\a\+\ze\s"
-" syn match	vimUserAttrb	contained	"-nargs=[01*?+]"	contains=vimUserAttrbKey,vimOper
-" syn match	vimUserAttrb	contained	"-complete="		contains=vimUserAttrbKey,vimOper nextgroup=vimUserAttrbCmplt,vimUserCmdError
-" syn match	vimUserAttrb	contained	"-range\(=%\|=\d\+\)\="	contains=vimNumber,vimOper,vimUserAttrbKey
-" syn match	vimUserAttrb	contained	"-count\(=\d\+\)\="	contains=vimNumber,vimOper,vimUserAttrbKey
-" syn match	vimUserAttrb	contained	"-bang\>"		contains=vimOper,vimUserAttrbKey
-" syn match	vimUserAttrb	contained	"-bar\>"		contains=vimOper,vimUserAttrbKey
-" syn match	vimUserAttrb	contained	"-buffer\>"		contains=vimOper,vimUserAttrbKey
-" syn match	vimUserAttrb	contained	"-register\>"		contains=vimOper,vimUserAttrbKey
-" if !exists("g:vimsyn_noerror") && !exists("g:vimsyn_nousercmderror")
-"  syn match	vimUserCmdError	contained	"\S\+\>"
-" endif
-" syn keyword	vimUserAttrbKey   contained	bar	ban[g]	cou[nt]	ra[nge] com[plete]	n[args]	re[gister] 
-" syn keyword	vimUserAttrbCmplt contained	augroup buffer behave color command compiler cscope dir environment event expression file file_in_path filetype function help highlight history locale mapping menu option packadd shellcmd sign syntax syntime tag tag_listfiles user var
-
-" syn case match
-" syn match	vimUserAttrbCmplt contained	"custom,\u\w*"
 
 " Lower Priority Comments: after some vim commands... {{{2
 " =======================
@@ -221,25 +204,6 @@ syn match	vimSubstFlags   contained	"[&cegiIpr]\+"
 syn match	vimString	"[^(,]'[^']\{-}\zs'"
 
 " Marks, Registers, Addresses, Filters: {{{2
-"syn match	vimMark	"'[a-zA-Z0-9]\ze[-+,!]"	nextgroup=vimOper,vimMarkNumber,vimSubst
-"syn match	vimMark	"'[<>]\ze[-+,!]"		nextgroup=vimOper,vimMarkNumber,vimSubst
-"syn match	vimMark	",\zs'[<>]\ze"		nextgroup=vimOper,vimMarkNumber,vimSubst
-"syn match	vimMark	"[!,:]\zs'[a-zA-Z0-9]"	nextgroup=vimOper,vimMarkNumber,vimSubst
-"syn match	vimMark	"\<norm\%[al]\s\zs'[a-zA-Z0-9]"	nextgroup=vimOper,vimMarkNumber,vimSubst
-"syn match	vimMarkNumber	"[-+]\d\+"		contained contains=vimOper nextgroup=vimSubst2
-"syn match	vimPlainMark contained	"'[a-zA-Z0-9]"
-
-" syn match	vimRegister	'[^,;[{: \t]\zs"[a-zA-Z0-9.%#:_\-/]\ze[^a-zA-Z_":0-9]'
-" syn match	vimRegister	'\<norm\s\+\zs"[a-zA-Z0-9]'
-" syn match	vimRegister	'\<normal\s\+\zs"[a-zA-Z0-9]'
-" syn match	vimRegister	'@"'
-" syn match	vimPlainRegister contained	'"[a-zA-Z0-9\-:.%#*+=]'
-
-" syn match	vimAddress	",\zs[.$]"	skipwhite nextgroup=vimSubst1
-" syn match	vimAddress	"%\ze\a"	skipwhite nextgroup=vimString,vimSubst1
-
-" syn match	vimFilter contained	"^!.\{-}\(|\|$\)"		contains=vimSpecFile
-" syn match	vimFilter contained	"\A!.\{-}\(|\|$\)"ms=s+1	contains=vimSpecFile,vimFunction,vimFuncName,vimOperParen
 
 " Complex repeats (:h complex-repeat) {{{2
 syn match	vimCmplxRepeat	'[^a-zA-Z_/\\()]q[0-9a-zA-Z"]\>'lc=1
