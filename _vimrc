@@ -35,7 +35,7 @@ au FileType go
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/ignored_files/*
 let g:ctrlp_working_path_mode = 'rw'
 " js文件格式化，Shift-b
-au FileType javascript nnoremap <S-b> :call g:Jsbeautify()<CR>
+au FileType javascript nnoremap <C-b> :call g:Jsbeautify()<CR>
 "css 文件输入:匹配关键字
 au Filetype css inoremap <buffer>  :  :<C-X><C-O><C-P>
 "默认长度的空格
@@ -160,7 +160,7 @@ endfunction
 
 
 "配置缩进整理快捷键
-nmap <S-M> <ESC>:call g:Transform_Space_To_4_Tab()<CR>
+nmap <C-M> <ESC>:call g:Transform_Space_To_4_Tab()<CR>
 " Tab 键的配置，基本上都交给 vim-easycomplete 来搞定了
 imap <Tab> <Plug>EasyCompTabTrigger
 imap <S-Tab> <Plug>EasyCompShiftTabTrigger

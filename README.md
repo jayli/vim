@@ -38,7 +38,7 @@ Author: [@Jayli](http://jayli.github.io/)
 
 **Open Tab**：多标签切换：普通模式下直接按 <kbd>Tab</kbd> ,或 <kbd>Shift-Tab</kbd>
 
-**Modify**：空格缩进替换为 4 格 Tab 缩进 <kbd>Shift-M</kbd> （Modify），为 js 文件重排格式 <kbd>Shift-B</kbd>（Beautifiy）
+**Modify**：空格缩进替换为 4 格 Tab 缩进 <kbd>Ctrl-M</kbd> （Modify），为 js 文件重排格式 <kbd>Ctrl-B</kbd>（Beautifiy）
 
 **JSBeautify**：JS代码（完全）格式化：<kbd>Shift-B</kbd>
 
