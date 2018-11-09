@@ -157,6 +157,10 @@ xmap al <Plug>(EasyAlign)
 "空格缩进切换Tab，我的习惯 4 个缩进 Tab
 function! g:Transform_Space_To_4_Tab()
 	"echo "空格缩进更换为Tab"
+	if &filetype == "qf"
+		call feedkeys("\<C-M>", 'n')
+		return
+	endif
 	set ts=2
 	set noexpandtab
 	execute "%retab!"
@@ -165,9 +169,9 @@ function! g:Transform_Space_To_4_Tab()
 	execute "echo \"缩进符切换为 4 字符宽 Tab !\""
 endfunction
 
-
 "配置缩进整理快捷键
-nmap <C-M> <ESC>:call g:Transform_Space_To_4_Tab()<CR>
+nnoremap <C-M> :call g:Transform_Space_To_4_Tab()<CR>
+
 " Tab 键的配置，基本上都交给 vim-easycomplete 来搞定了
 imap <Tab> <Plug>EasyCompTabTrigger
 imap <S-Tab> <Plug>EasyCompShiftTabTrigger
