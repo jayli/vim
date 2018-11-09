@@ -29,36 +29,51 @@ Author: [@Jayli](http://jayli.github.io/)
 
 ## 常用命令
 
-**Open File**：打开文件，三种方式：
+双字符命令
 
-	ctrl-P	→ 模糊匹配文件
-	tn	→ 打开新窗口 :tabnew
-	wm	→ 选择打开文件（左侧）
-	mm	→ 打开 ctags 窗口（右侧）
+命令 | 描述
+--------|------------
+tn | :tabnew 打开新窗口
+wm | :NERDTreeToggle 打开左侧树形文件菜单列表
+mm | :TagbarToggle 打开右侧函数列表
+md | Modify 将空格缩进格式修正为4宽Tab缩进
+// | 选中模式下注释或取消注释多行
+**gg** | 到达文件开头
+**=** | 选中模式格式化选中部分的代码
+**zi** | 全部打开折叠
+**zm** | 全部折叠起来
+**za** | 当前所在的折叠块折叠起来
 
-**Open Tab** & 文件跳转：多标签切换：普通模式下直接按 <kbd>Tab</kbd> ,或 <kbd>Shift-Tab</kbd>，<kbd>Ctrl-]</kbd> 跳转到函数定义处，<kbd>Ctrl-t</kbd> 跳回
+Ctrl/Shift/Tab 控制命令
 
-**Modify**：空格缩进替换为 4 格 Tab 缩进 <kbd>Ctrl-M</kbd> （Modify），为 js 文件重排格式 <kbd>Ctrl-B</kbd>（Beautifiy）
+命令 | 描述
+--------|------------
+**Ctrl-P** | CtrlP 命令
+Tab | 切换 Tab
+Shift-Tab | 回切 Tab
+**Shift-G** | 到达文件结尾
+**Ctrl-]** | 跳转到函数/变量定义处
+**Ctrl-T** | 跳回原处
+Ctrl-B | js 文件的格式重排，JSBeautify
+Ctrl-l | 快速右移
+Ctrl-h | 快速左移
+b | 以单词为回退长度后退光标
+e | 以单词为跃进长度前进光标
 
-**JSBeautify**：JS代码（完全）格式化：<kbd>Shift-B</kbd>
+常用 Command
 
-**Commentary**：批量生成注释，选中模式下按 <kbd>//</kbd>（两个斜线`/`）
+命令 | 描述
+--------|------------
+:JSHint | JSHint，可以`:js<Tab>`补全
+:vs | 垂直分割窗口
+:ps | 水平分割窗口
 
-HTML/JS代码重新整理缩进（不完全格式化）： <kbd>=</kbd>，全文缩进：
-
-	gg 到达文件头
-	= 要求缩进
-	G 到文件尾部
-
-**JSHint**：F8唤醒，或者使用命令呼出`:JSHint`（`:js<Tab>`可补全），弹出唤醒窗口
 
 > jshint 需要预装 node 的 jslint
 
 	npm install jshint -g
 
-**Movement**：快速左移：<kbd>Ctrl-h</kbd> ，快速右移：<kbd>C-l</kbd>，垂直切分窗口`:vs`，水平切分窗口`:ps`
-
-折叠：我习惯用 marker 折叠方式，基于`/*{{{}}}*/`匹配折叠，更容易控制代码，在marker处执行折叠 <kbd>za</kbd>，创建折叠marker：在花括号处执行 <kbd>zf%</kbd>，将当前文件所有块折叠起来：<kbd>zM</kbd>，打开所有折叠：<kbd>zi</kbd>
+折叠：我习惯用 marker 折叠方式，基于`/*{{{}}}*/`匹配折叠，更容易控制代码。
 
 **AutoComplete**：自动补全基于 [EasyComplete](https://github.com/jayli/vim-easycomplete) 和 [Vim-Dictionary](https://github.com/jayli/vim-dictionary)，使用 <kbd>Tab</kbd> 完成补全，字典词表配置[参照这里](https://github.com/jayli/vim-dictionary)
 
@@ -72,7 +87,7 @@ HTML/JS代码重新整理缩进（不完全格式化）： <kbd>=</kbd>，全文
 
 ## 插件管理
 
-基于 [Pathogen](https://github.com/tpope/vim-pathogen) 做 vim 插件管理，插件安装在`~/.vim/bundle`中，当前安装插件：
+基于 [Pathogen](https://github.com/tpope/vim-pathogen) 做 vim 插件管理，插件安装在`~/.vim/bundle`中，语言相关的插件有：
 
 - [vim-go](https://github.com/fatih/vim-go) → [Go 编程指令](https://github.com/fatih/vim-go#features)。
 - [vim-javascript](https://github.com/pangloss/vim-javascript)

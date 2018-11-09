@@ -3,7 +3,6 @@
 " for 拔赤, 欢迎拷贝
 " MoreInfo:	https://github.com/jayli/vim
 
-
 """""""""""""""""""""""""""""""""""""""""""
 "
 "	VIM 基础配置
@@ -13,7 +12,7 @@
 " 使用vim默认配置，推荐这样做
 set nocompatible 
 " 为了避免加载 Plugin 过程中的抖动，高亮行号先关掉，语法高亮先关掉，最后再打开
-setlocal nocursorline
+set nocursorline
 syntax off
 " 识别文件类型
 filetype plugin indent on 
@@ -24,7 +23,7 @@ au BufRead,BufNewFile *.xtpl,*.we,*.vue,*.jsx set filetype=html
 " 将 swift 识别为 js
 au BufRead,BufNewFile *.swift,*.coffee set filetype=javascript
 " 识别markdown文件
-au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=markdown
+au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md	 set filetype=markdown
 " Go 语言配置：执行`:GoBuild`时先在Buf内检查代码错误
 au BufRead,BufNewFile *.go set autowrite
 " Go 语言配置 Tagbar
@@ -33,11 +32,12 @@ au FileType go
 	\	call tagbar#OpenWindow() |
 	\ endif
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/ignored_files/*
+" CtrlP 的工作模式
 let g:ctrlp_working_path_mode = 'rw'
-" js文件格式化，Shift-b
+" js文件格式化，Ctrl-b
 au FileType javascript nnoremap <C-b> :call g:Jsbeautify()<CR>
 "css 文件输入:匹配关键字
-au Filetype css inoremap <buffer>  :  :<C-X><C-O><C-P>
+au Filetype css inoremap <buffer>  :	:<C-X><C-O><C-P>
 "默认长度的空格
 set backspace=indent,eol,start
 " 读写.viminfo文件，不要额外存储
@@ -53,7 +53,7 @@ set laststatus=1
 if has ( "autocmd" )
 	autocmd BufReadPost *
 	\ if line("'\"") > 0 && line ("'\"") <= line("$") |
-	\   exe "normal g'\"" |
+	\		exe "normal g'\"" |
 	\ endif
 endif  " has ("autocmd") 
 
@@ -70,7 +70,7 @@ autocmd VimLeave * echo "Byebye Jayli.."
 "自动缩进动作，粘贴自动缩进
 set smartindent
 "自动缩进长度
-set cino=:0g0               
+set cino=:0g0								
 "长句在单词间折行
 set wrap
 "搜索忽略大小写
@@ -93,7 +93,7 @@ set fileencodings=ucs-bom,utf-8,GB18030,gbk,big5
 set guifontset=*-r-*
 "tab尺寸定义
 set shiftwidth=4
-set tabstop=4   "tab
+set tabstop=4		"tab
 set softtabstop=4
 "退出模式，退出时保留残存窗口
 set t_ti=
@@ -119,8 +119,6 @@ let g:matchparen_insert_timeout = 20
 set nocursorcolumn
 set norelativenumber
 set lazyredraw
-
-
 
 """""""""""""""""""""""""""""""""""""""""""
 "
@@ -156,11 +154,6 @@ xmap al <Plug>(EasyAlign)
 
 "空格缩进切换Tab，我的习惯 4 个缩进 Tab
 function! g:Transform_Space_To_4_Tab()
-	"echo "空格缩进更换为Tab"
-	if &filetype == "qf"
-		call feedkeys("\<C-M>", 'n')
-		return
-	endif
 	set ts=2
 	set noexpandtab
 	execute "%retab!"
@@ -170,7 +163,7 @@ function! g:Transform_Space_To_4_Tab()
 endfunction
 
 "配置缩进整理快捷键
-nnoremap <C-M> :call g:Transform_Space_To_4_Tab()<CR>
+nnoremap md :call g:Transform_Space_To_4_Tab()<CR>
 
 " Tab 键的配置，基本上都交给 vim-easycomplete 来搞定了
 imap <Tab> <Plug>EasyCompTabTrigger
@@ -222,11 +215,11 @@ let g:pmenu_scheme = 'macos'
 """""""""""""""""""""""""""""""""""""""""""
 
 " 开启 NodeJS 调试
-nmap <S-R>   <Plug>EasyDebuggerInspect
-nmap <S-W>   <Plug>EasyDebuggerWebInspect
+nmap <S-R>	<Plug>EasyDebuggerInspect
+nmap <S-W>	<Plug>EasyDebuggerWebInspect
 " 暂停程序
-nmap <F7>    <Plug>EasyDebuggerPause
-tmap <F7>    <Plug>EasyDebuggerPause
+nmap <F7>	<Plug>EasyDebuggerPause
+tmap <F7>	<Plug>EasyDebuggerPause
 " 进入函数
 nmap <F8>   <Plug>EasyDebuggerStepIn
 tmap <F8>   <Plug>EasyDebuggerStepIn
@@ -234,13 +227,13 @@ tmap <F8>   <Plug>EasyDebuggerStepIn
 nmap <S-F8> <Plug>EasyDebuggerStepOut
 tmap <S-F8> <Plug>EasyDebuggerStepOut
 " 单步执行
-nmap <F9>    <Plug>EasyDebuggerNext
-tmap <F9>    <Plug>EasyDebuggerNext
+nmap <F9>	<Plug>EasyDebuggerNext
+tmap <F9>	<Plug>EasyDebuggerNext
 " Continue
-nmap <F10>   <Plug>EasyDebuggerContinue
-tmap <F10>   <Plug>EasyDebuggerContinue
+nmap <F10>	<Plug>EasyDebuggerContinue
+tmap <F10>	<Plug>EasyDebuggerContinue
 " 设置断点
-nmap <F12>   <Plug>EasyDebuggerSetBreakPoint
+nmap <F12>	<Plug>EasyDebuggerSetBreakPoint
 
 """""""""""""""""""""""""""""""""""""""""""
 "
@@ -253,7 +246,7 @@ execute pathogen#infect()
 
 """""""""""""""""""""""""""""""""""""""""""
 "
-"	VIM 主题设置
+"	VIM 主题设置，性能考虑，最后初始化皮肤
 "
 """""""""""""""""""""""""""""""""""""""""""
 "语法高亮
@@ -261,7 +254,6 @@ syntax enable
 syntax on
 " 颜色设置
 set t_Co=256
-
 
 """""""""""" 主题样式配置
 
@@ -376,11 +368,6 @@ if exists("g:colors_name") &&
 endif 
 
 " }}}
-
-" GUI 默认主题
-if has("gui_running")
-	colorscheme distinguished
-endif
 
 """""""""""""""""""""""""""""""""""""""""""
 "
