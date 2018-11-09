@@ -131,7 +131,7 @@ set lazyredraw
 " JSHint
 nmap <F8> :JSHint<CR>
 " tab操作多文件
-nmap <C-t> :tabnew 
+nmap tn :tabnew 
 " NERDTree 配置
 nmap wm :NERDTreeRefreshRoot<CR>:NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'

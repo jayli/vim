@@ -32,11 +32,11 @@ Author: [@Jayli](http://jayli.github.io/)
 **Open File**：打开文件，三种方式：
 
 	ctrl-P	→ 模糊匹配文件
-	ctrl-T	→ 打开新窗口
+	tn	→ 打开新窗口 :tabnew
 	wm	→ 选择打开文件（左侧）
 	mm	→ 打开 ctags 窗口（右侧）
 
-**Open Tab**：多标签切换：普通模式下直接按 <kbd>Tab</kbd> ,或 <kbd>Shift-Tab</kbd>
+**Open Tab** & 文件跳转：多标签切换：普通模式下直接按 <kbd>Tab</kbd> ,或 <kbd>Shift-Tab</kbd>，<kbd>Ctrl-]</kbd> 跳转到函数定义处，<kbd>Ctrl-t</kbd> 跳回
 
 **Modify**：空格缩进替换为 4 格 Tab 缩进 <kbd>Ctrl-M</kbd> （Modify），为 js 文件重排格式 <kbd>Ctrl-B</kbd>（Beautifiy）
 
