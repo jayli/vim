@@ -127,6 +127,13 @@ set lazyredraw
 "	VIM 按键映射定义
 "
 """""""""""""""""""""""""""""""""""""""""""
+" Ctrl-B JS beautify
+" Ctrl-M 格式化
+" Ctrl-] 跳入
+" Ctrl-T 跳回
+" tn 打开新的tabnew
+" mm 打开右侧函数列表
+" wm 打开文件目录树
 
 " JSHint
 nmap <F8> :JSHint<CR>
