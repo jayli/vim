@@ -37,3 +37,6 @@
 [submodule "bundle/vim-commentary"]
 	path = bundle/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
+[submodule "bundle/vim-jsx"]
+	path = bundle/vim-jsx
+	url = https://github.com/mxw/vim-jsx.git
