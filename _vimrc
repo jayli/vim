@@ -37,7 +37,7 @@ let g:ctrlp_working_path_mode = 'rw'
 " js文件格式化，Ctrl-b
 au FileType javascript nnoremap <C-b> :call g:Jsbeautify()<CR>
 "css 文件输入:匹配关键字
-au Filetype css inoremap <buffer>  :	:<C-X><C-O><C-P>
+au Filetype css inoremap <buffer> : :<C-X><C-O><C-P>
 "默认长度的空格
 set backspace=indent,eol,start
 " 读写.viminfo文件，不要额外存储
