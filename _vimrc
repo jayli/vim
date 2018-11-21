@@ -1,7 +1,7 @@
 " ~/.vimrc by Jayli <lijing00333@163.com> 
-" http://jayli.github.com
-" for 拔赤, 欢迎拷贝
 " MoreInfo:	https://github.com/jayli/vim
+" for 拔赤, 欢迎拷贝
+" http://jayli.github.com
 
 """""""""""""""""""""""""""""""""""""""""""
 "
