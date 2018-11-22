@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# cat ./install.sh | sh -s install
+# cat ./install.sh | sh -s update
 install() {
   if [ -d "$HOME/.vim" ]; then
     mv $HOME/.vim $HOME/.vim.`date +%Y%m%d%H%M%S`
