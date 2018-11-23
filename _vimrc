@@ -173,8 +173,8 @@ imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 nmap mm :TagbarToggle<CR>
 
 " 对于自动补全和代码生成如果 Tab 不好使，必须使用 C-K 展开
-"imap <silent> <C-K> <Plug>snipMateNextOrTrigger
-"smap <silent> <C-K> <Plug>snipMateNextOrTrigger
+imap <silent> <C-K> <Plug>snipMateNextOrTrigger
+smap <silent> <C-K> <Plug>snipMateNextOrTrigger
 
 " 批量注释：// 批量 Toggle 为注释
 xmap // <Plug>Commentary
