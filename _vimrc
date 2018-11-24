@@ -18,8 +18,8 @@ syntax off
 filetype plugin indent on 
 " 将less,scss识别为css
 au BufRead,BufNewFile *.less,*.scss set filetype=css
-" 将xtpl,vue,jsx识别为html
-au BufRead,BufNewFile *.xtpl,*.we,*.vue,*.jsx set filetype=html
+" 将xtpl,vue识别为html
+au BufRead,BufNewFile *.xtpl,*.we,*.vue set filetype=html
 " 将 swift 识别为 js
 au BufRead,BufNewFile *.swift,*.coffee set filetype=javascript
 " 识别markdown文件
