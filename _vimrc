@@ -380,3 +380,8 @@ endif
 set showtabline=2
 set laststatus=2
 setlocal cursorline
+
+
+" set re=1
+" set ttyfast
+" set lazyredraw
