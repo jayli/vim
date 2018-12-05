@@ -384,3 +384,5 @@ setlocal cursorline
 " set re=1
 " set ttyfast
 " set lazyredraw
+
+" let kk = py3eval( '' )
