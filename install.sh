@@ -22,7 +22,6 @@ install() {
   git submodule update
 
   #vim +BundleInstall! +qall! </dev/tty
-
   #(cd ~/.vim/bundle/YouCompleteMe; ./install.sh --clang-completer)
 }
 
