@@ -386,3 +386,18 @@ setlocal cursorline
 " set lazyredraw
 
 " let kk = py3eval( '' )
+
+" python3 << EOF
+
+" needle = vim.eval('@a')
+" replacement = vim.eval('@b')
+
+" def py_vim_string_replace(str):
+" 	return str.replace(needle, replacement)
+
+" EOF
+
+
+
+
+
