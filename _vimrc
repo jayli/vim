@@ -397,7 +397,3 @@ setlocal cursorline
 
 " EOF
 
-
-
-
-
