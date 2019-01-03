@@ -276,7 +276,7 @@ set t_Co=256
 " hi LineNr ctermfg=237
 " }}}
 
-" 主题设置 colorscheme two-firewatcha
+" 主题设置 colorscheme two-firewatcha {{{
 " set background=dark
 " colorscheme two-firewatch
 " hi Folded ctermfg=67
@@ -389,19 +389,10 @@ set showtabline=2
 set laststatus=2
 setlocal cursorline
 
-" set re=1
-" set ttyfast
-" set lazyredraw
+"----------------------TEST---------------------
 
-" let kk = py3eval( '' )
 
-" python3 << EOF
+" 得到文件buff
 
-" needle = vim.eval('@a')
-" replacement = vim.eval('@b')
-
-" def py_vim_string_replace(str):
-" 	return str.replace(needle, replacement)
-
-" EOF
+"let g:kk = system("ls ~/")
 
