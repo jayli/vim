@@ -146,6 +146,7 @@ ctrlp-mappings	ctrlp.txt	/*ctrlp-mappings*
 ctrlp-miscellaneous-configs	ctrlp.txt	/*ctrlp-miscellaneous-configs*
 ctrlp-options	ctrlp.txt	/*ctrlp-options*
 ctrlp.txt	ctrlp.txt	/*ctrlp.txt*
+doc	jayli.txt	/*doc*
 fuf	fuf.txt	/*fuf*
 fuf#setOneTimeVariables()	fuf.txt	/*fuf#setOneTimeVariables()*
 fuf-abbreviation	fuf.txt	/*fuf-abbreviation*
@@ -300,6 +301,8 @@ g:fuf_taggedfile_prompt	fuf.txt	/*g:fuf_taggedfile_prompt*
 g:fuf_taggedfile_switchOrder	fuf.txt	/*g:fuf_taggedfile_switchOrder*
 g:fuf_timeFormat	fuf.txt	/*g:fuf_timeFormat*
 g:fuf_useMigemo	fuf.txt	/*g:fuf_useMigemo*
+jayli	jayli.txt	/*jayli*
+jayli.txt	jayli.txt	/*jayli.txt*
 jshint	jshint.txt	/*jshint*
 jshint-author	jshint.txt	/*jshint-author*
 jshint.vim	jshint.txt	/*jshint.vim*
@@ -344,3 +347,5 @@ v_[%	matchit.txt	/*v_[%*
 v_]%	matchit.txt	/*v_]%*
 v_a%	matchit.txt	/*v_a%*
 v_g%	matchit.txt	/*v_g%*
+双字符命令	jayli.txt	/*双字符命令*
+唤出此文档	jayli.txt	/*唤出此文档*
