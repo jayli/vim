@@ -137,6 +137,7 @@ command! -nargs=0 -complete=command H call execute(":h jayli")
 " Ctrl-M 格式化
 " Ctrl-] 跳入
 " Ctrl-T 跳回
+" Ctrl-] 跳回
 " tn 打开新的tabnew
 " mm 打开右侧函数列表
 " wm 打开文件目录树
@@ -151,6 +152,8 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 nmap <Tab> :tabnext<CR> 
 nmap <S-Tab> :tabprevious<CR>
+" Ctrl-[ 跳回
+"nmap <C-[> <C-t>
 "使用 Ctrl+C 或者 Y 复制到系统剪贴板
 vnoremap <C-C> "+y
 vnoremap Y "+y

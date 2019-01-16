@@ -54,6 +54,7 @@ Shift-Tab | 回切 Tab
 **Shift-G** | 到达文件结尾
 **Shift-K** | 查找光标处单词的帮助
 **Ctrl-]** | 跳转到函数/变量定义处
+**Ctrl-[** | 跳回原处
 **Ctrl-T** | 跳回原处
 Ctrl-B | js 文件的格式重排，JSBeautify
 Ctrl-K | Snipmate 展开代码片段
