@@ -398,4 +398,3 @@ setlocal cursorline
 " 得到文件buff
 
 "let g:kk = system("ls ~/")
-
