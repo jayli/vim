@@ -9,7 +9,7 @@ function! javascriptcomplete#DetectOmniFlavor()
 endfunction
 
 function! javascriptcomplete#CompleteJS(findstart, base)
-  if a:findstart
+	if a:findstart
 	" locate the start of the word
 	let line = getline('.')
 	let start = col('.') - 1
@@ -22,7 +22,7 @@ function! javascriptcomplete#CompleteJS(findstart, base)
 	endwhile
 	let b:compl_context = getline('.')[0:compl_begin]
 	return start
-  else
+	else
 	" Initialize base return lists
 	let res = []
 	let res2 = []
@@ -61,7 +61,7 @@ function! javascriptcomplete#CompleteJS(findstart, base)
 
 		" Boolean - complete subset of array values
 		" properties - constructor, prototype
-		" methods    - toSource, toString, valueOf
+		" methods		 - toSource, toString, valueOf
 
 		" Date
 		" properties - constructor, prototype
@@ -396,7 +396,7 @@ function! javascriptcomplete#CompleteJS(findstart, base)
 		" 1. Get object name
 		" 2. Find object declaration line
 		" 3. General declaration follows "= new Type" syntax, additional else
-		"    for regexp "= /re/"
+		"		 for regexp "= /re/"
 		" 4. Make correction for Microsoft.XMLHTTP ActiveXObject
 		" 5. Repeat for external files
 		let object = matchstr(shortcontext, '\zs\k\+\ze\(\[.\{-}\]\)\?\.$')
@@ -584,7 +584,11 @@ function! javascriptcomplete#CompleteJS(findstart, base)
 	let builtin = ['alert(', 'confirm(']
 
 	" Top-level HTML DOM objects
-	let htmldom = ['document', 'anchor', 'area', 'base', 'body', 'document', 'event', 'form', 'frame', 'frameset', 'history', 'iframe', 'image', 'input', 'link', 'location', 'meta', 'navigator', 'object', 'option', 'screen', 'select', 'table', 'tableData', 'tableHeader', 'tableRow', 'textarea', 'window']
+	let htmldom = ['document', 'anchor', 'area', 'base', 'body', 'document', 
+				\ 'event', 'form', 'frame', 'frameset', 'history', 'iframe', 
+				\ 'image', 'input', 'link', 'location', 'meta', 'navigator', 
+				\ 'object', 'option', 'screen', 'select', 'table', 'tableData', 
+				\ 'tableHeader', 'tableRow', 'textarea', 'window']
 	call map(htmldom, 'v:val."."')
 
 	" Top-level properties
@@ -593,7 +597,14 @@ function! javascriptcomplete#CompleteJS(findstart, base)
 				\ 'parseInt', 'String', 'undefined', 'escape', 'unescape']
 
 	" Keywords
-	let keywords = ["Array", "Boolean", "Date", "Function", "Math", "Number", "Object", "RegExp", "String", "XMLHttpRequest", "ActiveXObject", "abstract", "boolean", "break", "byte", "case", "catch", "char", "class", "const", "continue", "debugger", "default", "delete", "do", "double ", "else", "enum", "export", "extends", "false", "final", "finally", "float", "for", "function", "goto", "if", "implements", "import", "in ", "instanceof", "int", "interface", "long", "native", "new", "null", "package", "private", "protected", "public", "return", "short", "static", "super ", "switch", "synchronized", "this", "throw", "throws", "transient", "true", "try", "typeof", "var", "void", "volatile", "while", "with"]
+	let keywords = ["Array", "Boolean", "Date", "Function", "Math", "Number", "Object", "RegExp", "String", 
+				\ "XMLHttpRequest", "ActiveXObject", "abstract", "boolean", "break", "byte", "case", "catch", 
+				\ "char", "class", "const", "continue", "debugger", "default", "delete", "do", "double ", "else", 
+				\ "enum", "export", "extends", "false", "final", "finally", "float", "for", "function", "goto", 
+				\ "if", "implements", "import", "in ", "instanceof", "int", "interface", "long", "native", "new", 
+				\ "null", "package", "private", "protected", "public", "return", "short", "static", "super ", 
+				\ "switch", "synchronized", "this", "throw", "throws", "transient", "true", "try", "typeof", 
+				\ "var", "void", "volatile", "while", "with"]
 
 	let values = variables + functions + htmldom + arguments + builtin + properties + keywords
 
