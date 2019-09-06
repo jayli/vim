@@ -229,14 +229,14 @@ let g:pmenu_scheme = 'macos'
 nmap <S-R>	<Plug>EasyDebuggerInspect
 nmap <S-W>	<Plug>EasyDebuggerWebInspect
 " 暂停程序
-nmap <F7>	<Plug>EasyDebuggerPause
-tmap <F7>	<Plug>EasyDebuggerPause
+nmap <F6>	<Plug>EasyDebuggerPause
+tmap <F6>	<Plug>EasyDebuggerPause
+" 跳出函数
+nmap <F7>	<Plug>EasyDebuggerStepOut
+tmap <F7>	<Plug>EasyDebuggerStepOut
 " 进入函数
 nmap <F8>   <Plug>EasyDebuggerStepIn
 tmap <F8>   <Plug>EasyDebuggerStepIn
-" 跳出函数
-nmap <S-F8> <Plug>EasyDebuggerStepOut
-tmap <S-F8> <Plug>EasyDebuggerStepOut
 " 单步执行
 nmap <F9>	<Plug>EasyDebuggerNext
 tmap <F9>	<Plug>EasyDebuggerNext
