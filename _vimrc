@@ -228,6 +228,8 @@ let g:pmenu_scheme = 'macos'
 " 开启 NodeJS 调试
 nmap <S-R>	<Plug>EasyDebuggerInspect
 nmap <S-W>	<Plug>EasyDebuggerWebInspect
+" 关闭 NodeJS 调试
+nmap <S-E>	<Plug>EasyDebuggerExit
 " 暂停程序
 nmap <F6>	<Plug>EasyDebuggerPause
 tmap <F6>	<Plug>EasyDebuggerPause
