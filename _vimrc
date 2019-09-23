@@ -180,6 +180,9 @@ nnoremap md :call g:Transform_Space_To_4_Tab()<CR>
 imap <Tab> <Plug>EasyCompTabTrigger
 imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 
+let g:jedi#auto_initialization = 1
+autocmd FileType python setlocal completeopt-=preview
+
 " 打开 ctags
 nmap mm :TagbarToggle<CR>
 
