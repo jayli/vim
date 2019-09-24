@@ -277,49 +277,7 @@ set t_Co=256
 
 """""""""""" 主题样式配置
 
-"colorscheme jellybeans
-"colorscheme abstract
-"colorscheme afterglow
 "colorscheme challenger_deep
-"colorscheme iceberg
-
-" 主题设置 colorscheme monkai {{{
-" colorscheme monokai
-" hi LineNr ctermfg=237
-" }}}
-
-" 主题设置 colorscheme two-firewatcha {{{
-" set background=dark
-" colorscheme two-firewatch
-" hi Folded ctermfg=67
-" }}}
-
-" 主题设置 colorscheme turtles {{{
-" colorscheme turtles
-" hi LineNR ctermbg=233
-" hi Normal ctermbg=233
-"}}}
-
-" 主题设置 colorscheme sublimemonokai {{{
-" colorscheme sublimemonokai
-" hi LineNR ctermfg=237
-" }}}
-
-" 主题设置 colorscheme BusyBee {{{
-" colorscheme BusyBee
-" hi LineNR ctermbg=0
-" }}}
-
-" 主题设置 colorscheme alduin {{{
-" let g:alduin_Shout_Become_Ethereal = 1
-" colorscheme alduin
-" hi CursorLineNR ctermfg=235 ctermbg=white
-" }}}
-
-" 主题设置 colorscheme distinguished {{{
-" colorscheme distinguished
-" hi CursorLineNR ctermfg=white ctermbg=black
-" }}}
 
 " TODO
 " 主题设置 colorscheme open-color {{{
@@ -364,10 +322,8 @@ endfunction
 " 固定行高样式 Hack
 if exists("g:colors_name") && 
 			\ index([
-			\	'molokai','afterglow','jellybeans','distinguished',
-			\	'abstract','molkai','evening','alduin','open-color',
-			\	'challenger_deep','two-firewatch','monokai','onedark',
-			\	'BusyBee','iceberg','sublimemonokai','turtles'
+			\	'evening','open-color',
+			\	'challenger_deep','monokai','onedark'
 			\ ], g:colors_name) >= 0
 	" Tab 栏背景样式始终和 Normal 背景色一致
 	exec "hi TabLineFill cterm=none ctermfg=".string(s:Get_BgColor('Normal'))." ctermbg=".string(s:Get_BgColor('Normal'))
