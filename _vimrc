@@ -279,16 +279,26 @@ set t_Co=256
 
 "colorscheme challenger_deep
 
+" 主题设置 colorscheme gruvbox {{{
+colorscheme gruvbox
+set background=dark
+hi CursorLineNR ctermfg=248 ctermbg=234
+hi SignColumn ctermfg=234 ctermbg=235
+hi LineNR ctermbg=234 ctermfg=237
+hi Normal ctermbg=234
+hi Todo ctermfg=231 ctermbg=232 cterm=bold
+" }}}
+
 " TODO
 " 主题设置 colorscheme open-color {{{
-colorscheme open-color
-set background=dark
-hi CursorLineNR ctermfg=248 ctermbg=233
-hi SignColumn ctermfg=118 ctermbg=235
-hi LineNR ctermbg=233 ctermfg=237
-hi Normal ctermbg=233
-hi Todo ctermfg=231 ctermbg=232 cterm=bold
-hi Identifier cterm=none
+" colorscheme open-color
+" set background=dark
+" hi CursorLineNR ctermfg=248 ctermbg=233
+" hi SignColumn ctermfg=118 ctermbg=235
+" hi LineNR ctermbg=233 ctermfg=237
+" hi Normal ctermbg=233
+" hi Todo ctermfg=231 ctermbg=232 cterm=bold
+" hi Identifier cterm=none
 " }}}
 
 " 主题设置 colorscheme onedark {{{
@@ -322,7 +332,7 @@ endfunction
 " 固定行高样式 Hack
 if exists("g:colors_name") && 
 			\ index([
-			\	'evening','open-color',
+			\	'evening','open-color','gruvbox',
 			\	'challenger_deep','monokai','onedark'
 			\ ], g:colors_name) >= 0
 	" Tab 栏背景样式始终和 Normal 背景色一致
