@@ -287,19 +287,19 @@ set t_Co=256
 " }}}
 
 " 主题设置 colorscheme jellybeans {{{
-colorscheme jellybeans
-hi SignColumn ctermfg=118 ctermbg=234
-hi Folded     ctermfg=243 ctermbg=233
+" colorscheme jellybeans
+" hi SignColumn ctermfg=118 ctermbg=234
+" hi Folded     ctermfg=243 ctermbg=233
 "}}}
 
 " 主题设置 colorscheme gruvbox {{{
-" colorscheme gruvbox
-" set background=dark
-" hi CursorLineNR ctermfg=248 ctermbg=234
-" hi SignColumn   ctermfg=234 ctermbg=235
-" hi LineNR       ctermbg=234 ctermfg=237
-" hi Normal       ctermbg=234
-" hi Folded       ctermfg=243 ctermbg=234
+colorscheme gruvbox
+set background=dark
+hi CursorLineNR ctermfg=248 ctermbg=234
+hi SignColumn   ctermfg=234 ctermbg=235
+hi LineNR       ctermbg=234 ctermfg=237
+hi Normal       ctermbg=234
+hi Folded       ctermfg=243 ctermbg=234
 " }}}
 
 " TODO
