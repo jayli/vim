@@ -56,6 +56,7 @@ Shift-Tab | 回切 Tab
 **Ctrl-]** | 跳转到函数/变量定义处
 **Ctrl-[** | 跳回原处
 **Ctrl-T** | 跳回原处
+**Ctrl-O** | 跳回上一个Buffer
 Ctrl-B | js 文件的格式重排，JSBeautify
 Ctrl-K | Snipmate 展开代码片段
 Ctrl-l | 快速右移
