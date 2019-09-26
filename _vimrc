@@ -1,11 +1,11 @@
 " ~/.vimrc by Jayli <lijing00333@163.com> 
-" MoreInfo:	https://github.com/jayli/vim
+" MoreInfo: https://github.com/jayli/vim
 " for 拔赤, 欢迎拷贝
 " http://jayli.github.com
 
 """""""""""""""""""""""""""""""""""""""""""
 "
-"	VIM 基础配置
+"   VIM 基础配置
 "
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -23,14 +23,14 @@ au BufRead,BufNewFile *.xtpl,*.we,*.vue set filetype=html
 " 将 swift 识别为 js
 au BufRead,BufNewFile *.swift,*.coffee set filetype=javascript
 " 识别markdown文件
-au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md	 set filetype=markdown
+au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=markdown
 " Go 语言配置：执行`:GoBuild`时先在Buf内检查代码错误
 au BufRead,BufNewFile *.go set autowrite
 " Go 语言配置 Tagbar
 au FileType go 
-	\ if executable("ctags") && globpath(&rtp, 'plugin/tagbar.vim') != "" |
-	\	call tagbar#OpenWindow() |
-	\ endif
+    \ if executable("ctags") && globpath(&rtp, 'plugin/tagbar.vim') != "" |
+    \   call tagbar#OpenWindow() |
+    \ endif
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/ignored_files/*
 " CtrlP 的工作模式
 let g:ctrlp_working_path_mode = 'rw'
@@ -51,10 +51,10 @@ set laststatus=1
 
 " 打开文件时，自动定位到上次光标位置
 if has ( "autocmd" )
-	autocmd BufReadPost *
-	\ if line("'\"") > 0 && line ("'\"") <= line("$") |
-	\		exe "normal g'\"" |
-	\ endif
+    autocmd BufReadPost *
+    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+    \       exe "normal g'\"" |
+    \ endif
 endif  " has ("autocmd") 
 
 "高亮搜索结果
@@ -70,7 +70,7 @@ autocmd VimLeave * echo "Byebye Jayli.."
 "自动缩进动作，粘贴自动缩进
 set smartindent
 "自动缩进长度
-set cino=:0g0								
+set cino=:0g0                               
 "长句在单词间折行
 set wrap
 "搜索忽略大小写
@@ -93,8 +93,9 @@ set fileencodings=ucs-bom,utf-8,GB18030,gbk,big5
 set guifontset=*-r-*
 "tab尺寸定义
 set shiftwidth=4
-set tabstop=4		"tab
+set tabstop=4
 set softtabstop=4
+set expandtab
 "退出模式，退出时保留残存窗口
 set t_ti=
 set t_te= 
@@ -109,7 +110,7 @@ set foldenable
 
 """""""""""""""""""""""""""""""""""""""""""
 "
-"	防止 VIM 运行太卡
+"   防止 VIM 运行太卡
 "
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -122,15 +123,15 @@ set lazyredraw
 
 """""""""""""""""""""""""""""""""""""""""""
 "
-"	H（大写的H）调用常见命令
-"	
+"   H（大写的H）调用常见命令
+"   
 """""""""""""""""""""""""""""""""""""""""""
 
 command! -nargs=0 -complete=command H call execute(":h jayli")
 
 """""""""""""""""""""""""""""""""""""""""""
 "
-"	VIM 按键映射定义
+"   VIM 按键映射定义
 "
 """""""""""""""""""""""""""""""""""""""""""
 " Ctrl-B JS beautify
@@ -158,25 +159,12 @@ nmap <S-Tab> :tabprevious<CR>
 vnoremap <C-C> "+y
 vnoremap Y "+y
 "快速左右移动光标
-nnoremap <C-l> 10l
-nnoremap <C-h> 10h
+nnoremap <C-l> 4l
+nnoremap <C-h> 4h
 " 选择模式中触发对齐动作
 xmap al <Plug>(EasyAlign)
-
-"空格缩进切换Tab，我的习惯 4 个缩进 Tab -------------- 删除 TODO
-function! g:Transform_Space_To_4_Tab(index)
-	execute "echo \"".a:index."\""
-	return
-	set ts=2
-	set noexpandtab
-	execute "%retab!"
-	set ts=4
-	execute "%retab!"
-	execute "echo \"缩进符切换为 4 字符宽 Tab !\""
-endfunction
-
-"配置缩进整理快捷键 TODO
-nnoremap md <Plug>TransformSpaceTo4Tab
+"配置缩进整理快捷键
+nnoremap id :IndentModify<CR>
 
 " Tab 键的配置，基本上都交给 vim-easycomplete 来搞定了
 imap <Tab> <Plug>EasyCompTabTrigger
@@ -204,7 +192,7 @@ let g:ctrlp_cmd = 'CtrlP'
 
 """""""""""""""""""""""""""""""""""""""""""
 "
-"	VIM 各种编程插件所需的配置
+"   VIM 各种编程插件所需的配置
 "
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -226,41 +214,41 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
 " 快捷浮窗样式定义，for vim-easycomplete
-"	dark,light,rider
+"   dark,light,rider
 let g:pmenu_scheme = 'rider'
 
 """""""""""""""""""""""""""""""""""""""""""
 "
-"	EasyDebugger 插件快捷键配置 for Debug，插件 vim-easydebugger 所需
+"   EasyDebugger 插件快捷键配置 for Debug，插件 vim-easydebugger 所需
 "
 """""""""""""""""""""""""""""""""""""""""""
 
 " 开启 NodeJS 调试
-nmap <S-R>	<Plug>EasyDebuggerInspect
-nmap <S-W>	<Plug>EasyDebuggerWebInspect
+nmap <S-R>  <Plug>EasyDebuggerInspect
+nmap <S-W>  <Plug>EasyDebuggerWebInspect
 " 关闭 NodeJS 调试
-nmap <S-E>	<Plug>EasyDebuggerExit
+nmap <S-E>  <Plug>EasyDebuggerExit
 " 暂停程序
-nmap <F6>	<Plug>EasyDebuggerPause
-tmap <F6>	<Plug>EasyDebuggerPause
+nmap <F6>   <Plug>EasyDebuggerPause
+tmap <F6>   <Plug>EasyDebuggerPause
 " 跳出函数
-nmap <F7>	<Plug>EasyDebuggerStepOut
-tmap <F7>	<Plug>EasyDebuggerStepOut
+nmap <F7>   <Plug>EasyDebuggerStepOut
+tmap <F7>   <Plug>EasyDebuggerStepOut
 " 进入函数
 nmap <F8>   <Plug>EasyDebuggerStepIn
 tmap <F8>   <Plug>EasyDebuggerStepIn
 " 单步执行
-nmap <F9>	<Plug>EasyDebuggerNext
-tmap <F9>	<Plug>EasyDebuggerNext
+nmap <F9>   <Plug>EasyDebuggerNext
+tmap <F9>   <Plug>EasyDebuggerNext
 " Continue
-nmap <F10>	<Plug>EasyDebuggerContinue
-tmap <F10>	<Plug>EasyDebuggerContinue
+nmap <F10>  <Plug>EasyDebuggerContinue
+tmap <F10>  <Plug>EasyDebuggerContinue
 " 设置断点
-nmap <F12>	<Plug>EasyDebuggerSetBreakPoint
+nmap <F12>  <Plug>EasyDebuggerSetBreakPoint
 
 """""""""""""""""""""""""""""""""""""""""""
 "
-"	Pathogen 插件启动
+"   Pathogen 插件启动
 "
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -269,7 +257,7 @@ execute pathogen#infect()
 
 """""""""""""""""""""""""""""""""""""""""""
 "
-"	VIM 主题设置，性能考虑，最后初始化皮肤
+"   VIM 主题设置，性能考虑，最后初始化皮肤
 "
 """""""""""""""""""""""""""""""""""""""""""
 "语法高亮
@@ -314,11 +302,6 @@ hi Folded       ctermfg=243 ctermbg=234
 " hi Identifier cterm=none
 " }}}
 
-" 主题设置 colorscheme onedark {{{
-" colorscheme onedark
-" hi Normal ctermbg=234
-"}}}
-
 " 主题设置 colorscheme molokai {{{
 " let g:molokai_original = 0
 " let g:rehash256 = 0
@@ -328,49 +311,49 @@ hi Folded       ctermfg=243 ctermbg=234
 " 本地全局样式 Hack {{{ 
 " 获得某个样式的 BackgroundColor
 function! s:Get_BgColor(name)
-	if &t_Co > 255 && !has('gui_running')
-		let hlString = s:Highlight_Args(a:name)
-		let bgColor = matchstr(hlString,"\\(\\sctermbg=\\)\\@<=\\d\\{\-}\\(\\s\\)\\@=")
-		if bgColor != ''
-			return str2nr(bgColor)
-		endif
-	endif
-	return 0
+    if &t_Co > 255 && !has('gui_running')
+        let hlString = s:Highlight_Args(a:name)
+        let bgColor = matchstr(hlString,"\\(\\sctermbg=\\)\\@<=\\d\\{\-}\\(\\s\\)\\@=")
+        if bgColor != ''
+            return str2nr(bgColor)
+        endif
+    endif
+    return 0
 endfunction
 
 function! s:Highlight_Args(name)
-	return 'hi ' . substitute(split(execute('hi ' . a:name), '\n')[0], '\<xxx\>', '', '')
+    return 'hi ' . substitute(split(execute('hi ' . a:name), '\n')[0], '\<xxx\>', '', '')
 endfunction
 
 " 固定行高样式 Hack 
 if exists("g:colors_name") && 
-			\ index([
-			\	'evening','open-color','gruvbox','jellybeans',
-			\	'challenger_deep','monokai','onedark','seoul256'
-			\ ], g:colors_name) >= 0
-	" Tab 栏背景样式始终和 Normal 背景色一致
-	exec "hi TabLineFill cterm=none ctermfg=".string(s:Get_BgColor('Normal'))." ctermbg=".string(s:Get_BgColor('Normal'))
-	" 折叠样式始终和 Normal 背景色一致
-	exec "hi Folded ctermbg=". string(s:Get_BgColor('Normal'))
-	" 固定行高亮样式
-	exec "hi CursorLine ctermbg=234 cterm=none"
-	if s:Get_BgColor('Normal') == s:Get_BgColor('CursorLine')
-		exec "hi CursorLine ctermbg=" . string(s:Get_BgColor('CursorLine') + 1)
-	endif
-	if s:Get_BgColor('CursorLine') == s:Get_BgColor('StatusLine')
-		exec "hi StatusLine cterm=none ctermbg=" . string(s:Get_BgColor('CursorLine') + 1)
-	endif
-	" 行号和正文样式相等
-	if s:Get_BgColor('LineNr') != s:Get_BgColor('Normal')
-		exec "hi LineNr ctermbg=" . string(s:Get_BgColor('Normal'))
-	endif
+            \ index([
+            \   'evening','open-color','gruvbox','jellybeans',
+            \   'challenger_deep','monokai','seoul256'
+            \ ], g:colors_name) >= 0
+    " Tab 栏背景样式始终和 Normal 背景色一致
+    exec "hi TabLineFill cterm=none ctermfg=".string(s:Get_BgColor('Normal'))." ctermbg=".string(s:Get_BgColor('Normal'))
+    " 折叠样式始终和 Normal 背景色一致
+    exec "hi Folded ctermbg=". string(s:Get_BgColor('Normal'))
+    " 固定行高亮样式
+    exec "hi CursorLine ctermbg=234 cterm=none"
+    if s:Get_BgColor('Normal') == s:Get_BgColor('CursorLine')
+        exec "hi CursorLine ctermbg=" . string(s:Get_BgColor('CursorLine') + 1)
+    endif
+    if s:Get_BgColor('CursorLine') == s:Get_BgColor('StatusLine')
+        exec "hi StatusLine cterm=none ctermbg=" . string(s:Get_BgColor('CursorLine') + 1)
+    endif
+    " 行号和正文样式相等
+    if s:Get_BgColor('LineNr') != s:Get_BgColor('Normal')
+        exec "hi LineNr ctermbg=" . string(s:Get_BgColor('Normal'))
+    endif
 endif 
 
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""
 "
-"	显示顶部 Tabbar 和底部 Statusline
+"   显示顶部 Tabbar 和底部 Statusline
 "
 """""""""""""""""""""""""""""""""""""""""""
 
@@ -385,3 +368,5 @@ setlocal cursorline
 " 得到文件buff
 
 "let g:kk = system("ls ~/")
+
+" vim:ts=4:sw=4:sts=4

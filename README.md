@@ -36,7 +36,7 @@ Author: [@Jayli](http://jayli.github.io/)
 tn | :tabnew 打开新窗口
 wm | :NERDTreeToggle 打开左侧树形文件菜单列表
 mm | :TagbarToggle 打开右侧函数列表
-md | Modify 将空格缩进格式修正为4宽Tab缩进
+id | :IndentModify 将Tab缩进或者2格缩进修正为4宽Space缩进
 // | 选中模式下注释或取消注释多行
 **gg** | 到达文件开头
 **=** | 选中模式格式化选中部分的代码
