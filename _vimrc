@@ -223,8 +223,9 @@ let g:go_highlight_function_calls = 1
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
-" 快捷浮窗样式定义，定义了default（暗）和macos（亮）两种样式，插件 vim-easycomplete 所需
-let g:pmenu_scheme = 'macos'
+" 快捷浮窗样式定义，for vim-easychmplete
+"	dark,light,rider
+let g:pmenu_scheme = 'rider'
 
 """""""""""""""""""""""""""""""""""""""""""
 "
@@ -283,10 +284,10 @@ set t_Co=256
 colorscheme gruvbox
 set background=dark
 hi CursorLineNR ctermfg=248 ctermbg=234
-hi SignColumn ctermfg=234 ctermbg=235
-hi LineNR ctermbg=234 ctermfg=237
-hi Normal ctermbg=234
-hi Todo ctermfg=231 ctermbg=232 cterm=bold
+hi SignColumn   ctermfg=234 ctermbg=235
+hi LineNR       ctermbg=234 ctermfg=237
+hi Normal       ctermbg=234
+hi Folded       ctermfg=243 ctermbg=234
 " }}}
 
 " TODO
