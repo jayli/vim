@@ -163,8 +163,10 @@ nnoremap <C-h> 10h
 " 选择模式中触发对齐动作
 xmap al <Plug>(EasyAlign)
 
-"空格缩进切换Tab，我的习惯 4 个缩进 Tab
-function! g:Transform_Space_To_4_Tab()
+"空格缩进切换Tab，我的习惯 4 个缩进 Tab -------------- 删除 TODO
+function! g:Transform_Space_To_4_Tab(index)
+	execute "echo \"".a:index."\""
+	return
 	set ts=2
 	set noexpandtab
 	execute "%retab!"
@@ -173,8 +175,8 @@ function! g:Transform_Space_To_4_Tab()
 	execute "echo \"缩进符切换为 4 字符宽 Tab !\""
 endfunction
 
-"配置缩进整理快捷键
-nnoremap md :call g:Transform_Space_To_4_Tab()<CR>
+"配置缩进整理快捷键 TODO
+nnoremap md <Plug>TransformSpaceTo4Tab
 
 " Tab 键的配置，基本上都交给 vim-easycomplete 来搞定了
 imap <Tab> <Plug>EasyCompTabTrigger
@@ -223,7 +225,7 @@ let g:go_highlight_function_calls = 1
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
-" 快捷浮窗样式定义，for vim-easychmplete
+" 快捷浮窗样式定义，for vim-easycomplete
 "	dark,light,rider
 let g:pmenu_scheme = 'rider'
 
@@ -278,16 +280,26 @@ set t_Co=256
 
 """""""""""" 主题样式配置
 
-"colorscheme challenger_deep
+" 主题设置 colorscheme seoul256 {{{ 
+" let g:seoul256_background = 233
+" colorscheme seoul256
+" set background=dark
+" }}}
+
+" 主题设置 colorscheme jellybeans {{{
+colorscheme jellybeans
+hi SignColumn ctermfg=118 ctermbg=234
+hi Folded     ctermfg=243 ctermbg=233
+"}}}
 
 " 主题设置 colorscheme gruvbox {{{
-colorscheme gruvbox
-set background=dark
-hi CursorLineNR ctermfg=248 ctermbg=234
-hi SignColumn   ctermfg=234 ctermbg=235
-hi LineNR       ctermbg=234 ctermfg=237
-hi Normal       ctermbg=234
-hi Folded       ctermfg=243 ctermbg=234
+" colorscheme gruvbox
+" set background=dark
+" hi CursorLineNR ctermfg=248 ctermbg=234
+" hi SignColumn   ctermfg=234 ctermbg=235
+" hi LineNR       ctermbg=234 ctermfg=237
+" hi Normal       ctermbg=234
+" hi Folded       ctermfg=243 ctermbg=234
 " }}}
 
 " TODO
@@ -330,11 +342,11 @@ function! s:Highlight_Args(name)
 	return 'hi ' . substitute(split(execute('hi ' . a:name), '\n')[0], '\<xxx\>', '', '')
 endfunction
 
-" 固定行高样式 Hack
+" 固定行高样式 Hack 
 if exists("g:colors_name") && 
 			\ index([
-			\	'evening','open-color','gruvbox',
-			\	'challenger_deep','monokai','onedark'
+			\	'evening','open-color','gruvbox','jellybeans',
+			\	'challenger_deep','monokai','onedark','seoul256'
 			\ ], g:colors_name) >= 0
 	" Tab 栏背景样式始终和 Normal 背景色一致
 	exec "hi TabLineFill cterm=none ctermfg=".string(s:Get_BgColor('Normal'))." ctermbg=".string(s:Get_BgColor('Normal'))
