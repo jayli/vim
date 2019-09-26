@@ -14,7 +14,7 @@
 tn      | :tabnew 打开新窗口
 wm      | :NERDTreeToggle 打开左侧树形文件菜单列表
 mm      | :TagbarToggle 打开右侧函数列表
-md      | Modify 将空格缩进格式修正为4宽Tab缩进
+id      | :IndentModify 将Tab缩进格式修正为4宽Space缩进
 //      | 选中模式下注释或取消注释多行
 gg      | 到达文件开头
 =       | 选中模式格式化选中部分的代码
@@ -34,6 +34,7 @@ Shift-G   | 到达文件结尾
 Shift-K   | 查找光标处单词的帮助
 Ctrl-]    | 跳转到函数/变量定义处
 Ctrl-T    | 跳回原处
+Ctrl-O    | 跳回上一个Buffer
 Ctrl-B    | js 文件的格式重排，JSBeautify
 Ctrl-K    | Snipmate 展开代码片段
 Ctrl-l    | 快速右移
