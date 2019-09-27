@@ -17,17 +17,17 @@ syntax off
 " 识别文件类型
 filetype plugin indent on 
 " 将less,scss识别为css
-au BufRead,BufNewFile *.less,*.scss set filetype=css
+autocmd BufRead,BufNewFile *.less,*.scss set filetype=css
 " 将xtpl,vue识别为html
-au BufRead,BufNewFile *.xtpl,*.we,*.vue set filetype=html
+autocmd BufRead,BufNewFile *.xtpl,*.we,*.vue set filetype=html
 " 将 swift 识别为 js
-au BufRead,BufNewFile *.swift,*.coffee set filetype=javascript
+autocmd BufRead,BufNewFile *.swift,*.coffee set filetype=javascript
 " 识别markdown文件
-au BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=markdown
+autocmd BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=markdown
 " Go 语言配置：执行`:GoBuild`时先在Buf内检查代码错误
-au BufRead,BufNewFile *.go set autowrite
+autocmd BufRead,BufNewFile *.go set autowrite
 " Go 语言配置 Tagbar
-au FileType go 
+autocmd FileType go 
     \ if executable("ctags") && globpath(&rtp, 'plugin/tagbar.vim') != "" |
     \   call tagbar#OpenWindow() |
     \ endif
@@ -35,9 +35,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/ignored_files/*
 " CtrlP 的工作模式
 let g:ctrlp_working_path_mode = 'rw'
 " js文件格式化，Ctrl-b
-au FileType javascript nnoremap <C-b> :call g:Jsbeautify()<CR>
+autocmd FileType javascript nnoremap <C-b> :call g:Jsbeautify()<CR>
 "css 文件输入:匹配关键字
-au Filetype css inoremap <buffer> : :<C-X><C-O><C-P>
+autocmd Filetype css inoremap <buffer> : :<C-X><C-O><C-P>
 "默认长度的空格
 set backspace=indent,eol,start
 " 读写.viminfo文件，不要额外存储
@@ -89,13 +89,14 @@ set showcmd
 set modelines=0
 "文件编码设定
 set fileencodings=ucs-bom,utf-8,GB18030,gbk,big5
-"gui字体，随意模式
-set guifontset=*-r-*
-"tab尺寸定义
+"tab 尺寸定义
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set expandtab
+"显示Tab缩进标识
+set list
+set listchars=tab:>-
 "退出模式，退出时保留残存窗口
 set t_ti=
 set t_te= 
@@ -164,7 +165,7 @@ nnoremap <C-h> 4h
 " 选择模式中触发对齐动作
 xmap al <Plug>(EasyAlign)
 "配置缩进整理快捷键
-nnoremap id :IndentModify<CR>
+nnoremap md :IndentModify<CR>
 
 " Tab 键的配置，基本上都交给 vim-easycomplete 来搞定了
 imap <Tab> <Plug>EasyCompTabTrigger
@@ -268,6 +269,18 @@ set t_Co=256
 
 """""""""""" 主题样式配置
 
+" 主题设置 colorscheme onedark {{{
+" colorscheme onedark
+" set background=dark
+" let g:onedark_termcolors=16
+" hi CursorLineNR ctermfg=248 ctermbg=233
+" hi SignColumn   ctermfg=233 ctermbg=235
+" hi LineNR       ctermbg=233 ctermfg=237
+" hi Normal       ctermbg=233
+" hi Todo         ctermfg=231 ctermbg=233 cterm=bold
+" hi Folded       ctermfg=242 ctermbg=233
+" }}}
+
 " 主题设置 colorscheme seoul256 {{{ 
 " let g:seoul256_background = 233
 " colorscheme seoul256
@@ -283,11 +296,12 @@ set t_Co=256
 " 主题设置 colorscheme gruvbox {{{
 colorscheme gruvbox
 set background=dark
-hi CursorLineNR ctermfg=248 ctermbg=234
-hi SignColumn   ctermfg=234 ctermbg=235
-hi LineNR       ctermbg=234 ctermfg=237
-hi Normal       ctermbg=234
-hi Folded       ctermfg=243 ctermbg=234
+hi CursorLineNR ctermfg=248 ctermbg=233
+hi SignColumn   ctermfg=233 ctermbg=235
+hi LineNR       ctermbg=233 ctermfg=237
+hi Normal       ctermbg=233
+hi Todo         ctermfg=231 ctermbg=233 cterm=bold
+hi Folded       ctermfg=242 ctermbg=233
 " }}}
 
 " TODO
@@ -329,7 +343,7 @@ endfunction
 if exists("g:colors_name") && 
             \ index([
             \   'evening','open-color','gruvbox','jellybeans',
-            \   'challenger_deep','monokai','seoul256'
+            \   'challenger_deep','monokai','seoul256','onedark'
             \ ], g:colors_name) >= 0
     " Tab 栏背景样式始终和 Normal 背景色一致
     exec "hi TabLineFill cterm=none ctermfg=".string(s:Get_BgColor('Normal'))." ctermbg=".string(s:Get_BgColor('Normal'))
