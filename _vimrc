@@ -64,8 +64,7 @@ set hlsearch
 set cursorline
 "显示行号
 set nu
-"欢迎文字
-autocmd VimEnter * echo "Welcome back jayli :)"
+"欢迎文字 autocmd VimEnter * echo "Welcome back jayli :)"
 autocmd VimLeave * echo "Byebye Jayli.."
 "自动缩进动作，粘贴自动缩进
 set smartindent
@@ -294,15 +293,24 @@ set t_Co=256
 "}}}
 
 " 主题设置 colorscheme gruvbox {{{
-colorscheme gruvbox
-set background=dark
+" colorscheme gruvbox
+" set background=dark
+" hi CursorLineNR ctermfg=248 ctermbg=233
+" hi SignColumn   ctermfg=233 ctermbg=235
+" hi LineNR       ctermbg=233 ctermfg=237
+" hi Normal       ctermbg=233
+" hi Todo         ctermfg=231 ctermbg=233 cterm=bold
+" hi Folded       ctermfg=242 ctermbg=233
+" }}}
+
+colorscheme spring-night
 hi CursorLineNR ctermfg=248 ctermbg=233
 hi SignColumn   ctermfg=233 ctermbg=235
 hi LineNR       ctermbg=233 ctermfg=237
-hi Normal       ctermbg=233
+" hi Normal       ctermbg=233
 hi Todo         ctermfg=231 ctermbg=233 cterm=bold
 hi Folded       ctermfg=242 ctermbg=233
-" }}}
+"set termguicolors
 
 " TODO
 " 主题设置 colorscheme open-color {{{
@@ -342,7 +350,7 @@ endfunction
 " 固定行高样式 Hack 
 if exists("g:colors_name") && 
             \ index([
-            \   'evening','open-color','gruvbox','jellybeans',
+            \   'spring-night','open-color','gruvbox','jellybeans',
             \   'challenger_deep','monokai','seoul256','onedark'
             \ ], g:colors_name) >= 0
     " Tab 栏背景样式始终和 Normal 背景色一致
