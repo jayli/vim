@@ -303,14 +303,14 @@ set t_Co=256
 " hi Folded       ctermfg=242 ctermbg=233
 " }}}
 
+" 主题设置 colorscheme spring-night {{{
 colorscheme spring-night
 hi CursorLineNR ctermfg=248 ctermbg=233
 hi SignColumn   ctermfg=233 ctermbg=235
 hi LineNR       ctermbg=233 ctermfg=237
-" hi Normal       ctermbg=233
 hi Todo         ctermfg=231 ctermbg=233 cterm=bold
 hi Folded       ctermfg=242 ctermbg=233
-"set termguicolors
+" }}}
 
 " TODO
 " 主题设置 colorscheme open-color {{{
@@ -329,7 +329,7 @@ hi Folded       ctermfg=242 ctermbg=233
 " let g:rehash256 = 0
 " colorscheme molokai  
 "}}}
-
+    
 " 本地全局样式 Hack {{{ 
 " 获得某个样式的 BackgroundColor
 function! s:Get_BgColor(name)
