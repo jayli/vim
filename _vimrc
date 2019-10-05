@@ -96,9 +96,12 @@ set expandtab
 "显示Tab缩进标识
 set list
 set listchars=tab:>-
+"空格提示
+highlight WhitespaceEOL ctermbg=238 guibg=#444444
+match WhitespaceEOL /\s\+$/
 "退出模式，退出时保留残存窗口
 set t_ti=
-set t_te= 
+set t_te=
 "最大tab个数
 set tabpagemax=40
 "关键词字典
@@ -124,7 +127,7 @@ set lazyredraw
 """""""""""""""""""""""""""""""""""""""""""
 "
 "   H（大写的H）调用常见命令
-"   
+"
 """""""""""""""""""""""""""""""""""""""""""
 
 command! -nargs=0 -complete=command H call execute(":h jayli")
@@ -146,12 +149,12 @@ command! -nargs=0 -complete=command H call execute(":h jayli")
 " JSHint
 nmap <F8> :JSHint<CR>
 " tab操作多文件
-nmap tn :tabnew 
+nmap tn :tabnew
 " NERDTree 配置
 nmap wm :NERDTreeRefreshRoot<CR>:NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-nmap <Tab> :tabnext<CR> 
+nmap <Tab> :tabnext<CR>
 nmap <S-Tab> :tabprevious<CR>
 " Ctrl-[ 跳回
 "nmap <C-[> <C-t>
@@ -329,7 +332,7 @@ hi Folded       ctermfg=242 ctermbg=233
 " let g:rehash256 = 0
 " colorscheme molokai  
 "}}}
-    
+
 " 本地全局样式 Hack {{{ 
 " 获得某个样式的 BackgroundColor
 function! s:Get_BgColor(name)
@@ -347,8 +350,8 @@ function! s:Highlight_Args(name)
     return 'hi ' . substitute(split(execute('hi ' . a:name), '\n')[0], '\<xxx\>', '', '')
 endfunction
 
-" 固定行高样式 Hack 
-if exists("g:colors_name") && 
+" 固定行高样式 Hack
+if exists("g:colors_name") &&
             \ index([
             \   'spring-night','open-color','gruvbox','jellybeans',
             \   'challenger_deep','monokai','seoul256','onedark'
@@ -369,7 +372,7 @@ if exists("g:colors_name") &&
     if s:Get_BgColor('LineNr') != s:Get_BgColor('Normal')
         exec "hi LineNr ctermbg=" . string(s:Get_BgColor('Normal'))
     endif
-endif 
+endif
 
 " }}}
 
