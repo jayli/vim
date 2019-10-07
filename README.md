@@ -2,6 +2,8 @@
 
 Author: [@Jayli](http://jayli.github.io/)
 
+版本要求 VIM >= 8.1
+
 ## 安装
 
 ### 脚本安装
