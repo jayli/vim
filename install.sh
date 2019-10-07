@@ -27,6 +27,7 @@ install() {
 
 update() {
     (cd $HOME/.vim; git pull;)
+    (cd $HOME/.vim; git submodule init;)
     (cd $HOME/.vim; git submodule update --remote --merge;)
     (cd $HOME/.vim; git submodule foreach git checkout master;)
     #vim +BundleClean +BundleInstall +qall! </dev/tty
@@ -34,7 +35,7 @@ update() {
 
 for arg in "$@"
 do
-    case $arg in 
+    case $arg in
         install)
             install;
             break;
