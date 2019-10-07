@@ -1,4 +1,4 @@
-# <font color=blue>Easy Vim</font> 配置  ![Vim](https://img.shields.io/badge/vim-awesome-brightgreen.svg) [![Gitter](https://img.shields.io/badge/gitter-join%20chat-yellowgreen.svg)](https://gitter.im/jayli/vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge) 
+# <font color=blue>Easy Vim</font> 配置  ![Vim](https://img.shields.io/badge/vim-awesome-brightgreen.svg) [![Gitter](https://img.shields.io/badge/gitter-join%20chat-yellowgreen.svg)](https://gitter.im/jayli/vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
 
 Author: [@Jayli](http://jayli.github.io/)
 
@@ -12,7 +12,7 @@ Author: [@Jayli](http://jayli.github.io/)
 
 更新配置
 
-	curl "http://jayli.github.io/vim_install.sh" | bash -s update 
+	curl "http://jayli.github.io/vim_install.sh" | bash -s update
 
 ### 源码安装
 
@@ -128,7 +128,7 @@ e | 以单词为跃进长度前进光标
 
 ### Debugger 调试
 
-我常用 NodeJS 和 Golang 调试，依赖插件 [Vim-EasyDebugger](https://github.com/jayli/vim-easydebugger)
+我常用 NodeJS 、Python 和 Golang 调试，依赖插件 [Vim-EasyDebugger](https://github.com/jayli/vim-easydebugger)
 
 ### VIM 卡顿
 

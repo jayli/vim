@@ -15,7 +15,7 @@ set nocompatible
 set nocursorline
 syntax off
 " 识别文件类型
-filetype plugin indent on 
+filetype plugin indent on
 " 将less,scss识别为css
 autocmd BufRead,BufNewFile *.less,*.scss set filetype=css
 " 将xtpl,vue识别为html
@@ -69,7 +69,7 @@ autocmd VimLeave * echo "Byebye Jayli.."
 "自动缩进动作，粘贴自动缩进
 set smartindent
 "自动缩进长度
-set cino=:0g0                               
+set cino=:0g0
 "长句在单词间折行
 set wrap
 "搜索忽略大小写
@@ -77,9 +77,9 @@ set ignorecase
 "编辑源备份
 set backupcopy=yes
 "编辑模式自动缩进
-set autoindent 
+set autoindent
 "记录历史
-set history=150 
+set history=150
 "标尺
 set ruler
 "显示不完整的命令
@@ -330,10 +330,10 @@ hi Folded       ctermfg=242 ctermbg=233
 " 主题设置 colorscheme molokai {{{
 " let g:molokai_original = 0
 " let g:rehash256 = 0
-" colorscheme molokai  
+" colorscheme molokai
 "}}}
 
-" 本地全局样式 Hack {{{ 
+" 本地全局样式 Hack {{{
 " 获得某个样式的 BackgroundColor
 function! s:Get_BgColor(name)
     if &t_Co > 255 && !has('gui_running')
