@@ -406,6 +406,8 @@ else
     setlocal cursorline
 endif
 
+redraw
+
 "----------------------TEST---------------------
 
 " 得到文件buff
