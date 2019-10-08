@@ -64,8 +64,6 @@ endif
 "高亮搜索结果
 set incsearch
 set hlsearch
-"高亮当前行和行号
-set cursorline
 "显示行号
 set nu
 "欢迎文字 autocmd VimEnter * echo "Welcome back jayli :)"
@@ -331,20 +329,23 @@ set t_Co=256
 "}}}
 
 " 主题设置 colorscheme spring-night {{{
-colorscheme spring-night
-hi CursorLineNR ctermfg=248 ctermbg=233
-hi SignColumn   ctermfg=233 ctermbg=235
-hi LineNR       ctermbg=233 ctermfg=237
-hi Todo         ctermfg=231 ctermbg=233 cterm=bold
-hi Folded       ctermfg=242 ctermbg=233
+" colorscheme spring-night
+" hi CursorLineNR ctermfg=248 ctermbg=233
+" hi SignColumn   ctermfg=233 ctermbg=235
+" hi LineNR       ctermbg=233 ctermfg=237
+" hi Todo         ctermfg=231 ctermbg=233 cterm=bold
+" hi Folded       ctermfg=242 ctermbg=233
 " }}}
 
-" Colorscheme for Raspberry Pi {{{
 if g:Is_My_RaspberryPi()
+    " Colorscheme for Raspberry Pi {{{
     colorscheme eldar
+    hi Folded     ctermbg=233
     hi SignColumn ctermbg=232
+    hi Normal ctermbg=233
+    hi Todo       ctermfg=231 ctermbg=233 cterm=bold
+    " }}}
 endif
-" }}}
 
 " 本地全局样式 Hack {{{
 " 获得某个样式的 BackgroundColor
@@ -399,7 +400,11 @@ endif
 "最后显示顶部Tabline 和底部 statusline
 set showtabline=2
 set laststatus=2
-setlocal cursorline
+if g:Is_My_RaspberryPi()
+    setlocal nocursorline
+else
+    setlocal cursorline
+endif
 
 "----------------------TEST---------------------
 
