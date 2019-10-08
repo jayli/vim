@@ -9,8 +9,12 @@
 "
 """""""""""""""""""""""""""""""""""""""""""
 
+function! g:Is_My_RaspberryPi()
+    return system("uname -a") =~ "raspberry"
+endfunction
+
 " 使用vim默认配置，推荐这样做
-set nocompatible 
+set nocompatible
 " 为了避免加载 Plugin 过程中的抖动，高亮行号先关掉，语法高亮先关掉，最后再打开
 set nocursorline
 syntax off
@@ -27,7 +31,7 @@ autocmd BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=markdown
 " Go 语言配置：执行`:GoBuild`时先在Buf内检查代码错误
 autocmd BufRead,BufNewFile *.go set autowrite
 " Go 语言配置 Tagbar
-autocmd FileType go 
+autocmd FileType go
     \ if executable("ctags") && globpath(&rtp, 'plugin/tagbar.vim') != "" |
     \   call tagbar#OpenWindow() |
     \ endif
@@ -55,7 +59,7 @@ if has ( "autocmd" )
     \ if line("'\"") > 0 && line ("'\"") <= line("$") |
     \       exe "normal g'\"" |
     \ endif
-endif  " has ("autocmd") 
+endif
 
 "高亮搜索结果
 set incsearch
@@ -174,11 +178,13 @@ imap <Tab> <Plug>EasyCompTabTrigger
 imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 
 " Jedi 配置
-let g:jedi#auto_initialization = 1
-let g:jedi#popup_on_dot = 1
-let g:jedi#popup_select_first = 0
-let g:jedi#show_call_signatures = "1"
-autocmd FileType python setlocal completeopt-=preview
+if !g:Is_My_RaspberryPi()
+    let g:jedi#auto_initialization = 1
+    let g:jedi#popup_on_dot = 1
+    let g:jedi#popup_select_first = 0
+    let g:jedi#show_call_signatures = "1"
+    autocmd FileType python setlocal completeopt-=preview
+endif
 
 " 打开 ctags
 nmap mm :TagbarToggle<CR>
@@ -306,15 +312,6 @@ set t_Co=256
 " hi Folded       ctermfg=242 ctermbg=233
 " }}}
 
-" 主题设置 colorscheme spring-night {{{
-colorscheme spring-night
-hi CursorLineNR ctermfg=248 ctermbg=233
-hi SignColumn   ctermfg=233 ctermbg=235
-hi LineNR       ctermbg=233 ctermfg=237
-hi Todo         ctermfg=231 ctermbg=233 cterm=bold
-hi Folded       ctermfg=242 ctermbg=233
-" }}}
-
 " TODO
 " 主题设置 colorscheme open-color {{{
 " colorscheme open-color
@@ -332,6 +329,22 @@ hi Folded       ctermfg=242 ctermbg=233
 " let g:rehash256 = 0
 " colorscheme molokai
 "}}}
+
+" 主题设置 colorscheme spring-night {{{
+colorscheme spring-night
+hi CursorLineNR ctermfg=248 ctermbg=233
+hi SignColumn   ctermfg=233 ctermbg=235
+hi LineNR       ctermbg=233 ctermfg=237
+hi Todo         ctermfg=231 ctermbg=233 cterm=bold
+hi Folded       ctermfg=242 ctermbg=233
+" }}}
+
+" Colorscheme for Raspberry Pi {{{
+if g:Is_My_RaspberryPi()
+    colorscheme eldar
+    hi SignColumn ctermbg=232
+endif
+" }}}
 
 " 本地全局样式 Hack {{{
 " 获得某个样式的 BackgroundColor
@@ -354,7 +367,7 @@ endfunction
 if exists("g:colors_name") &&
             \ index([
             \   'spring-night','open-color','gruvbox','jellybeans',
-            \   'challenger_deep','monokai','seoul256','onedark'
+            \   'eldar','monokai','seoul256','onedark'
             \ ], g:colors_name) >= 0
     " Tab 栏背景样式始终和 Normal 背景色一致
     exec "hi TabLineFill cterm=none ctermfg=".string(s:Get_BgColor('Normal'))." ctermbg=".string(s:Get_BgColor('Normal'))
