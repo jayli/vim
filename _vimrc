@@ -399,7 +399,7 @@ endif
 "最后显示顶部Tabline 和底部 statusline
 if g:Is_My_RaspberryPi()
     setlocal nocursorline
-    autocmd VimEnter * p
+    autocmd BufRead * redraw
     " redraw 
 else 
     setlocal cursorline
