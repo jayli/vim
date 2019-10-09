@@ -329,12 +329,12 @@ set t_Co=256
 "}}}
 
 " 主题设置 colorscheme spring-night {{{
-" colorscheme spring-night
-" hi CursorLineNR ctermfg=248 ctermbg=233
-" hi SignColumn   ctermfg=233 ctermbg=235
-" hi LineNR       ctermbg=233 ctermfg=237
-" hi Todo         ctermfg=231 ctermbg=233 cterm=bold
-" hi Folded       ctermfg=242 ctermbg=233
+colorscheme spring-night
+hi CursorLineNR ctermfg=248 ctermbg=233
+hi SignColumn   ctermfg=233 ctermbg=235
+hi LineNR       ctermbg=233 ctermfg=237
+hi Todo         ctermfg=231 ctermbg=233 cterm=bold
+hi Folded       ctermfg=242 ctermbg=233
 " }}}
 
 if g:Is_My_RaspberryPi()
@@ -402,11 +402,10 @@ set showtabline=2
 set laststatus=2
 if g:Is_My_RaspberryPi()
     setlocal nocursorline
+    redraw
 else
     setlocal cursorline
 endif
-
-redraw
 
 "----------------------TEST---------------------
 
