@@ -176,13 +176,11 @@ imap <Tab> <Plug>EasyCompTabTrigger
 imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 
 " Jedi 配置
-if !g:Is_My_RaspberryPi()
-    let g:jedi#auto_initialization = 1
-    let g:jedi#popup_on_dot = 1
-    let g:jedi#popup_select_first = 0
-    let g:jedi#show_call_signatures = "1"
-    autocmd FileType python setlocal completeopt-=preview
-endif
+let g:jedi#auto_initialization = 1
+let g:jedi#popup_on_dot = 1
+let g:jedi#popup_select_first = 0
+let g:jedi#show_call_signatures = "1"
+autocmd FileType python setlocal completeopt-=preview
 
 " 打开 ctags
 nmap mm :TagbarToggle<CR>
@@ -272,6 +270,7 @@ syntax enable
 syntax on
 " 颜色设置
 set t_Co=256
+
 
 """""""""""" 主题样式配置
 
@@ -398,20 +397,15 @@ endif
 
 "底部&顶部状态栏配置，样式定义在~/.vim/plugin/moonline.vim
 "最后显示顶部Tabline 和底部 statusline
-setlocal showtabline=2
-setlocal laststatus=2
 if g:Is_My_RaspberryPi()
     setlocal nocursorline
-    autocmd VimEnter * l
-    "redraw
-else
+    autocmd VimEnter * p
+    " redraw 
+else 
     setlocal cursorline
 endif
 
-"----------------------TEST---------------------
-
-" 得到文件buff
-
-"let g:kk = system("ls ~/")
+setlocal showtabline=2
+setlocal laststatus=2
 
 " vim:ts=4:sw=4:sts=4
