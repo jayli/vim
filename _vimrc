@@ -402,8 +402,8 @@ setlocal showtabline=2
 setlocal laststatus=2
 if g:Is_My_RaspberryPi()
     setlocal nocursorline
-    redraw
     autocmd VimEnter * l
+    "redraw
 else
     setlocal cursorline
 endif
