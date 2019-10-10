@@ -400,8 +400,8 @@ endif
 if g:Is_My_RaspberryPi()
     setlocal nocursorline
     autocmd BufRead * redraw
-    " redraw 
-else 
+    " redraw
+else
     setlocal cursorline
 endif
 
