@@ -398,11 +398,11 @@ endif
 "底部&顶部状态栏配置，样式定义在~/.vim/plugin/moonline.vim
 "最后显示顶部Tabline 和底部 statusline
 if g:Is_My_RaspberryPi()
-    setlocal nocursorline
+    set nocursorline
     autocmd BufRead * redraw
     " redraw
 else
-    setlocal cursorline
+    set cursorline
 endif
 
 setlocal showtabline=2
