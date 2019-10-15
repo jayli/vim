@@ -45,7 +45,7 @@ autocmd Filetype css inoremap <buffer> : :<C-X><C-O><C-P>
 "默认长度的空格
 set backspace=indent,eol,start
 " 读写.viminfo文件，不要额外存储
-set viminfo='20,\"50 
+set viminfo='20,\"50
 set formatoptions=mtcql
 "鼠标隐藏,鼠标右键无作用
 set mouse=v
