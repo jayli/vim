@@ -208,6 +208,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_version_warning = 0
 " Go 结构体名字高亮
 let g:go_highlight_types = 1
 " Go 结构体成员高亮
