@@ -272,7 +272,6 @@ syntax on
 " 颜色设置
 set t_Co=256
 
-
 """""""""""" 主题样式配置
 
 " 主题设置 colorscheme onedark {{{
