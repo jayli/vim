@@ -1,6 +1,6 @@
 " NERDTree 中默认以 Tab 方式打开文件
 call NERDTreeAddKeyMap({
-        \ 'key': 'o',
+        \ 'key': g:NERDTreeMapCustomOpen,
         \ 'callback': 'NERDTreeFileNodeHandler',
         \ 'quickhelpText': 'echo full path of current node',
         \ 'override':1,
@@ -13,4 +13,3 @@ function! NERDTreeFileNodeHandler(filenode)
     " call a:filenode.activate({'reuse': 'all', 'where': 't'})
     " hack from  ~/.vim/bundle/nerdtree/autoload/nerdtree/ui_glue.vim 99 行
 endfunction
-
