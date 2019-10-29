@@ -1,4 +1,4 @@
-" ~/.vimrc by Jayli <lijing00333@163.com> 
+" ~/.vimrc by Jayli <lijing00333@163.com>
 " MoreInfo: https://github.com/jayli/vim
 " for 拔赤, 欢迎拷贝
 " http://jayli.github.com
@@ -286,7 +286,7 @@ set t_Co=256
 " hi Folded       ctermfg=242 ctermbg=233
 " }}}
 
-" 主题设置 colorscheme seoul256 {{{ 
+" 主题设置 colorscheme seoul256 {{{
 " let g:seoul256_background = 233
 " colorscheme seoul256
 " set background=dark
