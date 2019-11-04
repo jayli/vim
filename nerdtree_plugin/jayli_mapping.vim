@@ -7,7 +7,10 @@ call NERDTreeAddKeyMap({
         \ 'scope': 'FileNode' })
 
 function! NERDTreeFileNodeHandler(filenode)
-    call g:NERDTree.Close()
+    try
+        call g:NERDTree.Close()
+    catch
+    endtry
     call execute("tabnew ". "/" . join(a:filenode.path.pathSegments,"/"))
     " 这里是 NERDTree 标准的打开 Tab 的方法
     " call a:filenode.activate({'reuse': 'all', 'where': 't'})
