@@ -151,7 +151,7 @@ command! -nargs=0 -complete=command H call execute(":h jayli")
 " JSHint
 nmap <F8> :JSHint<CR>
 " tab操作多文件
-nmap tn :tabnew
+nmap tn :tabnew 
 " NERDTree 配置
 nmap wm :NERDTreeRefreshRoot<CR>:NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
