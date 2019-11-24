@@ -1,10 +1,10 @@
 " NERDTree 中默认以 Tab 方式打开文件
 call NERDTreeAddKeyMap({
-        \ 'key': g:NERDTreeMapCustomOpen,
-        \ 'callback': 'NERDTreeFileNodeHandler',
-        \ 'quickhelpText': 'echo full path of current node',
-        \ 'override':1,
-        \ 'scope': 'FileNode' })
+    \ 'key': g:NERDTreeMapCustomOpen,
+    \ 'callback': 'NERDTreeFileNodeHandler',
+    \ 'quickhelpText': 'echo full path of current node',
+    \ 'override':1,
+    \ 'scope': 'FileNode' })
 
 function! NERDTreeFileNodeHandler(filenode)
     try
