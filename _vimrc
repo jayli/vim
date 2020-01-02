@@ -1,6 +1,6 @@
 " ~/.vimrc by Jayli <lijing00333@163.com>
 " MoreInfo: https://github.com/jayli/vim
-" for 拔赤, 欢迎拷贝
+" for 拔赤<bachi@taobao.com>, 欢迎拷贝
 " http://jayli.github.com
 
 """""""""""""""""""""""""""""""""""""""""""
