@@ -408,5 +408,7 @@ endif
 setlocal showtabline=2
 setlocal laststatus=2
 
+let g:termdebug_use_prompt = 1
+
 " vim:ts=4:sw=4:sts=4
 
