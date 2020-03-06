@@ -86,14 +86,15 @@ set history=150
 set ruler
 "显示不完整的命令
 set showcmd
-" Added to default to high security within Gentoo. Fixes bug #14088
-set modelines=0
+" 支持modeline
+set modeline
+set modelines=1
 "文件编码设定
 set fileencodings=ucs-bom,utf-8,GB18030,gbk,big5
 "tab 尺寸定义
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
 set expandtab
 "显示Tab缩进标识
 set list
