@@ -91,9 +91,9 @@ set modelines=0
 "文件编码设定
 set fileencodings=ucs-bom,utf-8,GB18030,gbk,big5
 "tab 尺寸定义
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 set expandtab
 "显示Tab缩进标识
 set list
@@ -101,6 +101,7 @@ set listchars=tab:>-
 "空格提示
 highlight WhitespaceEOL ctermbg=238 guibg=#444444
 match WhitespaceEOL /\s\+$/
+
 "退出模式，退出时保留残存窗口
 set t_ti=
 set t_te=
