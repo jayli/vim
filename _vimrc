@@ -25,7 +25,7 @@ autocmd BufRead,BufNewFile *.less,*.scss set filetype=css
 " 将xtpl,vue识别为html
 autocmd BufRead,BufNewFile *.xtpl,*.we,*.vue set filetype=html
 " 将 swift 识别为 js
-autocmd BufRead,BufNewFile *.swift,*.coffee set filetype=javascript
+autocmd BufRead,BufNewFile *.swift,*.coffee,*jsx set filetype=javascript
 " 识别markdown文件
 autocmd BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=markdown
 " Go 语言配置：执行`:GoBuild`时先在Buf内检查代码错误
@@ -220,6 +220,12 @@ let g:go_highlight_function_calls = 1
 " JavaScript 编程配置，vim-javascript 所需
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
+" Snippmate 插件配置
+let g:snipMate = {}
+let g:snipMate.scope_aliases = {}
+let g:javascript_scope_aliases = 'javascript,javascript.react,javascript-es6-react,javascript.node'
+let g:snipMate.scope_aliases['javascript'] = g:javascript_scope_aliases
+let g:snipMate.scope_aliases['javascript.jsx'] = g:javascript_scope_aliases
 
 " 快捷浮窗样式定义，for vim-easycomplete
 "   dark,light,rider
