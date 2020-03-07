@@ -223,7 +223,7 @@ let g:javascript_plugin_flow = 1
 " Snippmate 插件配置
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
-let g:javascript_scope_aliases = 'javascript,javascript.react,javascript-es6-react,javascript.node'
+let g:javascript_scope_aliases = 'javascript,javascript-react,javascript-es6-react'
 let g:snipMate.scope_aliases['javascript'] = g:javascript_scope_aliases
 let g:snipMate.scope_aliases['javascript.jsx'] = g:javascript_scope_aliases
 
@@ -419,4 +419,3 @@ setlocal laststatus=2
 let g:termdebug_use_prompt = 1
 
 " vim:ts=4:sw=4:sts=4
-

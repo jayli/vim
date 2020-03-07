@@ -43,3 +43,6 @@
 [submodule "bundle/jedi-vim"]
 	path = bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "bundle/tern_for_vim"]
+	path = bundle/tern_for_vim
+	url = https://github.com/ternjs/tern_for_vim.git
