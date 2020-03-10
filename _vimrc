@@ -38,6 +38,7 @@ autocmd FileType go
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/ignored_files/*
 " CtrlP 的工作模式
 let g:ctrlp_working_path_mode = 'rw'
+let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|node_modules)$'
 " js文件格式化，Ctrl-b
 autocmd FileType javascript nnoremap <C-b> :call g:Jsbeautify()<CR>
 "css 文件输入:匹配关键字
