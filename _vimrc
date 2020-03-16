@@ -233,6 +233,7 @@ let g:snipMate.scope_aliases['javascript.jsx'] = g:javascript_scope_aliases
 " 可选样式有 dark,light,rider
 let g:pmenu_scheme = 'rider'
 autocmd FileType javascript,javascript.jsx,typescript setlocal completeopt-=preview
+let g:tsuquyomi_completion_detail = 1
 let g:tern_show_argument_hints = 'on_move'
 let g:tern_show_argument_hints = 'yes'
 let g:tern_show_signature_in_pum = 1

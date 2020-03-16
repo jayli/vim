@@ -46,3 +46,6 @@
 [submodule "bundle/vim-easycomplete"]
 	path = bundle/vim-easycomplete
 	url = git@github.com:jayli/vim-easycomplete.git
+[submodule "bundle/tsuquyomi"]
+	path = bundle/tsuquyomi
+	url = https://github.com/Quramy/tsuquyomi.git
