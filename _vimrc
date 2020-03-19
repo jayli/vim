@@ -154,7 +154,7 @@ command! -nargs=0 -complete=command H call execute(":h jayli")
 " JSHint
 nmap <F8> :JSHint<CR>
 " tab操作多文件
-nmap tn :tabnew 
+nmap tn :tabnew
 " NERDTree 配置
 nmap wm :NERDTreeRefreshRoot<CR>:NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
@@ -233,8 +233,10 @@ let g:snipMate.scope_aliases['javascript.jsx'] = g:javascript_scope_aliases
 " 可选样式有 dark,light,rider
 let g:pmenu_scheme = 'rider'
 autocmd FileType javascript,javascript.jsx,typescript setlocal completeopt-=preview
-let g:tsuquyomi_completion_detail = 1
+let g:tsuquyomi_completion_detail = 0
+let g:tsuquyomi_completion_preview = 0
 let g:tsuquyomi_javascript_support = 1
+let g:tsuquyomi_auto_open = 0
 
 """""""""""""""""""""""""""""""""""""""""""
 "
