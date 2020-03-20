@@ -135,5 +135,12 @@ e | 以单词为跃进长度前进光标
 
 VIM 打开大文件和语法复杂的文件都会卡顿，卡顿来源于两方面：一插件的滥用，二语法文件不够精简。所以一定要确保只留必要插件，非必要插件不要安装，语法文件复杂直接影响到运行时的卡顿，js 和 go 语法高亮逻辑很简单，一般不会卡顿，但类似 shell 和 vimL 这种语法超级复杂的语言，必须要对 syntax 文件进行瘦身，取子集，尽量避免语法的正则渲染，最好是关键字的枚举，我只对 vimL 的 syntax 文件做了[一定的瘦身](https://github.com/jayli/vim/blob/master/syntax/vim.vim)，性能上基本达标。
 
+### Modeline 设置
+
+常用的设置：
+
+    <!-- vim: set ts=2 sw=2 sts=2: -->
+    // vim:ts=2:sw=2:sts=2
+
 Enjoy yourself！
 
