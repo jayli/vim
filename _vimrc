@@ -98,8 +98,8 @@ set tabstop=4
 set softtabstop=4
 set expandtab
 "显示Tab缩进标识
-set list
-set listchars=tab:>-
+"s list
+"set listchars=tab:>-
 "空格提示
 highlight WhitespaceEOL ctermbg=238 guibg=#444444
 match WhitespaceEOL /\s\+$/
@@ -183,7 +183,7 @@ let g:jedi#auto_initialization = 1
 let g:jedi#popup_on_dot = 1
 let g:jedi#popup_select_first = 0
 let g:jedi#show_call_signatures = "1"
-autocmd FileType python setlocal completeopt-=preview
+autocmd FileType python,go setlocal completeopt-=preview
 
 " 打开 ctags
 nmap mm :TagbarToggle<CR>
