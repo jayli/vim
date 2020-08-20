@@ -49,3 +49,6 @@
 [submodule "bundle/tsuquyomi"]
 	path = bundle/tsuquyomi
 	url = git@github.com:jayli/tsuquyomi.git
+[submodule "bundle/vim-brainfuck"]
+	path = bundle/vim-brainfuck
+	url = git@github.com:jayli/vim-brainfuck.git
