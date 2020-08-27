@@ -9,6 +9,7 @@
 "
 """""""""""""""""""""""""""""""""""""""""""
 
+
 function! g:Is_My_RaspberryPi()
     return system("uname -a") =~ "raspberry"
 endfunction
