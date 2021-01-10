@@ -94,9 +94,9 @@ set modelines=1
 "文件编码设定
 set fileencodings=ucs-bom,utf-8,GB18030,gbk,big5
 "tab 尺寸定义
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 set expandtab
 "显示Tab缩进标识
 "s list
