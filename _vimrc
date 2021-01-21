@@ -26,7 +26,7 @@ autocmd BufRead,BufNewFile *.less,*.scss set filetype=css
 " 将xtpl,vue识别为html
 autocmd BufRead,BufNewFile *.xtpl,*.we,*.vue set filetype=html
 " 将 swift 识别为 js
-autocmd BufRead,BufNewFile *.swift,*.coffee,*jsx set filetype=javascript
+autocmd BufRead,BufNewFile *.swift,*.coffee,*jsx,*.tsx,*.ts set filetype=javascript
 " 识别markdown文件
 autocmd BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md   set filetype=markdown
 " Go 语言配置：执行`:GoBuild`时先在Buf内检查代码错误
@@ -225,7 +225,7 @@ let g:javascript_plugin_flow = 1
 " Snippmate 插件配置
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
-let g:javascript_scope_aliases = 'javascript,javascript-react,javascript-es6-react'
+let g:javascript_scope_aliases = 'javascript,javascript-react,javascript-es6-react,typescriptreact'
 let g:snipMate.scope_aliases['javascript'] = g:javascript_scope_aliases
 let g:snipMate.scope_aliases['javascript.jsx'] = g:javascript_scope_aliases
 
@@ -233,7 +233,7 @@ let g:snipMate.scope_aliases['javascript.jsx'] = g:javascript_scope_aliases
 " 快捷浮窗样式定义，for vim-easycomplete
 " 可选样式有 dark,light,rider
 let g:pmenu_scheme = 'rider'
-autocmd FileType javascript,javascript.jsx,typescript setlocal completeopt-=preview
+autocmd FileType javascript,javascript.jsx,typescriptreact,typescript setlocal completeopt-=preview
 let g:tsuquyomi_completion_detail = 0
 let g:tsuquyomi_completion_preview = 0
 let g:tsuquyomi_javascript_support = 1
