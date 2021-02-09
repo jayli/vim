@@ -224,6 +224,7 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 " Snippmate 插件配置
 let g:snipMate = {}
+let g:snipMate.snippet_version = 1
 let g:snipMate.scope_aliases = {}
 let g:javascript_scope_aliases = 'javascript,javascript-react,javascript-es6-react,typescriptreact'
 let g:snipMate.scope_aliases['javascript'] = g:javascript_scope_aliases
@@ -234,10 +235,10 @@ let g:snipMate.scope_aliases['javascript.jsx'] = g:javascript_scope_aliases
 " 可选样式有 dark,light,rider
 let g:pmenu_scheme = 'rider'
 autocmd FileType javascript,javascript.jsx,typescriptreact,typescript setlocal completeopt-=preview
-let g:tsuquyomi_completion_detail = 0
-let g:tsuquyomi_completion_preview = 0
+let g:tsuquyomi_completion_detail = 1
+let g:tsuquyomi_completion_preview = 1
 let g:tsuquyomi_javascript_support = 1
-let g:tsuquyomi_auto_open = 0
+
 
 """""""""""""""""""""""""""""""""""""""""""
 "
