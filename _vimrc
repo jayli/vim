@@ -233,7 +233,7 @@ let g:snipMate.scope_aliases['javascript.jsx'] = g:javascript_scope_aliases
 " EasyComplete 基本配置
 " 快捷浮窗样式定义，for vim-easycomplete
 " 可选样式有 dark,light,rider
-let g:pmenu_scheme = 'rider'
+let g:pmenu_scheme = 'light'
 autocmd FileType javascript,javascript.jsx,typescriptreact,typescript setlocal completeopt-=preview
 let g:tsuquyomi_completion_detail = 1
 let g:tsuquyomi_completion_preview = 1
