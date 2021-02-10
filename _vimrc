@@ -236,9 +236,8 @@ let g:snipMate.scope_aliases['javascript.jsx'] = g:javascript_scope_aliases
 let g:pmenu_scheme = 'light'
 autocmd FileType javascript,javascript.jsx,typescriptreact,typescript setlocal completeopt-=preview
 let g:tsuquyomi_completion_detail = 1
-let g:tsuquyomi_completion_preview = 1
 let g:tsuquyomi_javascript_support = 1
-
+let g:easycomplete_typing_popup = 1
 
 """""""""""""""""""""""""""""""""""""""""""
 "

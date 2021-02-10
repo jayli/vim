@@ -1,6 +1,3 @@
-[submodule "bundle/vim-dictionary"]
-	path = bundle/vim-dictionary
-	url = git@github.com:jayli/vim-dictionary.git
 [submodule "bundle/vim-easydebugger"]
 	path = bundle/vim-easydebugger
 	url = git@github.com:jayli/vim-easydebugger.git
