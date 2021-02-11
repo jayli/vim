@@ -2,7 +2,7 @@
 
 Author: [@Jayli](http://jayli.github.io/)
 
-版本要求 VIM >= 8.1
+版本要求 VIM >= 8.2
 
 ## 安装
 
@@ -52,6 +52,7 @@ Ctrl/Shift/Tab 控制命令
 
 命令 | 描述
 --------|------------
+Ctrl-N  | 多光标模式
 **Ctrl-P** | CtrlP 命令
 Tab | 切换 Tab
 Shift-Tab | 回切 Tab
@@ -84,7 +85,7 @@ e | 以单词为跃进长度前进光标
 
 折叠：我习惯用 marker 折叠方式，基于`/*{{{}}}*/`匹配折叠，更容易控制代码。
 
-**AutoComplete**：自动补全基于 [EasyComplete](https://github.com/jayli/vim-easycomplete) 和 [Vim-Dictionary](https://github.com/jayli/vim-dictionary)，使用 <kbd>Tab</kbd> 完成补全，字典词表配置[参照这里](https://github.com/jayli/vim-dictionary)
+**AutoComplete**：[EasyComplete](https://github.com/jayli/vim-easycomplete) 和 <del>[Vim-Dictionary](https://github.com/jayli/vim-dictionary)</del>，使用 <kbd>Tab</kbd> 完成补全，字典词表配置[参照这里](https://github.com/jayli/vim-dictionary)
 
 > EasyComplete 中 Tab 的配置不能和 [SuperTab](https://github.com/ervandew/supertab) 共用
 
@@ -118,11 +119,11 @@ e | 以单词为跃进长度前进光标
 
 ### 简洁的状态条 Moonline
 
-自己配了一个简洁的状态条：[MoonLine](https://raw.githubusercontent.com/jayli/vim/master/plugin/moonline.vim)
+状态条：[MoonLine](https://raw.githubusercontent.com/jayli/vim/master/plugin/moonline.vim)
 
 <img src="https://gw.alicdn.com/tfs/TB1NzkVb4TpK1RjSZFGXXcHqFXa-801-139.png" width=480>
 
-安装很简单，将文件拷贝到`~/.vim/plugin/`目录下即可，无需配置
+将文件拷贝到`~/.vim/plugin/`目录下即可，无需配置
 
 	cd ~/.vim/plugin/
 	wget https://raw.githubusercontent.com/jayli/vim/master/plugin/moonline.vim

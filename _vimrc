@@ -222,6 +222,12 @@ let g:go_highlight_function_calls = 1
 " JavaScript 编程配置，vim-javascript 所需
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
+
+"""""""""""""""""""""""""""""""""""""""""""
+"
+"   EasyComplete 插件配置，插件 vim-easycomplete 所需
+"
+"""""""""""""""""""""""""""""""""""""""""""
 " Snippmate 插件配置
 let g:snipMate = {}
 let g:snipMate.snippet_version = 1
