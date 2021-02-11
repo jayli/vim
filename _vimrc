@@ -9,7 +9,7 @@
 "
 """""""""""""""""""""""""""""""""""""""""""
 
-
+" 判断树莓派
 function! g:Is_My_RaspberryPi()
     return system("uname -a") =~ "raspberry"
 endfunction
