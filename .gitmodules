@@ -43,9 +43,6 @@
 [submodule "bundle/vim-brainfuck"]
 	path = bundle/vim-brainfuck
 	url = git@github.com:jayli/vim-brainfuck.git
-[submodule "bundle/tsuquyomi"]
-	path = bundle/tsuquyomi
-	url = https://github.com/Quramy/tsuquyomi.git
 [submodule "bundle/vim-visual-multi"]
 	path = bundle/vim-visual-multi
 	url = https://github.com/mg979/vim-visual-multi.git

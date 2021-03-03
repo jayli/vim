@@ -179,6 +179,9 @@ nnoremap md :IndentModify<CR>
 imap <Tab> <Plug>EasyCompTabTrigger
 imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 
+" ---------- coc.nvim --------------
+" ---------- coc.nvim --------------
+
 " Jedi 配置
 let g:jedi#auto_initialization = 1
 let g:jedi#popup_on_dot = 1
@@ -244,6 +247,11 @@ autocmd FileType javascript,javascript.jsx,typescriptreact,typescript setlocal c
 let g:tsuquyomi_completion_detail = 1
 let g:tsuquyomi_javascript_support = 1
 let g:easycomplete_typing_popup = 1
+
+
+let g:tsuquyomi_completion_case_sensitive = 0
+
+
 
 """""""""""""""""""""""""""""""""""""""""""
 "
@@ -433,3 +441,45 @@ setlocal laststatus=2
 let g:termdebug_use_prompt = 1
 
 " vim:ts=4:sw=4:sts=4
+
+"""""
+
+let g:asyncomplete_auto_popup = 0
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+" inoremap <silent><expr> <TAB>
+"   \ pumvisible() ? "\<C-n>" :
+"   \ <SID>check_back_space() ? "\<TAB>" :
+"   \ asyncomplete#force_refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+
+
+" Flow 跑通，未优化
+" call easycomplete#registerSource(easycomplete#sources#flow#get_source_options({
+"     \ 'name': 'flow',
+"     \ 'allowlist': ['javascript.jsx'],
+"     \ 'completor': function('easycomplete#sources#flow#completor'),
+"     \ 'config': {
+"     \    'flowbin_path': expand('/usr/local/bin/flow'),
+"     \  },
+"     \ }))
+
+
+" buffer 跑通，未优化，调试用
+" call easycomplete#registerSource(easycomplete#sources#buffer#get_source_options({
+"     \ 'name': 'buffer',
+"     \ 'allowlist': ['*'],
+"     \ 'blocklist': ['go'],
+"     \ 'completor': 'easycomplete#sources#buffer#completor',
+"     \ 'config': {
+"     \    'max_buffer_size': 5000000,
+"     \  },
+"     \ }))
+
+" call easycomplete#registerSource({
+
