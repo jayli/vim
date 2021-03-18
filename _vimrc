@@ -299,15 +299,14 @@ hi Todo         ctermfg=231 ctermbg=233 cterm=bold
 hi Folded       ctermfg=242 ctermbg=233
 " }}}
 
-if g:Is_My_RaspberryPi()
-  " Colorscheme for Raspberry Pi {{{
+if g:Is_My_RaspberryPi() " {{{
+  " Colorscheme for Raspberry Pi
   colorscheme eldar
   hi Folded     ctermbg=233
   hi SignColumn ctermbg=232
   hi Normal     ctermbg=233
   hi Todo       ctermfg=231 ctermbg=233 cterm=bold
-  " }}}
-endif
+endif " }}}
 
 " 本地全局样式 Hack {{{
 " 获得某个样式的 BackgroundColor
