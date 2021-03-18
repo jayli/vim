@@ -1,42 +1,6 @@
 [submodule "bundle/vim-easydebugger"]
 	path = bundle/vim-easydebugger
 	url = git@github.com:jayli/vim-easydebugger.git
-[submodule "bundle/tagbar"]
-	path = bundle/tagbar
-	url = https://github.com/majutsushi/tagbar.git
 [submodule "bundle/vim-addon-mw-utils"]
 	path = bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-[submodule "bundle/vim-snippets"]
-	path = bundle/vim-snippets
-	url = https://github.com/honza/vim-snippets.git
-[submodule "bundle/vim-javascript"]
-	path = bundle/vim-javascript
-	url = https://github.com/pangloss/vim-javascript.git
-[submodule "bundle/vim-go"]
-	path = bundle/vim-go
-	url = https://github.com/fatih/vim-go.git
-[submodule "bundle/vim-easy-align"]
-	path = bundle/vim-easy-align
-	url = https://github.com/junegunn/vim-easy-align.git
-[submodule "bundle/nerdtree"]
-	path = bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-[submodule "bundle/vim-commentary"]
-	path = bundle/vim-commentary
-	url = https://github.com/tpope/vim-commentary.git
-[submodule "bundle/vim-jsx"]
-	path = bundle/vim-jsx
-	url = https://github.com/mxw/vim-jsx.git
-[submodule "bundle/jedi-vim"]
-	path = bundle/jedi-vim
-	url = https://github.com/davidhalter/jedi-vim.git
-[submodule "bundle/vim-easycomplete"]
-	path = bundle/vim-easycomplete
-	url = git@github.com:jayli/vim-easycomplete.git
-[submodule "bundle/vim-brainfuck"]
-	path = bundle/vim-brainfuck
-	url = git@github.com:jayli/vim-brainfuck.git
-[submodule "bundle/vim-visual-multi"]
-	path = bundle/vim-visual-multi
-	url = https://github.com/mg979/vim-visual-multi.git
