@@ -1,4 +1,5 @@
 *.swp
 .netrwhist
+./bundle/*
 ./bundle/YouCompleteMe
 ./bundle/YouCompleteMe/*

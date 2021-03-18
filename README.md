@@ -6,16 +6,6 @@ Author: [@Jayli](http://jayli.github.io/)
 
 ## 安装
 
-### 脚本安装
-
-初始安装
-
-	curl "http://jayli.github.io/vim_install.sh" | bash -s install
-
-更新配置
-
-	curl "http://jayli.github.io/vim_install.sh" | bash -s update
-
 ### 源码安装
 
 初始安装，确保`~/.vim`不存在
@@ -24,10 +14,7 @@ Author: [@Jayli](http://jayli.github.io/)
 	git clone https://github.com/jayli/vim.git ~/.vim
 	ln -s .vim/_vimrc ./.vimrc
 
-更新配置
-
-	cd ~/.vim
-	git pull
+安装插件，进入 vim 后执行 PlugInstall
 
 ## 常用命令
 
@@ -97,8 +84,6 @@ e | 以单词为跃进长度前进光标
 
 ## 插件管理
 
-基于 [Pathogen](https://github.com/tpope/vim-pathogen) 做 vim 插件管理，插件安装在`~/.vim/bundle`中，语言相关的插件有：
-
 - [vim-go](https://github.com/fatih/vim-go) → [Go 编程指令](https://github.com/fatih/vim-go#features)。
 - [vim-javascript](https://github.com/pangloss/vim-javascript)
 
@@ -127,10 +112,6 @@ e | 以单词为跃进长度前进光标
 
 	cd ~/.vim/plugin/
 	wget https://raw.githubusercontent.com/jayli/vim/master/plugin/moonline.vim
-
-### Debugger 调试
-
-我常用 NodeJS 、Python 和 Golang 调试，依赖插件 [Vim-EasyDebugger](https://github.com/jayli/vim-easydebugger)
 
 ### VIM 卡顿
 

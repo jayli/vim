@@ -45,15 +45,12 @@ set viminfo='20,\"50
 set formatoptions=mtcql
 "鼠标隐藏,鼠标右键无作用
 set mouse=v
-" 先关掉tabline和statusline，最后初始化完成后打开
-set showtabline=1
-set laststatus=1
 
 " 打开文件时，自动定位到上次光标位置
 if has ("autocmd")
   autocmd BufReadPost *
         \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-        \               exe "normal g'\"" |
+        \               exe "normal g'\"" | redraw |
         \ endif
 endif
 
@@ -165,9 +162,6 @@ xmap al <Plug>(EasyAlign)
 "配置缩进整理快捷键
 nnoremap md :IndentModify<CR>
 
-" Tab 键的配置，基本上都交给 vim-easycomplete 来搞定了
-imap <Tab> <Plug>EasyCompTabTrigger
-imap <S-Tab> <Plug>EasyCompShiftTabTrigger
 
 " ---------- coc.nvim --------------
 " ---------- coc.nvim --------------
@@ -220,9 +214,27 @@ let g:javascript_plugin_flow = 1
 "       Pathogen 插件启动
 "
 """""""""""""""""""""""""""""""""""""""""""
+" let g:UltiSnipsExpandTrigger = ""
+
 
 " 开启 Pathogen 插件管理
-execute pathogen#infect()
+" execute pathogen#infect()
+
+call plug#begin('~/.vim/bundle')
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'junegunn/vim-easy-align'
+Plug 'mg979/vim-visual-multi'
+Plug 'tpope/vim-commentary'
+Plug 'jayli/vim-brainfuck'
+Plug 'majutsushi/tagbar'
+Plug 'scrooloose/nerdtree'
+
+"---easycomplete---
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'jayli/vim-easycomplete'
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""
 "
@@ -361,7 +373,7 @@ else
   set cursorline
 endif
 
-redraw
-setlocal showtabline=2
-setlocal laststatus=2
+" redraw
+set showtabline=2
+set laststatus=2
 " vim:ts=2:sw=2:sts=2
