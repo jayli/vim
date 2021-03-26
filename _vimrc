@@ -9,11 +9,6 @@
 "
 """""""""""""""""""""""""""""""""""""""""""
 
-" 判断树莓派
-function! g:Is_My_RaspberryPi()
-  return system("uname -a") =~ "raspberry"
-endfunction
-
 " 使用vim默认配置，推荐这样做
 set nocompatible
 " 为了避免加载 Plugin 过程中的抖动，高亮行号先关掉，语法高亮先关掉，最后再打开
@@ -26,14 +21,9 @@ autocmd BufRead,BufNewFile *.less,*.scss set filetype=css
 " 将xtpl,vue识别为html
 autocmd BufRead,BufNewFile *.xtpl,*.we,*.vue set filetype=html
 " 识别markdown文件
-autocmd BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md     set filetype=markdown
+autocmd BufRead,BufNewFile *.mkd,*.markdown,*.mdwn,*.md set filetype=markdown
 " Go 语言配置：执行`:GoBuild`时先在Buf内检查代码错误
 autocmd BufRead,BufNewFile *.go set autowrite
-" Go 语言配置 Tagbar
-autocmd FileType go
-      \ if executable("ctags") && globpath(&rtp, 'plugin/tagbar.vim') != "" |
-      \       call tagbar#OpenWindow() |
-      \ endif
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/ignored_files/*
 " CtrlP 的工作模式
 let g:ctrlp_working_path_mode = 'rw'
@@ -50,7 +40,7 @@ set mouse=v
 if has ("autocmd")
   autocmd BufReadPost *
         \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-        \               exe "normal g'\"" |
+        \    exe "normal g'\"" |
         \ endif
 endif
 
@@ -229,6 +219,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'jayli/vim-easycomplete'
+
+
+
+Plug 'prabirshrestha/vim-lsp'
+Plug 'davidhalter/jedi-vim'
+Plug 'ncm2/float-preview.nvim'
 call plug#end()
 
 "语法高亮
@@ -236,7 +232,8 @@ syntax enable
 syntax on
 
 "最后显示顶部Tabline 和底部 statusline
-if g:Is_My_RaspberryPi()
+"树莓派
+if system("uname -a") =~ "raspberry"
   set nocursorline
   autocmd BufRead * redraw
   " redraw
@@ -250,5 +247,9 @@ function! s:StatusLine(...)
 endfunction
 
 call timer_start(10, function("s:StatusLine"))
+
+set omnifunc=lsp#complete
+
+" -------------------------------------------------
 
 " vim:ts=2:sw=2:sts=2

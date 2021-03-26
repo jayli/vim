@@ -64,7 +64,7 @@ hi Todo         ctermfg=231 ctermbg=233 cterm=bold
 hi Folded       ctermfg=242 ctermbg=233
 " }}}
 
-if g:Is_My_RaspberryPi() " {{{
+if !has("nvim") && system("uname -a") =~ "raspberry"
   " Colorscheme for Raspberry Pi
   colorscheme eldar
   hi Folded     ctermbg=233
