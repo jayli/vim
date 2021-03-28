@@ -2,6 +2,8 @@ set t_Co=256
 
 """""""""""" 主题样式配置
 
+" ------------------------------------------------------{{{
+
 " 主题设置 colorscheme onedark {{{
 " colorscheme onedark
 " set background=dark
@@ -39,14 +41,16 @@ set t_Co=256
 
 " TODO
 " 主题设置 colorscheme open-color {{{
-" colorscheme open-color
-" set background=dark
-" hi CursorLineNR ctermfg=248 ctermbg=233
-" hi SignColumn ctermfg=118 ctermbg=235
-" hi LineNR ctermbg=233 ctermfg=237
-" hi Normal ctermbg=233
-" hi Todo ctermfg=231 ctermbg=232 cterm=bold
-" hi Identifier cterm=none
+if has('nvim')
+  colorscheme open-color
+  set background=dark
+  hi CursorLineNR ctermfg=248 ctermbg=233
+  hi SignColumn ctermfg=118 ctermbg=235
+  hi LineNR ctermbg=233 ctermfg=237
+  hi Normal ctermbg=233
+  hi Todo ctermfg=231 ctermbg=232 cterm=bold
+  hi Identifier cterm=none
+endif
 " }}}
 
 " 主题设置 colorscheme molokai {{{
@@ -56,13 +60,17 @@ set t_Co=256
 "}}}
 
 " 主题设置 colorscheme spring-night {{{
-colorscheme spring-night
-hi CursorLineNR ctermfg=248 ctermbg=233
-hi SignColumn   ctermfg=233 ctermbg=235
-hi LineNR       ctermbg=233 ctermfg=237
-hi Todo         ctermfg=231 ctermbg=233 cterm=bold
-hi Folded       ctermfg=242 ctermbg=233
+if !has('nvim')
+  colorscheme spring-night
+  hi CursorLineNR ctermfg=248 ctermbg=233
+  hi SignColumn   ctermfg=233 ctermbg=235
+  hi LineNR       ctermbg=233 ctermfg=237
+  hi Todo         ctermfg=231 ctermbg=233 cterm=bold
+  hi Folded       ctermfg=242 ctermbg=233
+endif
 " }}}
+
+" ------------------------------------------------------}}}
 
 if !has("nvim") && system("uname -a") =~ "raspberry"
   " Colorscheme for Raspberry Pi
