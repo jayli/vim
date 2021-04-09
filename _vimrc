@@ -241,15 +241,15 @@ else
   set cursorline
 endif
 
+set showtabline=2
+set laststatus=2
+
 function! s:StatusLine(...)
   set showtabline=2
   set laststatus=2
 endfunction
 
-call timer_start(0, function("s:StatusLine"))
-
-" call s:StatusLine()
-
+" call timer_start(0, function("s:StatusLine"))
 
 " -------------------------------------------------
 " vim:ts=2:sw=2:sts=2
