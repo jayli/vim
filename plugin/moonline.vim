@@ -139,5 +139,5 @@ hi StatusLine cterm=none ctermbg=236 ctermfg=white
 hi StatusLineNC cterm=none ctermbg=235 ctermfg=247
 " hi TabLineFill cterm=bold ctermbg=none ctermfg=none
 hi TabLineSel ctermbg=25    ctermfg=white guibg=blue guifg=white
-hi TabLine ctermbg=249 ctermfg=232
+" hi TabLine ctermbg=249 ctermfg=232
 hi Visual cterm=NONE ctermbg=17
