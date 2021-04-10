@@ -25,10 +25,10 @@ hi Identifier   cterm=none
 
 " 本地全局样式 Hack {{{
 " 获得某个样式的 BackgroundColor
-function! s:Get_BgColor(name)
+function! s:GetColor(name, flag)
   if &t_Co > 255 && !has('gui_running')
     let hlString = s:Highlight_Args(a:name)
-    let bgColor = matchstr(hlString,"\\(\\sctermbg=\\)\\@<=\\d\\{\-}\\(\\s\\)\\@=")
+    let bgColor = matchstr(hlString,"\\(\\s".a:flag."=\\)\\@<=\\d\\{\-}\\(\\s\\)\\@=")
     if bgColor != ''
       return str2nr(bgColor)
     endif
@@ -41,26 +41,24 @@ function! s:Highlight_Args(name)
 endfunction
 
 " 固定行高样式 Hack
-if exists("g:colors_name") &&
-      \ index([
-      \       'spring-night','open-color',
-      \       'eldar'
-      \ ], g:colors_name) >= 0
+if exists("g:colors_name")
   " Tab 栏背景样式始终和 Normal 背景色一致
-  exec "hi TabLineFill cterm=none ctermfg=".string(s:Get_BgColor('Normal'))." ctermbg=".string(s:Get_BgColor('Normal'))
+  exec "hi TabLineFill cterm=none ctermfg=".string(s:GetColor('Normal', 'ctermbg')).
+        \ " ctermbg=".string(s:GetColor('Normal','ctermbg'))
   " 折叠样式始终和 Normal 背景色一致
-  exec "hi Folded ctermbg=". string(s:Get_BgColor('Normal'))
+  exec "hi Folded ctermbg=". string(s:GetColor('Normal', 'ctermbg')) ." ctermfg=".
+        \ string(s:GetColor('Comment', 'ctermfg'))
   " 固定行高亮样式
   exec "hi CursorLine ctermbg=234 cterm=none"
-  if s:Get_BgColor('Normal') == s:Get_BgColor('CursorLine')
-    exec "hi CursorLine ctermbg=" . string(s:Get_BgColor('CursorLine') + 1)
+  if s:GetColor('Normal', 'ctermbg') == s:GetColor('CursorLine', 'ctermbg')
+    exec "hi CursorLine ctermbg=" . string(s:GetColor('CursorLine', 'ctermbg') + 1)
   endif
-  if s:Get_BgColor('CursorLine') == s:Get_BgColor('StatusLine')
-    exec "hi StatusLine cterm=none ctermbg=" . string(s:Get_BgColor('CursorLine') + 1)
+  if s:GetColor('CursorLine', 'ctermbg') == s:GetColor('StatusLine', 'ctermbg')
+    exec "hi StatusLine cterm=none ctermbg=" . string(s:GetColor('CursorLine', 'ctermbg') + 1)
   endif
   " 行号和正文样式相等
-  if s:Get_BgColor('LineNr') != s:Get_BgColor('Normal')
-    exec "hi LineNr ctermbg=" . string(s:Get_BgColor('Normal'))
+  if s:GetColor('LineNr', 'ctermbg') != s:GetColor('Normal', 'ctermbg')
+    exec "hi LineNr ctermbg=" . string(s:GetColor('Normal', 'ctermbg'))
   endif
 endif
 
