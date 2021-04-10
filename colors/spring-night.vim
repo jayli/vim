@@ -82,7 +82,7 @@ hi IncSearch term=NONE guifg=NONE ctermfg=NONE guibg=#a9667a ctermbg=132 gui=und
 exe 'hi' 'Keyword' 'term=NONE' 'guifg=#f0eaaa' 'ctermfg=229' s:bold_attr
 hi Label term=NONE guifg=#a8d2eb ctermfg=153
 hi LineNr term=NONE guifg=#788898 ctermfg=102 guibg=#3a4b5c ctermbg=235
-exe 'hi' 'MatchParen' 'term=NONE' 'guifg='.s:bg_gui 'ctermfg=233' 'guibg=#a9667a' 'ctermbg=132' s:bold_attr
+exe 'hi' 'MatchParen' 'term=NONE' 'guifg='.s:bg_gui 'ctermfg=233' 'guibg=#fedf81' 'ctermbg=222' s:bold_attr
 hi ModeMsg term=NONE guifg=#fedf81 ctermfg=222
 hi MoreMsg term=NONE guifg=#a9dd9d ctermfg=150
 hi NonText term=NONE guifg=#646f7c ctermfg=60
@@ -96,9 +96,10 @@ hi PmenuThumb term=NONE guifg=#fedf81 ctermfg=222 guibg=#8d9eb2 ctermbg=103
 hi PreProc term=NONE guifg=#f0aa8a ctermfg=216
 hi Question term=NONE guifg=#a8d2eb ctermfg=153
 hi Search term=NONE guifg=NONE ctermfg=NONE guibg=#605779 ctermbg=60 gui=underline cterm=underline
-hi SignColumn term=NONE guibg=#3a4b5c ctermbg=235
+exe 'hi' 'SignColumn' 'term=NONE' 'guifg=#fffeeb' 'ctermfg='.s:fg_cterm 'guibg=#3a4b5c' 'ctermbg=235'
 exe 'hi' 'Special' 'term=NONE' 'guifg=#f0eaaa' 'ctermfg=229' s:bold_attr
 hi SpecialKey term=NONE guifg=#607080 ctermfg=60
+hi SpecialComment term=NONE guifg=#e7c6b7 ctermfg=181
 if s:gui_running
     exe 'hi' 'SpellBad' 'term=NONE' 'guifg=#fd8489' 'ctermfg=210' 'guisp=#fd8489' s:undercurl_attr
 else
@@ -139,7 +140,7 @@ hi Underlined term=NONE guifg=#a8d2eb ctermfg=153 gui=underline cterm=underline
 exe 'hi' 'VertSplit' 'term=NONE' 'guifg=#3a4b5c' 'ctermfg=235' 'guibg='.s:bg_gui 'ctermbg=233'
 hi Visual term=NONE guibg=#70495d ctermbg=95
 hi WarningMsg term=NONE guifg=#fb8965 ctermfg=209 guibg=#3a4b5c ctermbg=235
-hi WildMenu term=NONE guibg=#fedf81 ctermbg=222
+exe 'hi' 'WildMenu' 'term=NONE' 'guifg='.s:bg_gui 'ctermfg=233' 'guibg=#fedf81' 'ctermbg=222'
 hi cmakeArguments term=NONE guifg=#f0eaaa ctermfg=229
 hi cmakeOperators term=NONE guifg=#fd8489 ctermfg=210
 exe 'hi' 'DiffAdd' 'term=NONE' 'guibg=#5f8770' 'ctermbg=65' s:bold_attr
@@ -184,11 +185,14 @@ hi tomlTable term=NONE guifg=#a8d2eb ctermfg=153
 hi tomlTableArray term=NONE guifg=#a8d2eb ctermfg=153
 hi tomlKey term=NONE guifg=#fedf81 ctermfg=222
 exe 'hi' 'typescriptBraces' 'term=NONE' 'guifg=#fffeeb' 'ctermfg='.s:fg_cterm
+hi typescriptAsyncFuncKeyword term=NONE guifg=#a8d2eb ctermfg=153
+exe 'hi' 'typescriptKeywordOp' 'term=NONE' 'guifg=#f0eaaa' 'ctermfg=229' s:bold_attr
 hi vimfilerColumn__SizeLine term=NONE guifg=#8d9eb2 ctermfg=103
 hi vimfilerClosedFile term=NONE guifg=#a9dd9d ctermfg=150
 hi vimCommand term=NONE guifg=#a8d2eb ctermfg=153
 exe 'hi' 'wastListDelimiter' 'term=NONE' 'guifg=#fffeeb' 'ctermfg='.s:fg_cterm
 hi wastInstGeneral term=NONE guifg=#f0eaaa ctermfg=229
+hi wastInstGetSet term=NONE guifg=#f0eaaa ctermfg=229
 hi wastInstWithType term=NONE guifg=#f0eaaa ctermfg=229
 hi wastUnnamedVar term=NONE guifg=#e7d5ff ctermfg=189
 hi zshDelimiter term=NONE guifg=#a8d2eb ctermfg=153
@@ -196,6 +200,7 @@ hi zshPrecommand term=NONE guifg=#fd8489 ctermfg=210
 hi ghaworkflowAttrName term=NONE guifg=#f0eaaa ctermfg=229
 exe 'hi' 'debugPC' 'term=NONE' 'guifg='.s:bg_gui 'ctermfg=233' 'guibg=#a8d2eb' 'ctermbg=153'
 exe 'hi' 'debugBreakPoint' 'term=NONE' 'guifg='.s:bg_gui 'ctermfg=233' 'guibg=#fedf81' 'ctermbg=222'
+hi zigMultilineStringDelimiter term=NONE guifg=#f0eaaa ctermfg=229
 exe 'hi' 'ALEWarningSign' 'term=NONE' 'guifg=#f0aa8a' 'ctermfg=216' 'guibg=#3a4b5c' 'ctermbg=235' s:bold_attr
 exe 'hi' 'ALEErrorSign' 'term=NONE' 'guifg=#3a4b5c' 'ctermfg=235' 'guibg=#ab6560' 'ctermbg=167' s:bold_attr
 hi ALEInfoSign term=NONE guibg=#646f7c ctermbg=60
@@ -211,6 +216,7 @@ hi SignifySignChange term=NONE guifg=#f0eaaa ctermfg=229 guibg=#3a4b5c ctermbg=2
 hi SignifySignChangeDelete term=NONE guifg=#fedf81 ctermfg=222 guibg=#3a4b5c ctermbg=235
 hi SignifySignDelete term=NONE guifg=#fd8489 ctermfg=210 guibg=#3a4b5c ctermbg=235
 exe 'hi' 'CleverFChar' 'term=NONE' 'guifg='.s:bg_gui 'ctermfg=233' 'guibg=#fd8489' 'ctermbg=210'
+exe 'hi' 'CleverFDirect' 'term=NONE' 'guifg='.s:bg_gui 'ctermfg=233' 'guibg=#fd8489' 'ctermbg=210'
 exe 'hi' 'DirvishArg' 'term=NONE' 'guifg=#f0eaaa' 'ctermfg=229' s:bold_attr
 exe 'hi' 'EasyMotionTarget' 'term=NONE' 'guifg=#fd8489' 'ctermfg=210' s:bold_attr
 exe 'hi' 'EasyMotionShade' 'term=NONE' 'guifg=#8d9eb2' 'ctermfg=103' 'guibg='.s:bg_gui 'ctermbg=233'
