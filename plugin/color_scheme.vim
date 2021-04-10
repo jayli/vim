@@ -1,85 +1,27 @@
 set t_Co=256
 
 """""""""""" 主题样式配置
+let g:vim_color_scheme = "spring-night"
+let g:nvim_color_scheme = "open-color"
 
 " ------------------------------------------------------{{{
 
-" 主题设置 colorscheme onedark {{{
-" colorscheme onedark
-" set background=dark
-" let g:onedark_termcolors=16
-" hi CursorLineNR ctermfg=248 ctermbg=233
-" hi SignColumn     ctermfg=233 ctermbg=235
-" hi LineNR             ctermbg=233 ctermfg=237
-" hi Normal             ctermbg=233
-" hi Todo                   ctermfg=231 ctermbg=233 cterm=bold
-" hi Folded             ctermfg=242 ctermbg=233
-" }}}
-
-" 主题设置 colorscheme seoul256 {{{
-" let g:seoul256_background = 233
-" colorscheme seoul256
-" set background=dark
-" }}}
-
-" 主题设置 colorscheme jellybeans {{{
-" colorscheme jellybeans
-" hi SignColumn ctermfg=118 ctermbg=234
-" hi Folded         ctermfg=243 ctermbg=233
-"}}}
-
-" 主题设置 colorscheme gruvbox {{{
-" colorscheme gruvbox
-" set background=dark
-" hi CursorLineNR ctermfg=248 ctermbg=233
-" hi SignColumn     ctermfg=233 ctermbg=235
-" hi LineNR             ctermbg=233 ctermfg=237
-" hi Normal             ctermbg=233
-" hi Todo                   ctermfg=231 ctermbg=233 cterm=bold
-" hi Folded             ctermfg=242 ctermbg=233
-" }}}
-
-" TODO
-" 主题设置 colorscheme open-color {{{
-if has('nvim')
-  colorscheme open-color
-  set background=dark
-  hi CursorLineNR ctermfg=248 ctermbg=233
-  hi SignColumn ctermfg=118 ctermbg=235
-  hi LineNR ctermbg=233 ctermfg=237
-  hi Normal ctermbg=233
-  hi Todo ctermfg=231 ctermbg=232 cterm=bold
-  hi Identifier cterm=none
+if has("nvim")
+  exec "colorscheme ". g:nvim_color_scheme
+elseif system("uname -a") =~ "raspberry"
+  colorscheme eldar
+else
+  exec "colorscheme ". g:vim_color_scheme
 endif
-" }}}
 
-" 主题设置 colorscheme molokai {{{
-" let g:molokai_original = 0
-" let g:rehash256 = 0
-" colorscheme molokai
-"}}}
-
-" 主题设置 colorscheme spring-night {{{
-if !has('nvim')
-  colorscheme spring-night
-  hi CursorLineNR ctermfg=248 ctermbg=233
-  hi SignColumn   ctermfg=233 ctermbg=235
-  hi LineNR       ctermbg=233 ctermfg=237
-  hi Todo         ctermfg=231 ctermbg=233 cterm=bold
-  hi Folded       ctermfg=242 ctermbg=233
-endif
-" }}}
+hi CursorLineNR ctermfg=248 ctermbg=233
+hi SignColumn   ctermfg=233 ctermbg=235
+hi LineNR       ctermbg=233 ctermfg=237
+hi Normal       ctermbg=233
+hi Todo         ctermfg=231 ctermbg=233 cterm=bold
+hi Identifier   cterm=none
 
 " ------------------------------------------------------}}}
-
-if !has("nvim") && system("uname -a") =~ "raspberry"
-  " Colorscheme for Raspberry Pi
-  colorscheme eldar
-  hi Folded     ctermbg=233
-  hi SignColumn ctermbg=232
-  hi Normal     ctermbg=233
-  hi Todo       ctermfg=231 ctermbg=233 cterm=bold
-endif " }}}
 
 " 本地全局样式 Hack {{{
 " 获得某个样式的 BackgroundColor
@@ -101,8 +43,8 @@ endfunction
 " 固定行高样式 Hack
 if exists("g:colors_name") &&
       \ index([
-      \       'spring-night','open-color','gruvbox','jellybeans',
-      \       'eldar','monokai','seoul256','onedark'
+      \       'spring-night','open-color',
+      \       'eldar'
       \ ], g:colors_name) >= 0
   " Tab 栏背景样式始终和 Normal 背景色一致
   exec "hi TabLineFill cterm=none ctermfg=".string(s:Get_BgColor('Normal'))." ctermbg=".string(s:Get_BgColor('Normal'))
