@@ -1,7 +1,9 @@
 set t_Co=256
 
 """""""""""" 主题样式配置
-let g:vim_color_scheme = "spring-night"
+" let g:vim_color_scheme = "spring-night"
+" let g:vim_color_scheme = "lucius"
+let g:vim_color_scheme = "simple-dark"
 let g:nvim_color_scheme = "open-color"
 
 " ------------------------------------------------------{{{
@@ -14,12 +16,17 @@ else
   exec "colorscheme ". g:vim_color_scheme
 endif
 
+" 基本样式 hack
 hi CursorLineNR ctermfg=248 ctermbg=233
 hi SignColumn   ctermfg=233 ctermbg=235
 hi LineNR       ctermbg=233 ctermfg=237
 hi Normal       ctermbg=233
 hi Todo         ctermfg=231 ctermbg=233 cterm=bold
 hi Identifier   cterm=none
+hi TabLine      ctermfg=244 ctermbg=236             cterm=none
+hi TabLineFill  ctermfg=187 ctermbg=236             cterm=none
+hi TabLineSel   ctermbg=25 ctermfg=white guibg=blue guifg=white
+hi Visual       cterm=NONE ctermbg=17
 
 " ------------------------------------------------------}}}
 
