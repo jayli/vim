@@ -345,4 +345,4 @@ hi Visual           ctermfg=NONE            ctermbg=24
 hi VisualNOS        guifg=fg                                        gui=underline
 hi VisualNOS        ctermfg=fg                                      cterm=underline
 
-let g:easycomplete_scheme="rider"
+let g:easycomplete_scheme="sharp"

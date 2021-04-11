@@ -100,4 +100,4 @@ hi WildMenu     guifg=NONE      guibg=#005f87   ctermfg=NONE   ctermbg=24       
 hi ColorColumn  guifg=NONE      guibg=#303030   ctermfg=NONE   ctermbg=236       gui=none      cterm=none
 hi Ignore       guifg=bg                        ctermfg=bg
 
-let g:easycomplete_scheme="rider"
+let g:easycomplete_scheme="sharp"
