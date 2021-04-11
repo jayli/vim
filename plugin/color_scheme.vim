@@ -1,10 +1,25 @@
+" 这里优先支持 MacOS Terminal
+"
+" iTerm2 的最大优势是支持真彩色，缺点是存在性能问题
+"
+" - #27 的闪烁问题无解（coc 也存在此问题）
+" - 打开文件速度不及 Terminal
+"
+" 因此这里主要支持 256 色配色主题
 set t_Co=256
 
 """""""""""" 主题样式配置
-" let g:vim_color_scheme = "spring-night"
+" let g:vim_color_scheme = "simple-dark"
 " let g:vim_color_scheme = "lucius"
-let g:vim_color_scheme = "simple-dark"
+let g:vim_color_scheme = "sialoquent"
+let g:vim_color_scheme = "spring-night"
 let g:nvim_color_scheme = "open-color"
+
+if has("termguicolors")
+  " set termguicolors
+endif
+
+" set termguicolors
 
 " ------------------------------------------------------{{{
 
