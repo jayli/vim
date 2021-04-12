@@ -220,7 +220,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'jayli/vim-easycomplete'
 
-
+" Plug 'chriskempson/base16-vim'
 
 " Plug 'prabirshrestha/vim-lsp'
 " Plug 'mattn/vim-lsp-settings'
