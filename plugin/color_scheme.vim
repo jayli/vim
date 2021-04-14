@@ -12,7 +12,7 @@ set t_Co=256
 " let g:vim_color_scheme = "simple-dark"
 " let g:vim_color_scheme = "lucius"
 let g:vim_color_scheme = "sialoquent"
-let g:vim_color_scheme = "simple-dark"
+let g:vim_color_scheme = "jellybeans"
 let g:nvim_color_scheme = "open-color"
 
 if has("termguicolors")
@@ -76,7 +76,7 @@ if exists("g:colors_name")
     exec "hi CursorLine ctermbg=" . string(s:GetColor('CursorLine', 'ctermbg') + 1)
   endif
   if s:GetColor('CursorLine', 'ctermbg') == s:GetColor('StatusLine', 'ctermbg')
-    exec "hi StatusLine cterm=none ctermbg=" . string(s:GetColor('CursorLine', 'ctermbg') + 1)
+    exec "hi StatusLine cterm=none guibg=#b4addf ctermbg=" . string(s:GetColor('CursorLine', 'ctermbg') + 1)
   endif
   " 行号和正文样式相等
   if s:GetColor('LineNr', 'ctermbg') != s:GetColor('Normal', 'ctermbg')
@@ -85,3 +85,4 @@ if exists("g:colors_name")
 endif
 
 " }}}
+

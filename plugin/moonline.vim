@@ -103,23 +103,13 @@ function! s:UserColors()
         return
     endif
 
-    if version <= 800
-        exec "hi User1 ctermbg=".s:blue   ." guibg=".s:blue ." ctermfg=white guifg=".s:grey234
-        exec "hi User2 ctermbg=".s:green  ." guibg=".s:green." ctermfg="  .s:grey234." guifg=".s:grey234
-        exec "hi User3 ctermbg=".s:crimson." guibg=".s:crimson." ctermfg=black guifg=".s:grey234
-        exec "hi User4 ctermbg=".s:purple ." guibg=".s:purple ." ctermfg="  .s:grey234." guifg=".s:grey234
-        exec "hi User5 ctermbg=".s:grey236." guibg=".s:grey236." ctermfg=10  guifg="  .s:emerald." gui=none"
-        exec "hi User6 ctermbg=".s:grey236." guibg=".s:grey236." ctermfg=251 guifg="  .s:white  ." gui=none"
-        exec "hi User7 ctermbg=".s:grey236." guibg=".s:grey236." ctermfg=4   guifg="  .s:blue   ." gui=none"
-    else
-        exec "hi User1 ctermbg=".s:blue   ." ctermfg=white"
-        exec "hi User2 ctermbg=".s:green  ." ctermfg=".s:grey234
-        exec "hi User3 ctermbg=".s:crimson." ctermfg=black"
-        exec "hi User4 ctermbg=".s:purple ." ctermfg=".s:grey234
-        exec "hi User5 ctermbg=".s:grey236." ctermfg=10 "
-        exec "hi User6 ctermbg=".s:grey236." ctermfg=251"
-        exec "hi User7 ctermbg=".s:grey236." ctermfg=4"
-    endif
+    exec "hi User1 ctermbg=".s:blue   ." ctermfg=white guibg=#0066CC guifg=#ffffff"
+    exec "hi User2 ctermbg=".s:green  ." ctermfg=".s:grey234 . " guibg=#00FF00 guifg=#474747"
+    exec "hi User3 ctermbg=".s:crimson." ctermfg=black". " guibg=#b55673 guifg=#ffffff"
+    exec "hi User4 ctermbg=".s:purple ." ctermfg=".s:grey234 . " guibg=#d08770 guifg=#474747"
+    exec "hi User5 ctermbg=".s:grey236." ctermfg=10 "
+    exec "hi User6 ctermbg=".s:grey236." ctermfg=251"
+    exec "hi User7 ctermbg=".s:grey236." ctermfg=4"
 endfunction
 
 augroup moonStatusline
@@ -135,6 +125,6 @@ augroup END
 call s:UserColors()
 
 "状态栏样式hack，针对evening,包括gui模式下的状态栏样式
-hi StatusLine cterm=none ctermbg=236 ctermfg=white
-hi StatusLineNC cterm=none ctermbg=235 ctermfg=247
+hi StatusLine cterm=none ctermbg=236 ctermfg=white guibg=#373737 guifg=#cbe3e7
+hi StatusLineNC cterm=none ctermbg=235 ctermfg=247 guibg=#333333 guifg=#a1a1a1
 
