@@ -10,7 +10,7 @@
 """""""""""""""""""""""""""""""""""""""""""
 
 " 使用vim默认配置，推荐这样做
-set nocompatible
+" set nocompatible
 " 为了避免加载 Plugin 过程中的抖动，高亮行号先关掉，语法高亮先关掉，最后再打开
 set nocursorline
 syntax off
@@ -219,8 +219,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'jayli/vim-easycomplete'
-
-" Plug 'chriskempson/base16-vim'
 
 " Plug 'prabirshrestha/vim-lsp'
 " Plug 'mattn/vim-lsp-settings'
