@@ -11,8 +11,15 @@ set t_Co=256
 """""""""""" 主题样式配置
 " let g:vim_color_scheme = "simple-dark"
 " let g:vim_color_scheme = "lucius"
-let g:vim_color_scheme = "xoria256"
-let g:nvim_color_scheme = "dtinth256"
+let g:vim_color_scheme = "jellybeans"
+let g:nvim_color_scheme = "lucius"
+
+augroup FileTypeChecking
+  let ext = substitute(expand('%p'),"^.\\+[\\.]","","g")
+  if ext == "vim"
+    let g:vim_color_scheme = 'xoria256'
+  endif
+augroup END
 
 if has("termguicolors")
   " set termguicolors
