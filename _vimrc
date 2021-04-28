@@ -214,6 +214,10 @@ Plug 'tpope/vim-commentary'
 Plug 'jayli/vim-brainfuck'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
+Plug 'zivyangll/git-blame.vim'
+
+  set updatetime=300
+  autocmd CursorHold * call gitblame#echo()
 
 "---easycomplete---
 
