@@ -17,7 +17,7 @@ let g:nvim_color_scheme = "lucius"
 augroup FileTypeChecking
   let ext = substitute(expand('%p'),"^.\\+[\\.]","","g")
   if ext == "vim"
-    let g:vim_color_scheme = 'jellybeans'
+    let g:vim_color_scheme = 'spring-night'
   endif
 augroup END
 
