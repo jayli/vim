@@ -18,6 +18,7 @@ syntax off
 filetype plugin indent on
 " 将less,scss识别为css
 autocmd BufRead,BufNewFile *.less,*.scss set filetype=css
+autocmd BufRead,BufNewFile *.nim,*.nimble set filetype=nim
 " 将xtpl,vue识别为html
 autocmd BufRead,BufNewFile *.xtpl,*.we,*.vue set filetype=html
 " 识别markdown文件
@@ -97,6 +98,7 @@ set complete-=k complete +=k
 set foldmethod=marker
 set foldnestmax=2
 set foldenable
+
 
 """""""""""""""""""""""""""""""""""""""""""
 "
@@ -206,7 +208,6 @@ let g:javascript_plugin_flow = 1
 " 开启 Pathogen 插件管理
 " execute pathogen#infect()
 call plug#begin('~/.vim/bundle')
-Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'junegunn/vim-easy-align'
 Plug 'mg979/vim-visual-multi'
@@ -215,18 +216,22 @@ Plug 'jayli/vim-brainfuck'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 Plug 'zivyangll/git-blame.vim'
+Plug 'chemzqm/vim-jsx-improve'
 
   set updatetime=300
-  autocmd CursorHold * call gitblame#echo()
+  " autocmd CursorHold *.js,*.jsx,*.ts,*.css,*.less,*.scss,*.html call gitblame#echo()
 
 "---easycomplete---
 
+let flag = "vim-lsp"
 let flag = "coc"
 let flag = "easycomplete"
 
 if flag == "easycomplete"
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
+  " for css and json languageserver，还没调通
+  " Plug 'norcalli/snippets.nvim'
   Plug 'jayli/vim-easycomplete'
 endif
 
@@ -259,8 +264,20 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'mattn/vim-lsp-settings'
+" let flag = "vim-lsp"
+
+if flag == "vim-lsp"
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'prabirshrestha/asyncomplete.vim'
+
+  " inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+  " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  " inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+  " imap <c-space> <Plug>(asyncomplete_force_refresh)
+  " let g:asyncomplete_auto_popup = 1
+endif
 
 call plug#end()
 
