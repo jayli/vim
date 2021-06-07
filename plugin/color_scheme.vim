@@ -12,14 +12,14 @@ set t_Co=256
 " let g:vim_color_scheme = "simple-dark"
 " let g:vim_color_scheme = "lucius"
 let g:vim_color_scheme = "jellybeans"
-let g:nvim_color_scheme = "lucius"
+let g:nvim_color_scheme = "monokai_pro"
 
-augroup FileTypeChecking
-  let ext = substitute(expand('%p'),"^.\\+[\\.]","","g")
-  if ext == "vim"
-    let g:vim_color_scheme = 'spring-night'
-  endif
-augroup END
+" augroup FileTypeChecking
+"   let ext = substitute(expand('%p'),"^.\\+[\\.]","","g")
+"   if ext == "vim"
+"     let g:vim_color_scheme = 'spring-night'
+"   endif
+" augroup END
 
 if has("termguicolors")
   " set termguicolors
@@ -43,6 +43,7 @@ hi SignColumn   ctermfg=233 ctermbg=235
 hi LineNR       ctermbg=233 ctermfg=237
 hi Normal       ctermbg=233
 hi Todo         ctermfg=231 ctermbg=233 cterm=bold
+hi NonText      ctermbg=233
 hi Identifier   cterm=none
 hi TabLine      ctermfg=244 ctermbg=236             cterm=none
 hi TabLineFill  ctermfg=187 ctermbg=236             cterm=none
